@@ -62,6 +62,8 @@
 			reg = <0x00010000 0 0 0 0>;
 
 			qcom,ath10k-calibration-variant = "Xiaomi-AX3600";
+			nvmem-cell-names = "calibration";
+			nvmem-cells = <&caldata_qca9889>;
 		};
 	};
 };
