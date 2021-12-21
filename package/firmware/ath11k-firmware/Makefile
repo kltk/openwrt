@@ -8,9 +8,9 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ath11k-firmware
-PKG_SOURCE_DATE:=2022-08-26
-PKG_SOURCE_VERSION:=fa9e27be11a024ab8f0ceed7acaef93e3353f5ef
-PKG_MIRROR_HASH:=71fae07c7afe69007e6dc8db7c85cb55a38c1c6e27c9afdf26694db9004ccbda
+PKG_SOURCE_DATE:=2022-12-14
+PKG_SOURCE_VERSION:=ab1229f94591ec4ffb16410e359b7f618be75a33
+PKG_MIRROR_HASH:=48a2526971e56a3be1c80b72cd82b9932c196b4ab9b7d5dc35117f0548a8fe57
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
@@ -22,9 +22,6 @@ PKG_MAINTAINER:=Robert Marko <robimarko@gmail.com>
 
 include $(INCLUDE_DIR)/package.mk
 
-RSTRIP:=:
-STRIP:=:
-
 define Package/ath11k-firmware-default
   SECTION:=firmware
   CATEGORY:=Firmware
@@ -32,37 +29,28 @@ define Package/ath11k-firmware-default
   DEPENDS:=
 endef
 
-define Package/ath11k-firmware-ipq6018
-$(Package/ath11k-firmware-default)
-  TITLE:=ath11k firmware for IPQ6018 devices
-endef
-
 define Package/ath11k-firmware-ipq8074
 $(Package/ath11k-firmware-default)
-  TITLE:=IPQ8074 ath11k firmware
+  TITLE:=ath11k firmware for IPQ8074 devices
 endef
 
 define Package/ath11k-firmware-qcn9074
 $(Package/ath11k-firmware-default)
-  TITLE:=QCN9074 ath11k firmware
+  TITLE:=ath11k firmware for QCN9074 devices
 endef
 
 define Build/Compile
 
 endef
 
-define Package/ath11k-firmware-ipq6018/install
-	$(INSTALL_DIR) $(1)/lib/firmware/IPQ6018
-	$(INSTALL_DATA) \
-		$(PKG_BUILD_DIR)/ath11k-firmware/IPQ6018/hw1.0/2.7.0.1/WLAN.HK.2.7.0.1-01744-QCAHKSWPL_SILICONZ-1/* \
-		$(1)/lib/firmware/IPQ6018/
-endef
-
 define Package/ath11k-firmware-ipq8074/install
 	$(INSTALL_DIR) $(1)/lib/firmware/IPQ8074
+	$(INSTALL_DIR) $(1)/lib/firmware/ath11k/IPQ8074/hw2.0
 	$(INSTALL_DATA) \
 		$(PKG_BUILD_DIR)/IPQ8074/hw2.0/2.5.0.1/WLAN.HK.2.5.0.1-01208-QCAHKSWPL_SILICONZ-1/* \
 		$(1)/lib/firmware/IPQ8074/
+	$(INSTALL_BIN) \
+		$(PKG_BUILD_DIR)/IPQ8074/hw2.0/board-2.bin $(1)/lib/firmware/ath11k/IPQ8074/hw2.0/board-2.bin
 endef
 
 define Package/ath11k-firmware-qcn9074/install
@@ -74,6 +62,5 @@ define Package/ath11k-firmware-qcn9074/install
 		$(PKG_BUILD_DIR)/QCN9074/hw1.0/board-2.bin $(1)/lib/firmware/ath11k/QCN9074/hw1.0/board-2.bin
 endef
 
-$(eval $(call BuildPackage,ath11k-firmware-ipq6018))
 $(eval $(call BuildPackage,ath11k-firmware-ipq8074))
 $(eval $(call BuildPackage,ath11k-firmware-qcn9074))
