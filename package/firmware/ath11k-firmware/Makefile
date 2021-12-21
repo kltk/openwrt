@@ -8,10 +8,10 @@
 include $(TOPDIR)/rules.mk
 
 PKG_NAME:=ath11k-firmware
-PKG_SOURCE_DATE:=2022-08-26
-PKG_SOURCE_VERSION:=fa9e27be11a024ab8f0ceed7acaef93e3353f5ef
-PKG_MIRROR_HASH:=71fae07c7afe69007e6dc8db7c85cb55a38c1c6e27c9afdf26694db9004ccbda
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_SOURCE_DATE:=2022-12-14
+PKG_SOURCE_VERSION:=ab1229f94591ec4ffb16410e359b7f618be75a33
+PKG_MIRROR_HASH:=48a2526971e56a3be1c80b72cd82b9932c196b4ab9b7d5dc35117f0548a8fe57
+PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/kvalo/ath11k-firmware.git
@@ -21,6 +21,9 @@ PKG_LICENSE_FILES:=LICENSE.qca_firmware
 PKG_MAINTAINER:=Robert Marko <robimarko@gmail.com>
 
 include $(INCLUDE_DIR)/package.mk
+
+RSTRIP:=:
+STRIP:=:
 
 define Package/ath11k-firmware-default
   SECTION:=firmware
