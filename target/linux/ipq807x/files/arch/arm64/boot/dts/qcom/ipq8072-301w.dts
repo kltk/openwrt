@@ -39,14 +39,16 @@
 
 	keys {
 		compatible = "gpio-keys";
+		pinctrl-0 = <&button_pins>;
+		pinctrl-names = "default";
 
-		wps {
+		wps-button {
 			label = "wps";
 			gpios = <&tlmm 57 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_WPS_BUTTON>;
 		};
 
-		reset {
+		reset-button {
 			label = "reset";
 			gpios = <&tlmm 67 GPIO_ACTIVE_LOW>;
 			linux,code = <KEY_RESTART>;
@@ -55,98 +57,100 @@
 
 	leds {
 		compatible = "gpio-leds";
+		pinctrl-0 = <&leds_pins>;
+		pinctrl-names = "default";
 
-		led_system_green: system-green {
+		led_system_green: led-system-green {
 			label = "green:system";
 			gpios = <&tlmm 1 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_system_red: system-red {
+		led_system_red: led-system-red {
 			label = "red:system";
 			gpios = <&tlmm 3 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_RED>;
 		};
 
-		led_pwr_green: pwr-green {
+		led_pwr_green: led-pwr-green {
 			label = "green:pwr";
 			gpios = <&tlmm 4 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_wifi_green: wifi-green {
+		led-wifi-green {
 			label = "green:wifi";
 			gpios = <&tlmm 42 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_lan1_green: lan1-green {
-			label = "green:lan1";
+		led-lan4-green {
+			label = "green:lan4";
 			gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_lan1_amber: lan1-amber {
-			label = "amber:lan1";
+		led-lan4-amber {
+			label = "amber:lan4";
 			gpios = <&tlmm 7 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_AMBER>;
 		};
 
-		led_lan2_green: lan2-green {
-			label = "green:lan2";
+		led-lan3-green {
+			label = "green:lan3";
 			gpios = <&tlmm 8 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_lan2_amber: lan2-amber {
-			label = "amber:lan2";
+		led-lan3-amber {
+			label = "amber:lan3";
 			gpios = <&tlmm 11 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_AMBER>;
 		};
 
-		led_lan3_green: lan3-green {
-			label = "green:lan3";
+		led-lan2-green {
+			label = "green:lan2";
 			gpios = <&tlmm 12 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_lan3_amber: lan3-amber {
-			label = "amber:lan3";
+		led-lan2-amber {
+			label = "amber:lan2";
 			gpios = <&tlmm 13 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_AMBER>;
 		};
 
-		led_lan4_green: lan4-green {
-			label = "green:lan4";
+		led-lan1-green {
+			label = "green:lan1";
 			gpios = <&tlmm 14 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_lan4_amber: lan4-amber {
-			label = "amber:lan4";
+		led-lan1-amber {
+			label = "amber:lan1";
 			gpios = <&tlmm 15 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_AMBER>;
 		};
 
-		led_10g_1_green: 10g_1-green {
+		led-10g-1-green {
 			label = "green:10g_1";
 			gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_10g_1_amber: 10g_1-amber {
+		led-10g-1-amber {
 			label = "amber:10g_1";
 			gpios = <&tlmm 56 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_AMBER>;
 		};
 
-		led_10g_2_green: 10g_2-green {
+		led-10g-2-green {
 			label = "green:10g_2";
 			gpios = <&tlmm 51 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_GREEN>;
 		};
 
-		led_10g_2_amber: 10g_2-amber {
+		led-10g-2-amber {
 			label = "amber:10g_2";
 			gpios = <&tlmm 52 GPIO_ACTIVE_HIGH>;
 			color = <LED_COLOR_ID_AMBER>;
@@ -156,15 +160,15 @@
 
 &tlmm {
 
-	mdio_pins: mdio-pins {
-		mdc {
+	mdio_pins: mdio-state {
+		mdc-pins {
 			pins = "gpio68";
 			function = "mdc";
 			drive-strength = <8>;
 			bias-pull-up;
 		};
 
-		mdio {
+		mdio-pins {
 			pins = "gpio69";
 			function = "mdio";
 			drive-strength = <8>;
@@ -172,15 +176,15 @@
 		};
 	};
 
-	button_pins: button_pins {
-		wps_button {
+	button_pins: button-state {
+		wps-pins {
 			pins = "gpio57";
 			function = "gpio";
 			drive-strength = <8>;
 			bias-pull-up;
 		};
 
-		rst_button {
+		rst-pins {
 			pins = "gpio67";
 			function = "gpio";
 			drive-strength = <8>;
@@ -188,108 +192,13 @@
 		};
 	};
 
-	qpic_pins: qpic-pins {
-			status = "disabled";
-			/*disabling qpic-pins due to the leds are using all of the gpios*/
-	};
-
-	leds_pins: leds_pinmux {
-		led_pwr_green {
-			pins = "gpio4";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_system_green {
-			pins = "gpio1";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_system_red {
-			pins = "gpio3";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_lan1_green {
-			pins = "gpio6";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_lan1_amber {
-			pins = "gpio7";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		}; 
-		led_lan2_green {
-			pins = "gpio8";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_lan2_amber {
-			pins = "gpio11";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_lan3_green {
-			pins = "gpio12";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_lan3_amber {
-			pins = "gpio13";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_lan4_green {
-			pins = "gpio14";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_lan4_amber {
-			pins = "gpio15";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_10g_1_green {
-			pins = "gpio54";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_10g_1_amber {
-			pins = "gpio56";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_10g_2_green {
-			pins = "gpio51";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_10g_2_amber {
-			pins = "gpio52";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
-		led_wifi_green {
-			pins = "gpio42";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
-		};
+	leds_pins: leds-state {
+		pins = "gpio1", "gpio3", "gpio4", "gpio6", "gpio7", "gpio8",
+		       "gpio11", "gpio12", "gpio13", "gpio14", "gpio15", "gpio42",
+		       "gpio51", "gpio52", "gpio54", "gpio56";
+		function = "gpio";
+		drive-strength = <8>;
+		bias-pull-down;
     };
 };
 
@@ -736,6 +645,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&qca8075_16>;
 		phy-mode = "sgmii";
+		label = "lan4";
 	};
 
 	dp2: dp2 {
@@ -747,6 +657,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&qca8075_17>;
 		phy-mode = "sgmii";
+		label = "lan3";
 	};
 
 	dp3: dp3 {
@@ -758,6 +669,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&qca8075_18>;
 		phy-mode = "sgmii";
+		label = "lan2";
 	};
 
 	dp4: dp4 {
@@ -769,6 +681,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&qca8075_19>;
 		phy-mode = "sgmii";
+		label = "lan1";
 	};
 
 	dp5: dp5 {
@@ -780,6 +693,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&aqr113c_8>;
 		phy-mode = "sgmii";
+		label = "10g-1";
 	};
 
 	dp6: dp6 {
@@ -791,6 +705,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&aqr113c_0>;
 		phy-mode = "sgmii";
+		label = "10g-2";
 	};
 };
 
