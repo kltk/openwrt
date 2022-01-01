@@ -45,7 +45,7 @@ ALLWIFIBOARDS:= \
 	qnap_301w \
 	qxwlan_e2600ac-c1 \
 	qxwlan_e2600ac-c2 \
-    redmi_ax6 \
+	redmi_ax6 \
 	sony_ncp-hg100-cellular \
 	teltonika_rutx \
 	xiaomi_ax3600 \
