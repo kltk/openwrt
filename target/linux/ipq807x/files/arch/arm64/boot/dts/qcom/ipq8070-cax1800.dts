@@ -591,6 +591,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&qca8075>;
 		phy-mode = "sgmii";
+		label = "lan";
 	};
 };
 
