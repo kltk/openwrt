@@ -49,7 +49,7 @@ ALLWIFIBOARDS:= \
 	sony_ncp-hg100-cellular \
 	teltonika_rutx \
 	xiaomi_ax3600 \
-	xiaomi_ax9000
+	xiaomi_ax9000 \
 	zte_mf289f
 
 ALLWIFIPACKAGES:=$(foreach BOARD,$(ALLWIFIBOARDS),ipq-wifi-$(BOARD))
