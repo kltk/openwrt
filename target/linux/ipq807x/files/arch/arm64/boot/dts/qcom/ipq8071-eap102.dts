@@ -653,6 +653,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&qca8081_28>;
 		phy-mode = "sgmii";
+		label = "wan";
 	};
 
 	dp5: dp5 {
@@ -664,6 +665,7 @@
 		local-mac-address = [000000000000];
 		phy-handle = <&qca8081_24>;
 		phy-mode = "sgmii";
+		label = "lan";
 	};
 };
 
