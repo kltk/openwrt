@@ -1,3 +1,8 @@
+rom: Dirk Buchwalder <buchwalder@posteo.de>
+Date: Sun, 11 Dez 2022 19:34:16 +0200
+Subject: [PATCH] ath11k: disable coldboot calibration for ipq60xx
+as this leads to rporc crash
+
 --- a/drivers/net/wireless/ath/ath11k/core.c
 +++ b/drivers/net/wireless/ath/ath11k/core.c
 @@ -162,7 +162,7 @@ static const struct ath11k_hw_params ath
