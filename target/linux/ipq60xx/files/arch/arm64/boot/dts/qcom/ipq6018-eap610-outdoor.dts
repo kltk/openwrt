@@ -115,3 +115,7 @@
 		nand-bus-width = <8>;
 	};
 };
+
+&wifi {
+	status = "okay";
+};
