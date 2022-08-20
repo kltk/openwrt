@@ -10,7 +10,6 @@ PKG_SOURCE_VERSION:=72e9ec4187414461cbcf6ccff100e8b5ebe5f40b
 PKG_MIRROR_HASH:=805f16e59c75511132922f97740ebf6bf953845b0bbfd2089c4615456893bb37
 
 PKG_BUILD_PARALLEL:=1
-PKG_FLAGS:=nonshared
 
 include $(INCLUDE_DIR)/kernel.mk
 include $(INCLUDE_DIR)/package.mk
@@ -19,7 +18,7 @@ define KernelPackage/qca-nss-dp
   SECTION:=kernel
   CATEGORY:=Kernel modules
   SUBMENU:=Network Devices
-  DEPENDS:=@(TARGET_ipq807x||TARGET_ipq60xx) +kmod-qca-ssdk
+  DEPENDS:=@TARGET_ipq807x +kmod-qca-ssdk
   TITLE:=Qualcom NSS dataplane ethernet driver
   FILES:=$(PKG_BUILD_DIR)/qca-nss-dp.ko
   AUTOLOAD:=$(call AutoLoad,31,qca-nss-dp,1)
