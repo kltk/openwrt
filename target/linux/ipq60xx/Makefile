@@ -13,6 +13,7 @@ KERNEL_PATCHVER:=5.15
 include $(INCLUDE_DIR)/target.mk
 DEFAULT_PACKAGES += \
 	kmod-leds-gpio kmod-gpio-button-hotplug \
+	kmod-qca-nss-dp \
 	kmod-ath11k-ahb \
 	wpad-basic-wolfssl uboot-envtools
 
