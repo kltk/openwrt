@@ -32,6 +32,7 @@ ALLWIFIBOARDS:= \
 	glinet_gl-ap1300 \
 	glinet_gl-s1300 \
 	linksys_ea8300 \
+	netgear_wax610 \
 	p2w_r619ac \
 	qxwlan_e2600ac-c1 \
 	qxwlan_e2600ac-c2 \
@@ -43,7 +44,7 @@ define Package/ipq-wifi-default
   SUBMENU:=ath10k Board-Specific Overrides
   SECTION:=firmware
   CATEGORY:=Firmware
-  DEPENDS:=@(TARGET_ipq40xx||TARGET_ipq806x)
+  DEPENDS:=@(TARGET_ipq40xx||TARGET_ipq806x||TARGET_ipq807x||TARGET_ipq60xx)
   TITLE:=Custom Board
 endef
 
@@ -59,8 +60,16 @@ define ipq-wifi-install-one
     $(call ipq-wifi-install-one-to,$(1),$(2),QCA9888/hw2.0),\
   $(if $(filter $(suffix $(1)),.QCA9984 .qca9984),\
     $(call ipq-wifi-install-one-to,$(1),$(2),QCA9984/hw1.0),\
+  $(if $(filter $(suffix $(1)),.QCA9889 .qca9889),\
+    $(call ipq-wifi-install-one-to,$(1),$(2),QCA9887/hw1.0),\
+  $(if $(filter $(suffix $(1)),.IPQ8074 .ipq8074),\
+    $(call ipq-wifi-install-ath11-one-to,$(1),$(2),IPQ8074/hw2.0),\
+  $(if $(filter $(suffix $(1)),.IPQ6018 .ipq6018),\
+    $(call ipq-wifi-install-ath11-one-to,$(1),$(2),IPQ6018/hw1.0),\
+  $(if $(filter $(suffix $(1)),.QCN9074 .qcn9074),\
+    $(call ipq-wifi-install-ath11-one-to,$(1),$(2),QCN9074/hw1.0),\
     $(error Unrecognized board-file suffix '$(suffix $(1))' for '$(1)')\
-  )))
+  )))))))
 
 endef
 # Blank line required at end of above define due to foreach context
@@ -103,6 +112,7 @@ $(eval $(call generate-ipq-wifi-package,edgecore_oap100,Edgecore OAP100))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-ap1300,GL.iNet GL-AP1300))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-s1300,GL.iNet GL-S1300))
 $(eval $(call generate-ipq-wifi-package,linksys_ea8300,Linksys EA8300))
+$(eval $(call generate-ipq-wifi-package,netgear_wax610,Netgear WAX610))
 $(eval $(call generate-ipq-wifi-package,p2w_r619ac,P&W R619AC))
 $(eval $(call generate-ipq-wifi-package,qxwlan_e2600ac-c1,Qxwlan E2600AC C1))
 $(eval $(call generate-ipq-wifi-package,qxwlan_e2600ac-c2,Qxwlan E2600AC C2))
