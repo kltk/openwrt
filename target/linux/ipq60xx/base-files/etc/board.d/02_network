@@ -6,6 +6,9 @@ setup_me_booty()
 	local board="$1"
 
 	case "$board" in
+	netgear,wax610)
+		ucidef_set_interface_lan "eth0"
+		;;
 	*)
 		ucidef_set_interface_lan "eth0" "dhcp"
 		;;
