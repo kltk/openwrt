@@ -10,7 +10,8 @@ platform_check_image() {
 
 platform_do_upgrade() {
 	case "$(board_name)" in
-	netgear,wax610)
+	netgear,wax610|\
+	netgear,sxk30)
 		nand_do_upgrade "$1"
 		;;
 	*)
