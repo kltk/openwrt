@@ -39,6 +39,32 @@ define Device/eap610-outdoor
 endef
 TARGET_DEVICES += eap610-outdoor
 
+define Device/gl-ax1800
+	$(call Device/FitImage)
+	$(call Device/UbiFit)
+	DEVICE_VENDOR := GL-iNet
+	DEVICE_MODEL := GL-AX1800
+	BLOCKSIZE := 128k
+	PAGESIZE := 2048
+	DEVICE_DTS_CONFIG := config@cp03
+	SOC := ipq6018
+	IMAGE/nand-factory.ubi := append-ubi | qsdk-ipq-factory-nand
+endef
+TARGET_DEVICES += gl-ax1800
+
+define Device/netgear_sxk30
+	$(call Device/FitImage)
+	$(call Device/UbiFit)
+	DEVICE_VENDOR := Netgear
+	DEVICE_MODEL := SXK30
+	BLOCKSIZE := 128k
+	PAGESIZE := 2048
+	DEVICE_DTS_CONFIG := config@cp03-c1
+	SOC := ipq6018
+	DEVICE_PACKAGES := ipq-wifi-netgear_sxk30
+endef
+TARGET_DEVICES += netgear_sxk30
+
 define Device/netgear_wax610
 	$(call Device/FitImage)
 	$(call Device/UbiFit)
