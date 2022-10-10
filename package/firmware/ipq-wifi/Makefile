@@ -32,6 +32,7 @@ ALLWIFIBOARDS:= \
 	glinet_gl-ap1300 \
 	glinet_gl-s1300 \
 	linksys_ea8300 \
+  netgear_sxk30 \
 	netgear_wax610 \
 	p2w_r619ac \
 	qxwlan_e2600ac-c1 \
@@ -117,6 +118,7 @@ $(eval $(call generate-ipq-wifi-package,edgecore_oap100,Edgecore OAP100))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-ap1300,GL.iNet GL-AP1300))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-s1300,GL.iNet GL-S1300))
 $(eval $(call generate-ipq-wifi-package,linksys_ea8300,Linksys EA8300))
+$(eval $(call generate-ipq-wifi-package,netgear_sxk30,Netgear SXK30))
 $(eval $(call generate-ipq-wifi-package,netgear_wax610,Netgear WAX610))
 $(eval $(call generate-ipq-wifi-package,p2w_r619ac,P&W R619AC))
 $(eval $(call generate-ipq-wifi-package,qxwlan_e2600ac-c1,Qxwlan E2600AC C1))
