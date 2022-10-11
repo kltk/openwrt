@@ -1,0 +1,8 @@
+[
+    {
+        "names": [
+            "bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=GL-iNet-AX1800"
+        ],
+        "data": "bus=ahb,qmi-chip-id=0,qmi-board-id=255,variant=GL-iNet-AX1800.bin"
+    }
+]
