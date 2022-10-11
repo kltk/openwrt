@@ -39,18 +39,19 @@ define Device/eap610-outdoor
 endef
 TARGET_DEVICES += eap610-outdoor
 
-define Device/gl-ax1800
+define Device/glinet_gl-ax1800
 	$(call Device/FitImage)
 	$(call Device/UbiFit)
 	DEVICE_VENDOR := GL-iNet
 	DEVICE_MODEL := GL-AX1800
 	BLOCKSIZE := 128k
 	PAGESIZE := 2048
-	DEVICE_DTS_CONFIG := config@cp03
+	DEVICE_DTS_CONFIG := config@cp03-c1
 	SOC := ipq6018
 	IMAGE/nand-factory.ubi := append-ubi | qsdk-ipq-factory-nand
+	DEVICE_PACKAGES := ipq-wifi-glinet_gl-ax1800
 endef
-TARGET_DEVICES += gl-ax1800
+TARGET_DEVICES += glinet_gl-ax1800
 
 define Device/netgear_sxk30
 	$(call Device/FitImage)
