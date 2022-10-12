@@ -32,3 +32,7 @@ git-src
 .cproject
 .ccache
 .vscode*
+sync.sh
+recompile.sh
+download.sh
+
