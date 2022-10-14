@@ -16,6 +16,7 @@ DEFAULT_PACKAGES += \
 	kmod-qca-nss-dp \
 	kmod-ath11k-ahb \
 	ath11k-firmware-ipq6018 \
-	wpad-basic-wolfssl uboot-envtools
+	wpad-basic-wolfssl uboot-envtools \
+	nss-firmware-ipq6018 kmod-qca-nss-drv
 
 $(eval $(call BuildTarget))
