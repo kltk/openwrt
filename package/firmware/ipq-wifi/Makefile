@@ -30,6 +30,7 @@ ALLWIFIBOARDS:= \
 	edgecore_ecw5410 \
 	edgecore_oap100 \
 	glinet_gl-ap1300 \
+  glinet_gl-axt1800 \
 	glinet_gl-ax1800 \
 	glinet_gl-s1300 \
 	linksys_ea8300 \
@@ -118,6 +119,7 @@ $(eval $(call generate-ipq-wifi-package,edgecore_ecw5410,Edgecore ECW5410))
 $(eval $(call generate-ipq-wifi-package,edgecore_oap100,Edgecore OAP100))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-ap1300,GL.iNet GL-AP1300))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-ax1800,GL.iNet GL-AX1800))
+$(eval $(call generate-ipq-wifi-package,glinet_gl-axt1800,GL.iNet GL-AXT1800))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-s1300,GL.iNet GL-S1300))
 $(eval $(call generate-ipq-wifi-package,linksys_ea8300,Linksys EA8300))
 $(eval $(call generate-ipq-wifi-package,netgear_sxk30,Netgear SXK30))
