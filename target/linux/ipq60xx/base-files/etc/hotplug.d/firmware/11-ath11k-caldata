@@ -11,6 +11,7 @@ case "$FIRMWARE" in
 	case "$board" in
 	glinet,gl-ax1800|\
 	netgear,wax610|\
+	netgear,rbs350|\
 	netgear,sxk30)
 		caldata_extract "0:art" 0x1000 0x10000
 		;;

@@ -38,6 +38,7 @@ ALLWIFIBOARDS:= \
 	glinet_gl-ax1800 \
 	glinet_gl-s1300 \
 	linksys_ea8300 \
+  netgear_rbs350 \
 	netgear_sxk30 \
 	netgear_wax610 \
 	p2w_r619ac \
@@ -139,6 +140,7 @@ $(eval $(call generate-ipq-wifi-package,glinet_gl-ap1300,GL.iNet GL-AP1300))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-ax1800,GL.iNet GL-AX1800))
 $(eval $(call generate-ipq-wifi-package,glinet_gl-s1300,GL.iNet GL-S1300))
 $(eval $(call generate-ipq-wifi-package,linksys_ea8300,Linksys EA8300))
+$(eval $(call generate-ipq-wifi-package,netgear_rbs350,Netgear RBS350))
 $(eval $(call generate-ipq-wifi-package,netgear_sxk30,Netgear SXK30))
 $(eval $(call generate-ipq-wifi-package,netgear_wax610,Netgear WAX610))
 $(eval $(call generate-ipq-wifi-package,p2w_r619ac,P&W R619AC))

@@ -53,6 +53,19 @@ define Device/glinet_gl-ax1800
 endef
 TARGET_DEVICES += glinet_gl-ax1800
 
+define Device/netgear_rbs350
+	$(call Device/FitImage)
+	$(call Device/UbiFit)
+	DEVICE_VENDOR := Netgear
+	DEVICE_MODEL := RBS350
+	BLOCKSIZE := 128k
+	PAGESIZE := 2048
+	DEVICE_DTS_CONFIG := config@cp03-c1
+	SOC := ipq6018
+	DEVICE_PACKAGES := ipq-wifi-netgear_rbs350
+endef
+TARGET_DEVICES += netgear_rbs350
+
 define Device/netgear_sxk30
 	$(call Device/FitImage)
 	$(call Device/UbiFit)
