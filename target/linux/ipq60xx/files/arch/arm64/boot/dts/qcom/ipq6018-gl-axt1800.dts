@@ -80,3 +80,11 @@
 		cooling-levels = <0 150 200 255>;
 	};
 };
+
+&sdhc_2 {
+	pinctrl-0 = <&sd_pins>;
+	pinctrl-names = "default";
+	cd-gpios = <&tlmm 62 1>;
+	sd-ldo-gpios = <&tlmm 66 1>;
+	status = "ok";
+};
