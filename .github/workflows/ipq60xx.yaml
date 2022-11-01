@@ -32,8 +32,8 @@ jobs:
                 cp axt1800-docker.config .config
                 make defconfig
 
-            - name: Download package sources
-              run: make download V=s
+            #- name: Download package sources
+             # run: make download V=s
 
             - name: Build tools
               run: |
