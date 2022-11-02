@@ -108,6 +108,15 @@
 			bias-pull-up;
 		};
 	};
+		
+	usb_pins: usb_pins {
+	     usb_pwr {
+			pins = "gpio0";
+			function = "gpio";
+			bias-pull-up;
+			output-high;
+		};
+	};
 };
 
 &blsp1_uart3 {
