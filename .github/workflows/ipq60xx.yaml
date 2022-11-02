@@ -29,11 +29,11 @@ jobs:
                 #echo "CONFIG_PACKAGE_wpad-wolfssl=y\n" >> .config
                 #echo "CONFIG_PACKAGE_libwolfssl=n\n" >> .config
                 #echo "CONFIG_PACKAGE_libwolfssl-cpu-crypto=y\n" >> .config
-                cp axt1800-docker.config .config
+                cp axt1800.config .config
                 make defconfig
 
-            - name: Download package sources
-              run: make download V=s
+            #- name: Download package sources
+             # run: make download V=s
 
             - name: Build tools
               run: |
