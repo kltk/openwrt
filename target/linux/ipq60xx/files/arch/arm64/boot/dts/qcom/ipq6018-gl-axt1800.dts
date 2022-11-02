@@ -24,6 +24,22 @@
 		aliases {
 		sdhc0 = &sdhci;
 	};
+	
+		V30:V30 {
+		compatible = "regulator-fixed";
+		regulator-name = "vmmc-supply";
+		regulator-min-microvolt = <3000000>;
+		regulator-max-microvolt = <3000000>;
+		regulator-always-on;
+	};
+
+	        V18:V18 {
+		compatible = "regulator-fixed";
+		regulator-name = "vqmmc-supply";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		regulator-always-on;
+	};
 };
 
 &tlmm {
@@ -90,5 +106,7 @@
 	pinctrl-names = "default";
 	cd-gpios = <&tlmm 62 1>;
 	sd-ldo-gpios = <&tlmm 66 1>;
+	vqmmc-supply = <&V18>;
+	vmmc-supply = <&V30>;
 	status = "ok";
 };
