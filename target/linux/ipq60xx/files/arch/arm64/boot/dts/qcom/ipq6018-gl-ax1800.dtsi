@@ -141,12 +141,14 @@
 	status = "okay";
 };
 
-&qusb_phy_1 {
-	status = "okay";
+&qusb_phy_0 {
+	status = "ok";
 };
 
-&usb2 {
-	status = "okay";
+&usb3 {
+	pinctrl-0 = <&usb_pins>;
+	pinctrl-names = "default";
+	status = "ok";
 };
 
 &edma {
