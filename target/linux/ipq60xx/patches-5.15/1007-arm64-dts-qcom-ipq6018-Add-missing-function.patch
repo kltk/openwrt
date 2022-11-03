@@ -1,15 +1,6 @@
 diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
 --- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
 +++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
-@@ -87,7 +87,7 @@
- 		};
- 	};
- 
--	cpu_opp_table: cpu_opp_table {
-+	cpu_opp_table: opp-table-cpu {
- 		compatible = "operating-points-v2";
- 		opp-shared;
- 
 @@ -125,16 +125,10 @@
  
  	firmware {
@@ -55,24 +46,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  		};
  
  		crypto: crypto@73a000 {
-@@ -225,14 +230,14 @@
- 			interrupt-controller;
- 			#interrupt-cells = <2>;
- 
--			serial_3_pins: serial3-pinmux {
-+			serial_3_pins: serial3-state {
- 				pins = "gpio44", "gpio45";
- 				function = "blsp2_uart";
- 				drive-strength = <8>;
- 				bias-pull-down;
- 			};
- 
--			qpic_pins: qpic-pins {
-+			qpic_pins: qpic-state {
- 				pins = "gpio1", "gpio3", "gpio4",
- 					"gpio5", "gpio6", "gpio7",
- 					"gpio8", "gpio10", "gpio11",
-@@ -253,16 +258,43 @@
+@@ -253,16 +258,42 @@
  			#reset-cells = <1>;
  		};
  
@@ -119,7 +93,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  		blsp_dma: dma-controller@7884000 {
  			compatible = "qcom,bam-v1.7.0";
  			reg = <0x0 0x07884000 0x0 0x2b000>;
-@@ -313,33 +345,48 @@
+@@ -319,27 +350,42 @@
  			#size-cells = <0>;
  			reg = <0x0 0x078b6000 0x0 0x600>;
  			interrupts = <GIC_SPI 96 IRQ_TYPE_LEVEL_HIGH>;
@@ -160,7 +134,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
 +			status = "disabled";
 +		};
 +
-+		blsp1_i2c6: i2c@78ba000 {
++		i2c_2: i2c@78ba000 {
 +			compatible = "qcom,i2c-qup-v2.2.1";
 +			#address-cells = <1>;
 +			#size-cells = <0>;
@@ -175,7 +149,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  			status = "disabled";
  		};
  
-@@ -347,15 +394,14 @@
+@@ -347,15 +393,14 @@
  			compatible = "qcom,bam-v1.7.0";
  			reg = <0x0 0x07984000 0x0 0x1a000>;
  			interrupts = <GIC_SPI 146 IRQ_TYPE_LEVEL_HIGH>;
@@ -194,7 +168,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  			compatible = "qcom,ipq6018-nand";
  			reg = <0x0 0x079b0000 0x0 0x10000>;
  			#address-cells = <1>;
-@@ -375,6 +421,8 @@
+@@ -375,6 +420,8 @@
  
  		intc: interrupt-controller@b000000 {
  			compatible = "qcom,msm-qgic2";
@@ -203,7 +177,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  			interrupt-controller;
  			#interrupt-cells = <0x3>;
  			reg =   <0x0 0x0b000000 0x0 0x1000>,  /*GICD*/
-@@ -382,6 +430,13 @@
+@@ -382,6 +429,13 @@
  				<0x0 0x0b001000 0x0 0x1000>,  /*GICH*/
  				<0x0 0x0b004000 0x0 0x1000>;  /*GICV*/
  			interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
@@ -217,7 +191,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  		};
  
  		pcie_phy: phy@84000 {
-@@ -401,7 +456,7 @@
+@@ -401,7 +455,7 @@
  			reset-names = "phy",
  				      "common";
  
@@ -226,7 +200,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  				reg = <0x0 0x84200 0x0 0x16c>, /* Serdes Tx */
  				      <0x0 0x84400 0x0 0x200>, /* Serdes Rx */
  				      <0x0 0x84800 0x0 0x4f4>; /* PCS: Lane0, COM, PCIE */
-@@ -427,6 +482,7 @@
+@@ -427,6 +481,7 @@
  			linux,pci-domain = <0>;
  			bus-range = <0x00 0xff>;
  			num-lanes = <1>;
@@ -234,7 +208,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  			#address-cells = <3>;
  			#size-cells = <2>;
  
-@@ -508,69 +564,60 @@
+@@ -508,69 +563,60 @@
  			clock-names = "xo";
  		};
  
@@ -315,7 +289,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  				status = "disabled";
  			};
  		};
-@@ -614,6 +661,7 @@
+@@ -614,6 +660,7 @@
  
  			glink-edge {
  				interrupts = <GIC_SPI 321 IRQ_TYPE_EDGE_RISING>;
@@ -323,7 +297,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  				qcom,remote-pid = <1>;
  				mboxes = <&apcs_glb 8>;
  
-@@ -623,6 +671,16 @@
+@@ -623,6 +670,16 @@
  			};
  		};
  
@@ -340,7 +314,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  		qusb_phy_1: qusb@59000 {
  			compatible = "qcom,ipq6018-qusb2-phy";
  			reg = <0x0 0x059000 0x0 0x180>;
-@@ -636,7 +694,7 @@
+@@ -636,7 +693,7 @@
  			status = "disabled";
  		};
  
@@ -349,7 +323,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  			compatible = "qcom,ipq6018-dwc3", "qcom,dwc3";
  			reg = <0x0 0x070F8800 0x0 0x400>;
  			#address-cells = <2>;
-@@ -645,7 +703,7 @@
+@@ -645,7 +702,7 @@
  			clocks = <&gcc GCC_USB1_MASTER_CLK>,
  				 <&gcc GCC_USB1_SLEEP_CLK>,
  				 <&gcc GCC_USB1_MOCK_UTMI_CLK>;
@@ -358,7 +332,7 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  				      "sleep",
  				      "mock_utmi";
  
-@@ -671,6 +729,98 @@
+@@ -671,6 +728,98 @@
  			};
  		};
  
@@ -457,5 +431,3 @@ diff --git a/arch/arm64/boot/dts/qcom/ipq6018.dtsi b/arch/arm64/boot/dts/qcom/ip
  	};
  
  	wcss: wcss-smp2p {
---
-2.3,72
