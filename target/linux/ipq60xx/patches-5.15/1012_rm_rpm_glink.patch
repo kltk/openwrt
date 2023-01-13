@@ -1,0 +1,34 @@
+From: Dirk Buchwalder <buchwalder@posteo.de>
+Date: Sun, 31 Dec 2022 20:34:16 +0200
+Subject: [PATCH] arm64: dts: qcom: ipq6018: remove rpm-glink node
+in favor of pmic regulator control
+
+--- a/arch/arm64/boot/dts/qcom/ipq6018.dtsi
++++ b/arch/arm64/boot/dts/qcom/ipq6018.dtsi
+@@ -755,26 +755,4 @@
+ 			#interrupt-cells = <2>;
+ 		};
+ 	};
+-
+-	rpm-glink {
+-		compatible = "qcom,glink-rpm";
+-		interrupts = <GIC_SPI 168 IRQ_TYPE_EDGE_RISING>;
+-		qcom,rpm-msg-ram = <&rpm_msg_ram>;
+-		mboxes = <&apcs_glb 0>;
+-
+-		rpm_requests: glink-channel {
+-			compatible = "qcom,rpm-ipq6018";
+-			qcom,glink-channels = "rpm_requests";
+-
+-			regulators {
+-				compatible = "qcom,rpm-mp5496-regulators";
+-
+-				ipq6018_s2: s2 {
+-					regulator-min-microvolt = <725000>;
+-					regulator-max-microvolt = <1062500>;
+-					regulator-always-on;
+-				};
+-			};
+-		};
+-	};
+ };
