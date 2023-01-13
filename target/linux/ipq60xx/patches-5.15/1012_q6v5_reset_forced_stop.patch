@@ -1,0 +1,24 @@
+From: Dirk Buchwalder <buchwalder@posteo.de>
+Date: Sun, 31 Dec 2022 20:34:16 +0200
+Subject: [PATCH] arm64: drivers: qcom: ipq6018: set requires_force_stop 
+& need_mem_protection to q6v5
+
+QCA uses a "requires_force_stop & need_mem_protection true"
+in the downstream kernel also for ipq6018.
+https://git.codelinaro.org/clo/qsdk/oss/kernel/linux-ipq-5.4/
+-/blob/cc4bb09ddb2b36f5172767ea9dca1fea653decf9/drivers/remoteproc/qcom_q6v5_wcss.c#L1940
+
+Signed-off-by: Dirk Buchwalder <buchwalder@posteo.de>
+--- a/drivers/remoteproc/qcom_q6v5_wcss.c
++++ b/drivers/remoteproc/qcom_q6v5_wcss.c
+@@ -1394,8 +1394,8 @@ static const struct wcss_data wcss_ipq60
+ 	.bcr_reset_required = false,
+ 	.ssr_name = "q6wcss",
+ 	.ops = &q6v5_wcss_ipq8074_ops,
+-	.requires_force_stop = false,
+-	.need_mem_protection = false,
++	.requires_force_stop = true,
++	.need_mem_protection = true,
+ 	.need_auto_boot = false,
+ };
+ 
