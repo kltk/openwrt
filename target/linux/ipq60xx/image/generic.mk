@@ -28,7 +28,6 @@ define Device/cp01-c1
 	DEVICE_VENDOR := Test
 	DEVICE_MODEL := C3PO
 	SOC := ipq6018
-	DEVICE_PACKAGES := kmod-mp5416
 endef
 TARGET_DEVICES += cp01-c1
 
@@ -37,7 +36,6 @@ define Device/eap610-outdoor
 	DEVICE_VENDOR := TP-Link
 	DEVICE_MODEL := EAP610-Outdoor
 	SOC := ipq6018
-	DEVICE_PACKAGES := kmod-mp5416
 endef
 TARGET_DEVICES += eap610-outdoor
 
@@ -51,7 +49,7 @@ define Device/glinet_gl-ax1800
 	DEVICE_DTS_CONFIG := config@cp03-c1
 	SOC := ipq6018
 	IMAGE/nand-factory.ubi := append-ubi | qsdk-ipq-factory-nand
-	DEVICE_PACKAGES := ipq-wifi-glinet_gl-ax1800 kmod-fixed-voltage-regulator
+	DEVICE_PACKAGES := ipq-wifi-glinet_gl-ax1800
 endef
 TARGET_DEVICES += glinet_gl-ax1800
 
@@ -64,7 +62,7 @@ define Device/netgear_sxk30
 	PAGESIZE := 2048
 	DEVICE_DTS_CONFIG := config@cp03-c1
 	SOC := ipq6018
-	DEVICE_PACKAGES := ipq-wifi-netgear_sxk30 kmod-mp5416
+	DEVICE_PACKAGES := ipq-wifi-netgear_sxk30
 endef
 TARGET_DEVICES += netgear_sxk30
 
@@ -77,6 +75,6 @@ define Device/netgear_wax610
 	PAGESIZE := 2048
 	DEVICE_DTS_CONFIG := config@cp03-c1
 	SOC := ipq6018
-	DEVICE_PACKAGES := ipq-wifi-netgear_wax610 kmod-mp5416
+	DEVICE_PACKAGES := ipq-wifi-netgear_wax610
 endef
 TARGET_DEVICES += netgear_wax610

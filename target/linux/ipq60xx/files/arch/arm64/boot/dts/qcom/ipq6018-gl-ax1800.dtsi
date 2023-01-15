@@ -27,7 +27,7 @@
 		ethernet1 = &dp2;
 		ethernet2 = &dp3;
 		label-mac-device = &dp1;
-		serial0 = &blsp1_uart3;
+        serial0 = &blsp1_uart3;
 		led-boot = &led_system_white;
 		led-failsafe = &led_system_white;
 		led-running = &led_system_white;
@@ -40,87 +40,37 @@
 	};
 
 
-	keys {
-		compatible = "gpio-keys";
+    keys {
+        compatible = "gpio-keys";
 
-		reset {
-			label = "reset";
-			gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
-			linux,code = <KEY_RESTART>;
-		};
+        reset {
+            label = "reset";
+            gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
+            linux,code = <KEY_RESTART>;
+        };
 
-		switch {
-			label = "switch";
-			gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
+        switch {
+            label = "switch";
+            gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
 			linux,code = <KEY_WPS_BUTTON>;
 		};
-	};
+    };
 
-	leds {
-		compatible = "gpio-leds";
+    leds {
+        compatible = "gpio-leds";
 
-		led_system_white: system-white {
-			label = "white:system";
-			gpios = <&tlmm 35 GPIO_ACTIVE_HIGH>;
-			color = <LED_COLOR_ID_WHITE>;
-		};
+        led_system_white: system-white {
+            label = "white:system";
+            gpios = <&tlmm 35 GPIO_ACTIVE_HIGH>;
+            color = <LED_COLOR_ID_WHITE>;
+        };
 
-		led_system_blue: system-blue {
-			label = "blue:system";
-			gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
-			color = <LED_COLOR_ID_BLUE>;
-		};
-	};
-
-	flint_cpu_opp_table: cpu-opp-table {
-		compatible = "operating-points-v2";
-		opp-shared;
-
-		opp-864000000 {
-			opp-hz = /bits/ 64 <864000000>;
-			opp-microvolt = <1100000>;
-			clock-latency-ns = <200000>;
-		};
-		opp-1056000000 {
-			opp-hz = /bits/ 64 <1056000000>;
-			opp-microvolt = <1100000>;
-			clock-latency-ns = <200000>;
-		};
-		opp-1200000000 {
-			opp-hz = /bits/ 64 <1200000000>;
-			opp-microvolt = <1100000>;
-			clock-latency-ns = <200000>;
-		};
-	};
-
-	flint_cpu_regulator: cpu-regulator {
-		compatible = "regulator-fixed";
-		regulator-name = "flint-cpu-regulator";
-		regulator-min-microvolt = <1100000>;
-		regulator-max-microvolt = <1100000>;
-		regulator-always-on;
-		regulator-boot-on;
-	};
-};
-
-&CPU0 {
-	operating-points-v2 = <&flint_cpu_opp_table>;
-	cpu-supply = <&flint_cpu_regulator>;
-};
-
-&CPU1 {
-	operating-points-v2 = <&flint_cpu_opp_table>;
-	cpu-supply = <&flint_cpu_regulator>;
-};
-
-&CPU2 {
-	operating-points-v2 = <&flint_cpu_opp_table>;
-	cpu-supply = <&flint_cpu_regulator>;
-};
-
-&CPU3 {
-	operating-points-v2 = <&flint_cpu_opp_table>;
-	cpu-supply = <&flint_cpu_regulator>;
+        led_system_blue: system-blue {
+            label = "blue:system";
+            gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
+            color = <LED_COLOR_ID_BLUE>;
+        };
+    };
 };
 
 &tlmm {
@@ -187,7 +137,7 @@
 	pinctrl-0 = <&mdio_pins>;
 	pinctrl-names = "default";
 	reset-gpios = <&tlmm 74 GPIO_ACTIVE_LOW>;
-
+	
 	qca8075_0: ethernet-phy@0 {
 		compatible = "ethernet-phy-ieee802.3-c22";
 		reg = <0>;
@@ -540,7 +490,6 @@
 
 };
 
-
 &qpic_bam {
 	status = "okay";
 };
@@ -555,12 +504,17 @@
 		nand-ecc-step-size = <512>;
 		nand-bus-width = <8>;
 
-	partitions {
+        partitions {
 			compatible = "qcom,smem-part";
 		};
 	};
 };
 
+&cpu_opp_table {
+	/delete-node/ opp-1440000000;
+	/delete-node/ opp-1608000000;
+	/delete-node/ opp-1800000000;	
+	};
 
 &wifi {
 	status = "okay";
