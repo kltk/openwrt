@@ -1360,3 +1360,33 @@ define KernelPackage/mhi-pci-generic/description
 endef
 
 $(eval $(call KernelPackage,mhi-pci-generic))
+
+define KernelPackage/mp5416
+  SUBMENU:=$(OTHER_MENU)
+  TITLE:=MP5416/5496 regulator driver
+  DEPENDS:=@LINUX_5_15 @TARGET_ipq60xx +kmod-regmap-i2c
+  KCONFIG:=CONFIG_REGULATOR_MP5416
+  FILES:=$(LINUX_DIR)/drivers/regulator/mp5416.ko
+  AUTOLOAD:=$(call AutoLoad,21,mp5416,1)
+endef
+
+define KernelPackage/mp5416/description
+  Kernel module for the MP5416/5496 controller driver.
+endef
+
+$(eval $(call KernelPackage,mp5416))
+
+define KernelPackage/fixed-voltage-regulator
+  SUBMENU:=$(OTHER_MENU)
+  TITLE:=Fixed voltage regulator driver
+  DEPENDS:=@LINUX_5_15 @TARGET_ipq60xx||TARGET_ipq807x
+  KCONFIG:=CONFIG_REGULATOR_FIXED_VOLTAGE
+  FILES:=$(LINUX_DIR)/drivers/regulator/fixed.ko
+  AUTOLOAD:=$(call AutoLoad,21,fixed_voltage_regulator,1)
+endef
+
+define KernelPackage/fixed-voltage-regulator/description
+  Kernel module for the fixed voltage driver.
+endef
+
+$(eval $(call KernelPackage,fixed-voltage-regulator))
