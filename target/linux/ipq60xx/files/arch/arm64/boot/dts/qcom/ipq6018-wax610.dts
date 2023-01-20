@@ -113,12 +113,12 @@
 };
 
 &soc {
-	dp1: dp@1 {
+	dp1: dp1 {
 		compatible = "qcom,nss-dp";
 		reg = <0x0 0x3a001800 0x0 0x200>;
 		qcom,mactype = <0>;
 		qcom,id = <5>;
-
+		local-mac-address = [000000000000];
 		phy-handle = <&qca8081>;
 		phy-mode = "sgmii";
 	};
