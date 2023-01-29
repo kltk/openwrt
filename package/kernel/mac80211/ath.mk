@@ -304,10 +304,15 @@ define KernelPackage/ath11k
   DEPENDS+= +kmod-ath +@DRIVER_11AC_SUPPORT +@DRIVER_11AX_SUPPORT \
   +kmod-crypto-michael-mic +ATH11K_THERMAL:kmod-hwmon-core +ATH11K_THERMAL:kmod-thermal
   FILES:=$(PKG_BUILD_DIR)/drivers/soc/qcom/qmi_helpers.ko \
-  $(PKG_BUILD_DIR)/drivers/net/wireless/ath/ath11k/ath11k.ko
-  AUTOLOAD:=$(call AutoProbe,ath11k)
-  # Enable encapsulation/decapsulation offload by default
-  MODPARAMS.ath11k:=frame_mode=2
+  $(PKG_BUILD_DIR)/drivers/net/wireless/ath/ath11k/ath11k.ko  
+ifeq ($(CONFIG_TARGET_BOARD), "ipq807x")
+   AUTOLOAD:=$(call AutoProbe,ath11k)
+   # Enable encapsulation/decapsulation offload by default
+   MODPARAMS.ath11k:=frame_mode=2
+else ifeq ($(CONFIG_TARGET_BOARD), "ipq60xx")
+    AUTOLOAD:=$(call AutoProbe,ath11k)
+    MODPARAMS.ath11k:=frame_mode=1
+endif
 endef
 
 define KernelPackage/ath11k/description
