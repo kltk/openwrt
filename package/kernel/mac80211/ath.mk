@@ -309,10 +309,11 @@ define KernelPackage/ath11k
    AUTOLOAD:=$(call AutoProbe,ath11k)
    # Enable encapsulation/decapsulation offload by default
    MODPARAMS.ath11k:=frame_mode=2
-else ifeq ($(CONFIG_TARGET_BOARD), "ipq60xx")
-    AUTOLOAD:=$(call AutoProbe,ath11k)
-    MODPARAMS.ath11k:=frame_mode=1
-endif
+  else ifeq ($(CONFIG_TARGET_BOARD), "ipq60xx")
+   AUTOLOAD:=$(call AutoProbe,ath11k)
+   MODPARAMS.ath11k:=frame_mode=1
+   # ipq60xx ath11k firmware doesn't seem to support encap/decap offload
+  endif
 endef
 
 define KernelPackage/ath11k/description
