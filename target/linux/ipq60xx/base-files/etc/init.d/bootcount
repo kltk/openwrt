@@ -7,5 +7,8 @@ boot() {
        netgear,wax610)
                        fw_setenv boot_count 0
                ;;
+       linksys,mr7350)
+		mtd resetbc s_env || true
+		;;
        esac
 }

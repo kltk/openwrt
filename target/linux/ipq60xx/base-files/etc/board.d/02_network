@@ -20,6 +20,22 @@ ipq60xx_setup_interfaces()
 		;;
 	*)
 		ucidef_set_interfaces_lan_wan "eth0" "dhcp"
+setup_network()
+{
+	local macaddr
+
+	case $(board_name) in
+	linksys,mr7350)
+		ucidef_set_interfaces_lan_wan "eth0 eth1 eth2 eth3" "eth4"
+		;;
+	tplink,eap610-outdoor)
+		# /tmp/factory_data should be mounted by preinit
+		macaddr=$(get_mac_binary /tmp/factory_data/default-mac 0)
+		ucidef_set_interface_macaddr "lan" "$macaddr"
+		ucidef_set_interface_lan "eth0" "dhcp"
+		;;
+	*)
+		ucidef_set_interface_lan "eth0"
 		;;
 	esac
 }
@@ -27,6 +43,7 @@ ipq60xx_setup_interfaces()
 board_config_update
 board=$(board_name)
 ipq60xx_setup_interfaces $board
+setup_network
 board_config_flush
 
 exit 0
