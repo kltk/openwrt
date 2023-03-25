@@ -142,6 +142,7 @@ platform_do_upgrade() {
 	netgear,rbs350|\
 	netgear,sxk30)
 		nand_do_upgrade "$1"
+		;;
 	linksys,mr7350)
 		linksys_do_upgrade "$1"
 		;;

@@ -20,6 +20,9 @@ ipq60xx_setup_interfaces()
 		;;
 	*)
 		ucidef_set_interfaces_lan_wan "eth0" "dhcp"
+		;;
+	esac
+}
 setup_network()
 {
 	local macaddr
