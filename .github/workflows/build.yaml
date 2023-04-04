@@ -1,0 +1,101 @@
+name: Build OpenWrt
+
+on:
+  push:
+    branches:
+      - actions
+    paths:
+      - .github/workflows/build.yaml
+      - profiles
+      - build.py
+  workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: false
+        type: boolean
+      clean:
+        description: 'clean cache'
+        required: false
+        default: false
+        type: boolean
+      profile:
+        type: choice
+        description: 选择配置
+        required: false
+        default: '["axt1800"]'
+        options:
+          - '["axt1800"]'
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+
+    name: Build ${{matrix.profile}}
+    strategy:
+      fail-fast: false
+      matrix:
+        profile: ${{ fromJSON(github.event.inputs.profile || '["axt1800"]') }}
+
+    steps:
+      - name: Initialization environment
+        env:
+          DEBIAN_FRONTEND: noninteractive
+        run: |
+          sudo apt update
+          sudo apt install build-essential libncurses5-dev gawk git libssl-dev gettext zlib1g-dev swig unzip time rsync python3 python3-setuptools python3-yaml
+
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          token: ${{secrets.GH_TOKEN}}
+
+      - name: Set env
+        run: echo "DATE=$(date +'%Y%m%d%H%M%S')"  >> $GITHUB_ENV
+
+      - name: Cache
+        uses: actions/cache@main
+        with:
+          key: cache-openwrt-${{ env.CACHEKEY }}-${{ env.DATE }}
+          restore-keys: |
+            ${{github.event.inputs.clean == 'true' && 'ignore-' || ''}}cache-openwrt-${{ env.CACHEKEY }}
+          path: |
+            ${{ github.workspace }}/cache
+
+      - name: SSH connection to Actions
+        uses: P3TERX/ssh2actions@v1.0.0
+        if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh != 'false') || contains(github.event.action, 'ssh')
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+
+      - name: Compile
+        id: compile
+        run: |
+          python3 build.py ${{ matrix.profile }}
+          echo "status=success" >> $GITHUB_OUTPUT
+
+      # - name: Upload openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
+      #   uses: actions/upload-artifact@main
+      #   if: steps.compile.outputs.status == 'success'
+      #   with:
+      #     name: openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
+      #     path: openwrt/bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
+
+      - name: Organize files
+        if: steps.compile.outputs.status == 'success'
+        run: |
+          cd openwrt
+          # rm -f bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
+          cp .config bin/targets/ipq60xx/config
+
+      - name: Upload bin directory
+        uses: actions/upload-artifact@main
+        if: steps.compile.outputs.status == 'success'
+        with:
+          name: OpenWrt_bin${{ env.DATE }}
+          path: openwrt/bin

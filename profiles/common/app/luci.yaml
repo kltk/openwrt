@@ -1,0 +1,17 @@
+packages:
+  # - luci
+  # - luci-lib-docker
+  # - luci-nginx
+  # - luci-ssl
+  - luci-ssl-nginx
+  # - luci-ssl-openssl
+  # - luci-base
+  - luci-app-upnp
+modules:
+  - nginx-all-module
+diffconfig: |
+  CONFIG_LUCI_LANG_zh_Hans=y
+
+  # nginx
+  CONFIG_NGINX_DAV=y
+  CONFIG_NGINX_HTTP_V2=y

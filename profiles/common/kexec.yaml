@@ -1,0 +1,7 @@
+packages:
+  - kdump
+  - kexec
+  - kexec-tools
+diffconfig: |
+  CONFIG_KEXEC_ZLIB=y
+  CONFIG_KEXEC_LZMA=y

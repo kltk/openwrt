@@ -1,0 +1,25 @@
+assets:
+  # 从 git clone revision 版本到 path
+  - git: https://github.com/solidus1983/openwrt
+    path: openwrt
+    revision: ipq60xx_solidus1983
+  # 从 url 下载文件到 path 路径
+  # - url: ''
+  #   path: ''
+  # 从 link 创建软链接到 path
+  - link: cache/ccache
+    path: openwrt/.ccache
+# 渐进式编译
+# 从简单的配置开始编译，逐渐添加内容
+steps:
+  - include:
+      - device/gl-axt1800
+      - devel
+      - kexec
+  - include:
+      - device/gl-axt1800
+      - devel
+      - kexec
+      - app/luci
+      - app/samba
+      - custom

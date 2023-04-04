@@ -1,0 +1,3 @@
+target: ipq60xx
+subtarget: generic
+profile: glinet_gl-axt1800

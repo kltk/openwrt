@@ -1,0 +1,13 @@
+packages:
+  - luci-app-samba4
+  # - libpam
+modules:
+  - samba4-admin
+  - samba4-client
+  - samba4-utils
+diffconfig: |
+  CONFIG_SAMBA4_SERVER_ACL=y
+  CONFIG_SAMBA4_SERVER_AVAHI=y
+  CONFIG_SAMBA4_SERVER_NETBIOS=y
+  CONFIG_SAMBA4_SERVER_QUOTAS=y
+  CONFIG_SAMBA4_SERVER_VFS=y
