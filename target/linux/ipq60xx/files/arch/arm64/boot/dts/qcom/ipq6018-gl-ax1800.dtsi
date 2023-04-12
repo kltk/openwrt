@@ -76,6 +76,56 @@
         };
     };
 };
+	ipq60xx_cpu_opp_table: cpu-opp-table {
+		compatible = "operating-points-v2";
+		opp-shared;
+
+		opp-864000000 {
+			opp-hz = /bits/ 64 <864000000>;
+			opp-microvolt = <1100000>;
+			clock-latency-ns = <200000>;
+		};
+		opp-1056000000 {
+			opp-hz = /bits/ 64 <1056000000>;
+			opp-microvolt = <1100000>;
+			clock-latency-ns = <200000>;
+		};
+		opp-1200000000 {
+			opp-hz = /bits/ 64 <1200000000>;
+			opp-microvolt = <1100000>;
+			clock-latency-ns = <200000>;
+		};
+	};
+
+	ipq60xx_cpu_regulator: cpu-regulator {
+		compatible = "regulator-fixed";
+		regulator-name = "ipq60xx-cpu-regulator";
+		regulator-min-microvolt = <1100000>;
+		regulator-max-microvolt = <1100000>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+};
+
+&CPU0 {
+	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
+	cpu-supply = <&ipq60xx_cpu_regulator>;
+};
+
+&CPU1 {
+	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
+	cpu-supply = <&ipq60xx_cpu_regulator>;
+};
+
+&CPU2 {
+	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
+	cpu-supply = <&ipq60xx_cpu_regulator>;
+};
+
+&CPU3 {
+	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
+	cpu-supply = <&ipq60xx_cpu_regulator>;
+};
 
 &tlmm {
 	mdio_pins: mdio-pins {
