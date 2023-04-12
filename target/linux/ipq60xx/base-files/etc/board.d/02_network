@@ -1,0 +1,25 @@
+. /lib/functions/uci-defaults.sh
+. /lib/functions/system.sh
+
+setup_network()
+{
+	local macaddr
+
+	case $(board_name) in
+	glinet,gl-ax1800)
+		ucidef_set_interfaces_lan_wan "eth1 eth2 eth3 eth4" "eth0"
+	;;
+	glinet,gl-axt1800)
+		ucidef_set_interfaces_lan_wan "eth1 eth2" "eth0"
+	;;
+	*)
+		ucidef_set_interface_lan "eth0"
+		;;
+	esac
+}
+
+board_config_update
+setup_network
+board_config_flush
+
+exit 0
