@@ -18,8 +18,8 @@
 #include "ipq6018-upstreamable.dtsi"
 #include "ipq6018-ess.dtsi"
 #include "ipq6018-nss.dtsi"
-#include "ipq6018-regulator-mp5496.dtsi"
 #include "ipq6018-thermal.dtsi"
+#include "ipq6018-regulator-mp5496.dtsi"
 
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/gpio/gpio.h>
@@ -31,7 +31,7 @@
 		ethernet1 = &dp2;
 		ethernet2 = &dp3;
 		label-mac-device = &dp1;
-        serial0 = &blsp1_uart3;
+		serial0 = &blsp1_uart3;
 		led-boot = &led_system_white;
 		led-failsafe = &led_system_white;
 		led-running = &led_system_white;
@@ -43,49 +43,54 @@
 		bootargs-append = " root=/dev/ubiblock0_1";
 	};
 
-    keys {
-        compatible = "gpio-keys";
-        reset {
-            label = "reset";
-            gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
-            linux,code = <KEY_RESTART>;
-        };
-        switch {
-            label = "switch";
-            gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
+
+	keys {
+		compatible = "gpio-keys";
+
+		reset {
+			label = "reset";
+			gpios = <&tlmm 18 GPIO_ACTIVE_LOW>;
+			linux,code = <KEY_RESTART>;
+		};
+
+		switch {
+			label = "switch";
+			gpios = <&tlmm 9 GPIO_ACTIVE_HIGH>;
 			linux,code = <KEY_WPS_BUTTON>;
 		};
-    };
+	};
 
-    leds {
-        compatible = "gpio-leds";
-        led_system_white: system-white {
-            label = "white:system";
-            gpios = <&tlmm 35 GPIO_ACTIVE_HIGH>;
-            color = <LED_COLOR_ID_WHITE>;
-        };
-        led_system_blue: system-blue {
-            label = "blue:system";
-            gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
-            color = <LED_COLOR_ID_BLUE>;
-        };
-    };
-};
+	leds {
+		compatible = "gpio-leds";
+
+		led_system_white: system-white {
+			label = "white:system";
+			gpios = <&tlmm 35 GPIO_ACTIVE_HIGH>;
+			color = <LED_COLOR_ID_WHITE>;
+		};
+
+		led_system_blue: system-blue {
+			label = "blue:system";
+			gpios = <&tlmm 37 GPIO_ACTIVE_HIGH>;
+			color = <LED_COLOR_ID_BLUE>;
+		};
+	};
 
 	ipq60xx_cpu_opp_table: cpu-opp-table {
 		compatible = "operating-points-v2";
 		opp-shared;
+
 		opp-864000000 {
 			opp-hz = /bits/ 64 <864000000>;
 			opp-microvolt = <1100000>;
 			clock-latency-ns = <200000>;
 		};
-			opp-1056000000 {
+		opp-1056000000 {
 			opp-hz = /bits/ 64 <1056000000>;
 			opp-microvolt = <1100000>;
 			clock-latency-ns = <200000>;
 		};
-			opp-1200000000 {
+		opp-1200000000 {
 			opp-hz = /bits/ 64 <1200000000>;
 			opp-microvolt = <1100000>;
 			clock-latency-ns = <200000>;
@@ -106,14 +111,17 @@
 	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
 	cpu-supply = <&ipq60xx_cpu_regulator>;
 };
+
 &CPU1 {
 	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
 	cpu-supply = <&ipq60xx_cpu_regulator>;
 };
+
 &CPU2 {
 	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
 	cpu-supply = <&ipq60xx_cpu_regulator>;
 };
+
 &CPU3 {
 	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
 	cpu-supply = <&ipq60xx_cpu_regulator>;
@@ -127,19 +135,21 @@
 			drive-strength = <8>;
 			bias-pull-up;
 		};
+
 		mdio {
 			pins = "gpio65";
 			function = "mdio";
 			drive-strength = <8>;
 			bias-pull-up;
 		};
+
 		mux_2 {
 			pins = "gpio74";
 			function = "gpio";
 			bias-pull-up;
 		};
 	};
-	usb_power_pins: usb_power_pins {
+		usb_power_pins: usb_power_pins {
 		mux {
 			pins = "gpio61";
 			function = "gpio";
@@ -154,6 +164,10 @@
 	pinctrl-names = "default";
 	status = "okay";
 };
+
+&blsp1_i2c6 {
+	status = "disabled";
+}; 
 
 &prng {
 	status = "okay";
@@ -191,26 +205,31 @@
 
 &mdio {
 	status = "okay";
+
 	pinctrl-0 = <&mdio_pins>;
 	pinctrl-names = "default";
 	reset-gpios = <&tlmm 74 GPIO_ACTIVE_LOW>;
-	
+
 	qca8075_0: ethernet-phy@0 {
 		compatible = "ethernet-phy-ieee802.3-c22";
 		reg = <0>;
 	};
+
 	qca8075_1: ethernet-phy@1 {
 		compatible = "ethernet-phy-ieee802.3-c22";
 		reg = <1>;
 	};
+
 	qca8075_2: ethernet-phy@2 {
 		compatible = "ethernet-phy-ieee802.3-c22";
 		reg = <2>;
 	};
+
 };
 
 &switch {
 	status = "okay";
+
 		switch_cpu_bmp = <0x1>;  /* cpu port bitmap */
 		switch_lan_bmp = <0x0c>; /* lan port bitmap */
 		switch_wan_bmp = <0x02>; /* wan port bitmap */
@@ -232,6 +251,7 @@
 				phy_address = <2>;
 			};
 		};
+
 	port_scheduler_resource {
 		port@0 {
 			port_id = <0>;
@@ -517,6 +537,7 @@
 		phy-handle = <&qca8075_0>;
 		phy-mode = "sgmii";
 	};
+
     dp2: dp@2 {
 		device_type = "network";
 		compatible = "qcom,nss-dp";
@@ -527,6 +548,7 @@
 		phy-handle = <&qca8075_1>;
 		phy-mode = "sgmii";
 	};
+
     dp3: dp@3 {
 		device_type = "network";
 		compatible = "qcom,nss-dp";
@@ -537,6 +559,7 @@
 		phy-handle = <&qca8075_2>;
 		phy-mode = "sgmii";
 	};
+
 };
 
 &qpic_bam {
@@ -545,12 +568,15 @@
 
 &qpic_nand {
 	status = "okay";
+
 	nand@0 {
 		reg = <0>;
+
 		nand-ecc-strength = <4>;
 		nand-ecc-step-size = <512>;
 		nand-bus-width = <8>;
-        partitions {
+
+	partitions {
 			compatible = "qcom,smem-part";
 		};
 	};
