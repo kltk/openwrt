@@ -32,7 +32,7 @@ ALLWIFIBOARDS:= \
 ALLWIFIPACKAGES:=$(foreach BOARD,$(ALLWIFIBOARDS),ipq-wifi-$(BOARD))
 
 define Package/ipq-wifi-default
-  SUBMENU:=ath10k Board-Specific Overrides
+  SUBMENU:=ath11k Board-Specific Overrides
   SECTION:=firmware
   CATEGORY:=Firmware
   DEPENDS:=@(TARGET_ipq40xx||TARGET_ipq60xx||TARGET_ipq806x||TARGET_ipq807x)
