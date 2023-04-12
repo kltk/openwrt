@@ -76,6 +76,7 @@
         };
     };
 };
+
 	ipq60xx_cpu_opp_table: cpu-opp-table {
 		compatible = "operating-points-v2";
 		opp-shared;
