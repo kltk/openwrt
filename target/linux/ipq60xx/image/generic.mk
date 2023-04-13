@@ -35,6 +35,7 @@ TARGET_DEVICES += cp01-c1
 define Device/glinet_gl-ax1800
 	$(call Device/FitImage)
 	$(call Device/UbiFit)
+	FILESYSTEMS := squashfs
 	DEVICE_VENDOR := GL-iNet
 	DEVICE_MODEL := GL-AX1800
 	BLOCKSIZE := 128k
@@ -50,6 +51,7 @@ TARGET_DEVICES += glinet_gl-ax1800
 define Device/glinet_gl-axt1800
 	$(call Device/FitImage)
 	$(call Device/UbiFit)
+	FILESYSTEMS := squashfs
 	DEVICE_VENDOR := GL-iNet
 	DEVICE_MODEL := GL-AXT1800
 	BLOCKSIZE := 128k
