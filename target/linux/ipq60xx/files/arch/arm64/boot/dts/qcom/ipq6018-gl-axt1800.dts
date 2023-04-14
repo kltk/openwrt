@@ -38,6 +38,14 @@
 		regulator-max-microvolt = <3300000>;
 		regulator-always-on;
 	};
+	
+	V18:V18 {
+		compatible = "regulator-fixed";
+		regulator-name = "vqmmc-supply";
+		regulator-min-microvolt = <1800000>;
+		regulator-max-microvolt = <1800000>;
+		regulator-always-on;
+	};
 };
 
 
@@ -133,6 +141,7 @@
 		cd-gpios = <&tlmm 62 1>;
 		sd-ldo-gpios = <&tlmm 66 1>;
 		vmmc-supply = <&V30>;
+		vqmmc-supply = <&V18>;
 		status = "okay";
 	};
 };
