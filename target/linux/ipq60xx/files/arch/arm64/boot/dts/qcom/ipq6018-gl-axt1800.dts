@@ -146,8 +146,7 @@ sdhc_2: sdhci_sd@780400 {
 			<&gcc GCC_SDCC1_APPS_CLK>;
 	clock-names = "xo", "iface", "core";
 	max-frequency = <192000000>;
-	mmc-ddr-1_8v;
-	mmc-hs200-1_8v;
+	sd-uhs-sdr104;
 	bus-width = <4>;
 	status = "disabled";
 };
