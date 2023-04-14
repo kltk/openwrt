@@ -114,7 +114,7 @@
 
 };
 
-sdhc_2: sdhci_sd@780400 {
+sdhc_2: sd@780400 {
 	compatible = "qcom,sdhci-msm-v5";
 	reg = <0x7804000 0x1000>;
 	reg-names = "hc_mem";
