@@ -22,7 +22,7 @@
 	compatible = "glinet,gl-axt1800", "qcom,ipq6018", "qcom,ipq6018-cp03";
 
 	aliases {
-		sdhc0 = &sdhc_1;
+		sdhc0 = &sdhc_2;
 	};
 
 	pwm_fan {
@@ -122,7 +122,7 @@
 
 };
 
-&sdhc_1 {
+&sdhc_2 {
 	pinctrl-0 = <&sd_pins>;
 	pinctrl-names = "default";
 	cd-gpios = <&tlmm 62 1>;
@@ -130,6 +130,26 @@
 	vqmmc-supply = <&V18>;
 	vmmc-supply = <&V30>;
 	status = "okay";
+};
+
+sdhc_2: sdhci_sd@780400 {
+	compatible = "qcom,sdhci-msm-v5";
+	reg = <0x7804000 0x1000>;
+	reg-names = "hc_mem";
+
+	interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+					<GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+	interrupt-names = "hc_irq", "pwr_irq";
+
+	clocks = <&xo>,
+			<&gcc GCC_SDCC1_AHB_CLK>,
+			<&gcc GCC_SDCC1_APPS_CLK>;
+	clock-names = "xo", "iface", "core";
+	max-frequency = <192000000>;
+	mmc-ddr-1_8v;
+	mmc-hs200-1_8v;
+	bus-width = <4>;
+	status = "disabled";
 };
 
 &wifi {
