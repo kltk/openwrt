@@ -38,7 +38,7 @@
 		regulator-max-microvolt = <3300000>;
 		regulator-always-on;
 	};
-	
+
 	V18:V18 {
 		compatible = "regulator-fixed";
 		regulator-name = "vqmmc-supply";
@@ -122,7 +122,7 @@
 	
 	sdhc_2: sd@780400 {
 		compatible = "qcom,sdhci-msm-v5";
-		reg = <0x7804000 0x1000>;
+		reg = <0x0 0x07804000 0x0 0x1000>;
 		reg-names = "hc_mem";
 
 		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
