@@ -111,31 +111,30 @@
 		used-pwm-indices = <0>, <1>, <0>, <0>;
 		status = "okay";
 	};
+	
+	sdhc_2: sd@780400 {
+		compatible = "qcom,sdhci-msm-v5";
+		reg = <0x7804000 0x1000>;
+		reg-names = "hc_mem";
 
-};
+		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+						<GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
 
-sdhc_2: sd@780400 {
-	compatible = "qcom,sdhci-msm-v5";
-	reg = <0x7804000 0x1000>;
-	reg-names = "hc_mem";
-
-	interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-					<GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-	interrupt-names = "hc_irq", "pwr_irq";
-
-	clocks = <&xo>,
-			<&gcc GCC_SDCC1_AHB_CLK>,
-			<&gcc GCC_SDCC1_APPS_CLK>;
-	clock-names = "xo", "iface", "core";
-	max-frequency = <192000000>;
-	sd-uhs-sdr104;
-	bus-width = <4>;
-	pinctrl-0 = <&sd_pins>;
-	pinctrl-names = "default";
-	cd-gpios = <&tlmm 62 1>;
-	sd-ldo-gpios = <&tlmm 66 1>;
-	vmmc-supply = <&V30>;
-	status = "okay";
+		clocks = <&xo>,
+				<&gcc GCC_SDCC1_AHB_CLK>,
+				<&gcc GCC_SDCC1_APPS_CLK>;
+		clock-names = "xo", "iface", "core";
+		max-frequency = <192000000>;
+		sd-uhs-sdr104;
+		bus-width = <4>;
+		pinctrl-0 = <&sd_pins>;
+		pinctrl-names = "default";
+		cd-gpios = <&tlmm 62 1>;
+		sd-ldo-gpios = <&tlmm 66 1>;
+		vmmc-supply = <&V30>;
+		status = "okay";
+	};
 };
 
 &wifi {
