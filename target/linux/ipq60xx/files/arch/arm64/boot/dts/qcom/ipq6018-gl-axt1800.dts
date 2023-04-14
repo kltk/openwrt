@@ -114,15 +114,6 @@
 
 };
 
-&sdhc_2 {
-	pinctrl-0 = <&sd_pins>;
-	pinctrl-names = "default";
-	cd-gpios = <&tlmm 62 1>;
-	sd-ldo-gpios = <&tlmm 66 1>;
-	vmmc-supply = <&V30>;
-	status = "okay";
-};
-
 sdhc_2: sdhci_sd@780400 {
 	compatible = "qcom,sdhci-msm-v5";
 	reg = <0x7804000 0x1000>;
@@ -139,7 +130,12 @@ sdhc_2: sdhci_sd@780400 {
 	max-frequency = <192000000>;
 	sd-uhs-sdr104;
 	bus-width = <4>;
-	status = "disabled";
+	pinctrl-0 = <&sd_pins>;
+	pinctrl-names = "default";
+	cd-gpios = <&tlmm 62 1>;
+	sd-ldo-gpios = <&tlmm 66 1>;
+	vmmc-supply = <&V30>;
+	status = "okay";
 };
 
 &wifi {
