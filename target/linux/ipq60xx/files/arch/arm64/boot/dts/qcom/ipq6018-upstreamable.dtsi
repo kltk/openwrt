@@ -131,27 +131,4 @@
 				  "tcl2host-status-ring";
 		status = "disabled";
 	};
-
-	sdhc_1: mmc@7804000 {
-		compatible = "qcom,sdhci-msm-v5";
-		reg = <0x0 0x7804000 0x0 0x1000>, <0x0 0x7805000 0x0 0x1000>;
-		reg-names = "hc", "core";
-
-		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
-					<GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
-		interrupt-names = "hc_irq", "pwr_irq";
-
-		clocks = <&gcc GCC_SDCC1_AHB_CLK>,
-				<&gcc GCC_SDCC1_APPS_CLK>,
-				<&xo>;
-		clock-names = "iface", "core", "xo";
-		resets = <&gcc GCC_SDCC1_BCR>;
-		max-frequency = <192000000>;
-		mmc-ddr-1_8v;
-		mmc-hs200-1_8v;
-		mmc-hs400-1_8v;
-		bus-width = <8>;
-
-		status = "disabled";
-	};
 };

@@ -22,11 +22,11 @@
 	compatible = "glinet,gl-axt1800", "qcom,ipq6018", "qcom,ipq6018-cp03";
 
 	aliases {
-		sdhc0 = &sdhc_1;
+		sdhc0 = &sdhc_2;
 	};
 
-	gl_fan {
-		compatible = "gl-fan";
+	pwm_fan {
+		compatible = "pwm-fan";
 		interrupt-parent = <&tlmm>;
 		interrupts = <31 IRQ_TYPE_EDGE_RISING>;
 	};
@@ -34,16 +34,8 @@
 	V30:V30 {
 		compatible = "regulator-fixed";
 		regulator-name = "vmmc-supply";
-		regulator-min-microvolt = <3000000>;
-		regulator-max-microvolt = <3000000>;
-		regulator-always-on;
-	};
-
-	V18:V18 {
-		compatible = "regulator-fixed";
-		regulator-name = "vqmmc-supply";
-		regulator-min-microvolt = <1800000>;
-		regulator-max-microvolt = <1800000>;
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
 		regulator-always-on;
 	};
 };
@@ -96,7 +88,7 @@
 		cooling-min-state = <0>;
 		cooling-max-state = <255>;
 		#cooling-cells = <2>;
-		pwms = <&pwm 1 40000 0>;
+		pwm = <&pwm 1 40000 0>;
 		cooling-levels = <0 36 36 36 36 36 36 36 36 36 36 36 36 36 36 36 36 36 36 36
 				36 36 36 36 36 36 36 36 36 36 36 36 36 36 36 36 36 37 38 39
 				40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59
@@ -119,17 +111,30 @@
 		used-pwm-indices = <0>, <1>, <0>, <0>;
 		status = "okay";
 	};
+	
+	sdhc_2: sd@780400 {
+		compatible = "qcom,sdhci-msm-v5";
+		reg = <0x0 0x07804000 0x0 0x1000>;
+		reg-names = "hc_mem";
 
-};
+		interrupts = <GIC_SPI 123 IRQ_TYPE_LEVEL_HIGH>,
+						<GIC_SPI 138 IRQ_TYPE_LEVEL_HIGH>;
+		interrupt-names = "hc_irq", "pwr_irq";
 
-&sdhc_1 {
-	pinctrl-0 = <&sd_pins>;
-	pinctrl-names = "default";
-	cd-gpios = <&tlmm 62 1>;
-	sd-ldo-gpios = <&tlmm 66 1>;
-	vqmmc-supply = <&V18>;
-	vmmc-supply = <&V30>;
-	status = "okay";
+		clocks = <&xo>,
+				<&gcc GCC_SDCC1_AHB_CLK>,
+				<&gcc GCC_SDCC1_APPS_CLK>;
+		clock-names = "xo", "iface", "core";
+		max-frequency = <192000000>;
+		sd-uhs-sdr104;
+		bus-width = <4>;
+		pinctrl-0 = <&sd_pins>;
+		pinctrl-names = "default";
+		cd-gpios = <&tlmm 62 1>;
+		sd-ldo-gpios = <&tlmm 66 1>;
+		vmmc-supply = <&V30>;
+		status = "okay";
+	};
 };
 
 &wifi {
