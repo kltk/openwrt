@@ -23,3 +23,5 @@ steps:
       - app/luci
       - app/samba
       - custom
+      - rootfs
+      - utils

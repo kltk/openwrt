@@ -3,5 +3,6 @@ packages:
   - kexec
   - kexec-tools
 diffconfig: |
+  CONFIG_KERNEL_KEXEC=y
   CONFIG_KEXEC_ZLIB=y
   CONFIG_KEXEC_LZMA=y

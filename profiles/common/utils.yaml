@@ -1,0 +1,6 @@
+packages:
+  - htop
+  - lm-sensors
+  - nano
+  - tree
+  - usbutils
