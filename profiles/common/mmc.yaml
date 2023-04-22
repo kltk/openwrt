@@ -1,0 +1,4 @@
+packages:
+  - kmod-mmc
+  - kmod-sdhci
+  - mmc-utils

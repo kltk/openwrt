@@ -91,7 +91,7 @@ jobs:
         run: |
           cd openwrt
           # rm -f bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
-          cp .config bin/targets/ipq60xx/config
+          cp .config bin/targets/ipq60xx/generic/config
 
       - name: Upload bin directory
         uses: actions/upload-artifact@main

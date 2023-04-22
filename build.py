@@ -62,7 +62,6 @@ def loadProfile(profile):
           print(f"Duplicate tag found {k}, {inc}, {profile[k]} -> {data[k]}")
         profile[k] = data.get(k)
     for k in {"feeds", "packages", "modules", "diffconfig"}:
-      print(k, [profile.get(k), data.get(k)])
       if (data.get(k)):
         profile[k] += data[k]
   print("profle", profile)
