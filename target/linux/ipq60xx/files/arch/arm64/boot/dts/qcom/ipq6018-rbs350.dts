@@ -113,7 +113,7 @@
 		qcom,mactype = <0>;
 		local-mac-address = [000000000000];
 		qcom,id = <3>;
-		phy-handle = <&qca8075_3>;
+		phy-handle = <&qca8075_4>;
 		phy-mode = "sgmii";
 	};
 
@@ -124,7 +124,7 @@
 		qcom,mactype = <0>;
 		local-mac-address = [000000000000];
 		qcom,id = <4>;
-		phy-handle = <&qca8075_4>;
+		phy-handle = <&qca8075_3>;
 		phy-mode = "sgmii";
 	};
 };
@@ -164,12 +164,12 @@
 
 	qcom,port_phyinfo {
 		port@3 {
-			port_id = <4>;
-			phy_address = <3>;
+			port_id = <3>;
+			phy_address = <4>;
 		};
 		port@4 {
-			port_id = <5>;
-			phy_address = <4>;
+			port_id = <4>;
+			phy_address = <3>;
 		};
 	};
 
