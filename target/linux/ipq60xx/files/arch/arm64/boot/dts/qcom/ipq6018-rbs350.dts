@@ -471,4 +471,5 @@
 	status = "okay";
 
     qcom,ath11k-calibration-variant = "Netgear-RBS350";
+	qcom,ath11k-fw-memory-mode = <1>;
 };
