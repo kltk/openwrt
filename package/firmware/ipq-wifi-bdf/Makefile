@@ -7,7 +7,7 @@ PKG_MIRROR_HASH:=bbd89ad722ea2fb7dfdcf4b75776e104e6ac58559f84ad3a13e7cd09501cfef
 PKG_RELEASE:=$(AUTORELEASE)
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL:=https://github.com/mrnuke/ipq-wifi-bdf.git
+PKG_SOURCE_URL:=https://github.com/kirdesde/ipq-wifi-bdf.git
 
 PKG_MAINTAINER:=Alexandru Gagniuc <mr.nuke.me@gmail.com>
 
