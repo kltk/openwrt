@@ -26,6 +26,8 @@ AM_TOOL_PATHS:= \
 	AUTOPOINT=true \
 	GTKDOCIZE=true
 
+AM_TOOL_PATHS_FAKE:=$(subst = ,=,$(patsubst "%,"$(TRUE)",$(subst =,= ",$(AM_TOOL_PATHS))))
+
 # 1: build dir
 # 2: remove files
 # 3: automake paths
@@ -124,13 +126,6 @@ ifneq ($(filter libtool-abiver,$(PKG_FIXUP)),)
   Hooks/Configure/Post += set_libtool_abiver
 endif
 
-ifneq ($(filter libtool-ucxx,$(PKG_FIXUP)),)
-  PKG_BUILD_DEPENDS += libtool
- ifeq ($(filter no-autoreconf,$(PKG_FIXUP)),)
-  Hooks/Configure/Pre += autoreconf_target
- endif
-endif
-
 ifneq ($(filter autoreconf,$(PKG_FIXUP)),)
   ifeq ($(filter autoreconf,$(Hooks/Configure/Pre)),)
     Hooks/Configure/Pre += autoreconf_target
@@ -161,12 +156,6 @@ ifneq ($(filter patch-libtool,$(HOST_FIXUP)),)
 endif
 
 ifneq ($(filter libtool,$(HOST_FIXUP)),)
- ifeq ($(filter no-autoreconf,$(HOST_FIXUP)),)
-  Hooks/HostConfigure/Pre += autoreconf_host
- endif
-endif
-
-ifneq ($(filter libtool-ucxx,$(HOST_FIXUP)),)
  ifeq ($(filter no-autoreconf,$(HOST_FIXUP)),)
   Hooks/HostConfigure/Pre += autoreconf_host
  endif

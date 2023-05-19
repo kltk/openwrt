@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=tfa-layerscape
 PKG_VERSION:=21.08
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_RELEASE:=6
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://source.codeaurora.org/external/qoriq/qoriq-components/atf
@@ -61,6 +61,18 @@ define Trusted-Firmware-A/ls1012a-frwy-sdboot
   NAME:=NXP LS1012AFRWY
   PLAT:=ls1012afrwy
   BOOT_MODE:=qspi
+endef
+
+define Trusted-Firmware-A/ls1028a-rdb
+  TITLE:=NXP LS1028ARDB
+  PLAT:=ls1028ardb
+  BOOT_MODE:=flexspi_nor
+endef
+
+define Trusted-Firmware-A/ls1028a-rdb-sdboot
+  TITLE:=NXP LS1028ARDB SD Boot
+  PLAT:=ls1028ardb
+  BOOT_MODE:=sd
 endef
 
 define Trusted-Firmware-A/ls1043a-rdb
@@ -133,6 +145,8 @@ TFA_TARGETS := \
   ls1012a-frdm \
   ls1012a-rdb \
   ls1012a-frwy-sdboot \
+  ls1028a-rdb \
+  ls1028a-rdb-sdboot \
   ls1043a-rdb \
   ls1043a-rdb-sdboot \
   ls1046a-frwy \

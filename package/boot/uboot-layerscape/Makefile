@@ -9,7 +9,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=uboot-layerscape
 PKG_VERSION:=21.08
-PKG_RELEASE:=$(AUTORELEASE)
+PKG_RELEASE:=7
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://source.codeaurora.org/external/qoriq/qoriq-components/u-boot
@@ -43,6 +43,16 @@ define U-Boot/fsl_ls1012a-frwy-sdboot
   NAME:=NXP LS1012AFRWY
   UBOOT_CONFIG:=ls1012afrwy_tfa
   ENV_SIZE:=0x10000
+endef
+
+define U-Boot/fsl_ls1028a-rdb
+  NAME:=NXP LS1028ARDB
+  UBOOT_CONFIG:=ls1028ardb_tfa
+endef
+
+define U-Boot/fsl_ls1028a-rdb-sdboot
+  NAME:=NXP LS1028ARDB SD Card Boot
+  UBOOT_CONFIG:=ls1028ardb_tfa
 endef
 
 define U-Boot/fsl_ls1043a-rdb
@@ -127,6 +137,8 @@ UBOOT_TARGETS := \
   fsl_ls1012a-frdm \
   fsl_ls1012a-rdb \
   fsl_ls1012a-frwy-sdboot \
+  fsl_ls1028a-rdb \
+  fsl_ls1028a-rdb-sdboot \
   fsl_ls1043a-rdb \
   fsl_ls1043a-rdb-sdboot \
   fsl_ls1046a-frwy \
