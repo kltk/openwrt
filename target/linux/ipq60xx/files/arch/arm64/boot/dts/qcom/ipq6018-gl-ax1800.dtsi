@@ -73,7 +73,7 @@
 		};
 	};
 
-	flint_cpu_opp_table: cpu-opp-table {
+	ipq60xx_cpu_opp_table: cpu-opp-table {
 		compatible = "operating-points-v2";
 		opp-shared;
 
@@ -94,9 +94,9 @@
 		};
 	};
 
-	flint_cpu_regulator: cpu-regulator {
+	ipq60xx_cpu_regulator: cpu-regulator {
 		compatible = "regulator-fixed";
-		regulator-name = "flint-cpu-regulator";
+		regulator-name = "ipq60xx-cpu-regulator";
 		regulator-min-microvolt = <1100000>;
 		regulator-max-microvolt = <1100000>;
 		regulator-always-on;
@@ -105,24 +105,25 @@
 };
 
 &CPU0 {
-	operating-points-v2 = <&flint_cpu_opp_table>;
-	cpu-supply = <&flint_cpu_regulator>;
+	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
+	cpu-supply = <&ipq60xx_cpu_regulator>;
 };
 
 &CPU1 {
-	operating-points-v2 = <&flint_cpu_opp_table>;
-	cpu-supply = <&flint_cpu_regulator>;
+	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
+	cpu-supply = <&ipq60xx_cpu_regulator>;
 };
 
 &CPU2 {
-	operating-points-v2 = <&flint_cpu_opp_table>;
-	cpu-supply = <&flint_cpu_regulator>;
+	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
+	cpu-supply = <&ipq60xx_cpu_regulator>;
 };
 
 &CPU3 {
-	operating-points-v2 = <&flint_cpu_opp_table>;
-	cpu-supply = <&flint_cpu_regulator>;
+	operating-points-v2 = <&ipq60xx_cpu_opp_table>;
+	cpu-supply = <&ipq60xx_cpu_regulator>;
 };
+
 
 &tlmm {
 	mdio_pins: mdio-pins {
@@ -144,6 +145,14 @@
 			pins = "gpio74";
 			function = "gpio";
 			bias-pull-up;
+		};
+	};
+		usb_power_pins: usb_power_pins {
+		mux {
+			pins = "gpio0";
+			function = "gpio";
+			bias-pull-up;
+			output-high;
 		};
 	};
 };
@@ -181,6 +190,13 @@
 &usb2 {
 	status = "okay";
 };
+
+&usb3 {
+	pinctrl-0 = <&usb_power_pins>;
+	pinctrl-names = "default";
+	status = "okay";
+};
+
 
 &edma {
 	status = "okay";
@@ -568,6 +584,4 @@
 
 &wifi {
 	status = "okay";
-
-	qcom,ath11k-calibration-variant = "GL-iNet-AX1800";
 };
