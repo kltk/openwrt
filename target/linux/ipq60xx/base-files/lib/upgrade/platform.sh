@@ -138,6 +138,7 @@ platform_check_image() {
 platform_do_upgrade() {
 	case "$(board_name)" in
 	glinet,gl-ax1800|\
+	glinet,gl-axt1800|\
 	netgear,wax610|\
 	netgear,rbs350|\
 	netgear,sxk30)
