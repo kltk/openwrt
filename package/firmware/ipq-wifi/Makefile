@@ -26,6 +26,7 @@ endef
 
 ALLWIFIBOARDS:= \
 	glinet_gl-ax1800 \
+  glinet_gl-axt1800 \
   netgear_rbs350 \
 	netgear_sxk30 \
 	netgear_wax610
@@ -103,6 +104,7 @@ endef
 # Add $(eval $(call generate-ipq-wifi-package,<devicename>,<display name>))
 
 $(eval $(call generate-ipq-wifi-package,glinet_gl-ax1800,GL.iNet GL-AX1800))
+$(eval $(call generate-ipq-wifi-package,glinet_gl-axt1800,GL.iNet GL-AXT1800))
 $(eval $(call generate-ipq-wifi-package,netgear_rbs350,Netgear RBS350))
 $(eval $(call generate-ipq-wifi-package,netgear_sxk30,Netgear SXK30))
 $(eval $(call generate-ipq-wifi-package,netgear_wax610,Netgear WAX610))
