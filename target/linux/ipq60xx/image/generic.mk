@@ -50,7 +50,6 @@ define Device/glinet_gl-ax1800
 	PAGESIZE := 2048
 	DEVICE_DTS_CONFIG := config@cp03-c1
 	SOC := ipq6018
-	IMAGE/nand-factory.ubi := append-ubi | qsdk-ipq-factory-nand
 	DEVICE_PACKAGES := ipq-wifi-glinet_gl-ax1800 kmod-usb3 kmod-usb-dwc3 kmod-usb-dwc3-qcom
 endef
 TARGET_DEVICES += glinet_gl-ax1800
@@ -64,7 +63,6 @@ define Device/glinet_gl-axt1800
 	PAGESIZE := 2048
 	DEVICE_DTS_CONFIG := config@cp03-c1
 	SOC := ipq6018
-	IMAGE/nand-factory.ubi := append-ubi | qsdk-ipq-factory-nand
 	DEVICE_PACKAGES := ipq-wifi-glinet_gl-ax1800 kmod-hwmon-core kmod-hwmon-pwmfan \
 		kmod-usb3 kmod-usb-dwc3 kmod-usb-dwc3-qcom
 
