@@ -75,7 +75,7 @@
 		};
 		speed {
 			pins = "gpio31";
-			function = "pwm23";
+			function = "gpio";
 			drive-strength = <8>;
 			bias-pull-up;
 		};
