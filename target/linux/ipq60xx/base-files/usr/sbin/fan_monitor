@@ -22,7 +22,7 @@ CPU_LOW=40000     #
 
 
 cur_pwm=0
-new_pwm="$FANHI"  # start fan at HI while coming up
+new_pwm="$FANLOW"  # start fan at Low while coming up
 
 fan_set() {
     local ppwm
