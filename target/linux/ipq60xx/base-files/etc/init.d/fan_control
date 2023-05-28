@@ -12,7 +12,7 @@ boot() {
 board=$(board_name)
 
 case "$board" in
-glinet,g;-axt1800)
+glinet,gl-axt1800)
     rc_procd start_service
     ;;
 esac
