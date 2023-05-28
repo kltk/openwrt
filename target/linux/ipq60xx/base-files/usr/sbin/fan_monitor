@@ -1,0 +1,65 @@
+#!/bin/sh
+
+# put in /usr/sbin/fan_monitor
+# fan_monitor
+# Utility script to monitor temperatures and run fan at 50%/75%/100%
+# For Reference the original GL-iNet specs.
+
+INTERVAL=20  # sleep time in seconds between temp check
+FANLOW=64   # low fan speed, set to 0 for off
+FANMID=128  # mid fan speed
+FANHI=254   # high fan speed
+
+# Set fan to 100% on >= these temperatures
+CPU_HI=70000    # GL-iNet default is 85
+
+# Set fan to 75% <= these, otherwise 100% 
+CPU_MID=60000     # GL-iNet sets no default
+
+# Set fan to 50% <= these temperatures
+CPU_LOW=50000     # GL-iNet default is 80
+
+cur_pwm=0
+new_pwm="$FANHI"  # start fan at HI while coming up
+
+fan_set() {
+    local ppwm
+    cur_pwm=$1
+
+    if [ "$1" -eq $FANLOW ]; then
+        ppwm="50%"
+    elif [ "$1" -eq $FANMID ]; then
+        ppwm="75%"
+    else
+        ppwm="100%"
+    fi
+
+    logger -t FAN_MONITOR "Setting Fan to $ppwm"
+    echo "$1" > /sys/devices/virtual/cooling_device0/cur_state
+}
+
+# Crank fan on exit
+trap "{ logger -t FAN_MONITOR Fan monitor exiting; fan_set $FANHI; logger -t FAN_MONITOR as a precaution; exit; }" SIGINT SIGTERM
+
+# Main fan control loop
+while :
+do
+    if [ "$new_pwm" -ne "$cur_pwm" ]
+    then
+        fan_set "$new_pwm"
+    fi
+    sleep $INTERVAL
+
+    cpu=`cat /sys/devices/virtual/thermal/thermal_zone?/temp`
+
+
+    if [ "$cpu" -le $CPU_LOW]
+    then
+        new_pwm="$FANLOW"
+    elif [ "$cpu" -le $CPU_MID]
+    then
+        new_pwm="$FANMID"
+    else
+        new_pwm="$FANHI"
+    fi
+done
