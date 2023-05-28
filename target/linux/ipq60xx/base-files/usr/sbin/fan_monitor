@@ -11,10 +11,10 @@ FANMID=128  # mid fan speed
 FANHI=254   # high fan speed
 
 # Set fan to 100% on >= these temperatures
-CPU_HI=65000    # 
+CPU_HI=85000    # 
 
 # Set fan to 50% <= these, otherwise 100% 
-CPU_MID=48000     # 
+CPU_MID=58000     # 
 
 # Set fan to 0% <= these temperatures
 CPU_LOW=45000     # 
