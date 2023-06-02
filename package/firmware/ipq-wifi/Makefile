@@ -5,10 +5,10 @@ PKG_NAME:=ipq-wifi
 PKG_RELEASE:=1
 
 PKG_SOURCE_PROTO:=git
-PKG_SOURCE_URL=https://github.com/robimarko/firmware_qca-wireless.git
-PKG_SOURCE_DATE:=2023-05-29
-PKG_SOURCE_VERSION:=fa47c370206e6b85ed44cd59a4e781548714ae62
-PKG_MIRROR_HASH:=9e3d0bf81ae64392192d5f3afa895401d51fa44ce6a580f43c527dc154e34784
+PKG_SOURCE_URL=https://github.com/kirdesde/firmware_qca-wireless.git
+PKG_SOURCE_DATE:=2023-06-02
+PKG_SOURCE_VERSION:=0446ba0273fbc53cccab007588cacf430f7a76c9
+PKG_MIRROR_HASH:=b1f041be46f891cec0db10ce7769cbf3f7e339d7160f45e8395f6a4b768aee38
 
 PKG_FLAGS:=nonshared
 
@@ -34,6 +34,7 @@ ALLWIFIBOARDS:= \
 	edgecore_eap102 \
 	edimax_cax1800 \
 	linksys_mr7350 \
+  netgear_wax214 \
 	netgear_wax218 \
 	qnap_301w \
 	redmi_ax6 \
@@ -122,6 +123,7 @@ $(eval $(call generate-ipq-wifi-package,dynalink_dl-wrx36,Dynalink DL-WRX36))
 $(eval $(call generate-ipq-wifi-package,edgecore_eap102,Edgecore EAP102))
 $(eval $(call generate-ipq-wifi-package,edimax_cax1800,Edimax CAX1800))
 $(eval $(call generate-ipq-wifi-package,linksys_mr7350,Linksys MR7350))
+$(eval $(call generate-ipq-wifi-package,netgear_wax214,Netgear WAX214))
 $(eval $(call generate-ipq-wifi-package,netgear_wax218,Netgear WAX218))
 $(eval $(call generate-ipq-wifi-package,qnap_301w,QNAP 301w))
 $(eval $(call generate-ipq-wifi-package,redmi_ax6,Redmi AX6))
