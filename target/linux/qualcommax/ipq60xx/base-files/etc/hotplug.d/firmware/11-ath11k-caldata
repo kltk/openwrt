@@ -9,7 +9,8 @@ board=$(board_name)
 case "$FIRMWARE" in
 "ath11k/IPQ6018/hw1.0/cal-ahb-c000000.wifi.bin")
 	case "$board" in
-	linksys,mr7350)
+	linksys,mr7350|\
+	netgear,wax214)
 		caldata_extract "0:art" 0x1000 0x10000
 		;;
 	esac
