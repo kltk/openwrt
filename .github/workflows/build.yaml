@@ -27,6 +27,7 @@ on:
         default: '["axt1800"]'
         options:
           - '["axt1800"]'
+          - '["axt1800-6"]'
 
 env:
   TZ: Asia/Shanghai
