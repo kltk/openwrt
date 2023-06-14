@@ -8,7 +8,7 @@ packages:
   # - luci-base
   - luci-app-upnp
 modules:
-  - nginx-all-module
+  - nginx-full
 diffconfig: |
   CONFIG_LUCI_LANG_zh_Hans=y
 
