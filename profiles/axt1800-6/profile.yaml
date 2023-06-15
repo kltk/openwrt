@@ -22,6 +22,7 @@ steps:
       - kexec
       - app/luci
       - app/samba
+      - app/zerotier
       - custom
       - rootfs
       - utils
