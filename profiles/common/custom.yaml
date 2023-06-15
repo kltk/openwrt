@@ -1,5 +1,6 @@
 packages:
   - luci-app-zerotier
+  - zerotier
 modules:
   - luci-app-aria2
   - luci-app-openclash
