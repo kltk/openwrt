@@ -1,8 +1,5 @@
-assets:
-  - git: https://github.com/zhengmz/luci-app-zerotier
-    path: custom/luci-app-zerotier
 feeds:
   - name: custom
-    path: ../custom
+    path: ../../custom
 packages:
   - luci-app-zerotier

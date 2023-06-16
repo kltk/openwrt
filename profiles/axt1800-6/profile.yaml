@@ -6,7 +6,9 @@ assets:
   # 从 url 下载文件到 path 路径
   # - url: ''
   #   path: ''
-  # 从 link 创建软链接到 path
+  # 从 link 创建软链接到 pathassets:
+  - git: https://github.com/zhengmz/luci-app-zerotier
+    path: custom/luci-app-zerotier
   - link: cache/ccache
     path: openwrt/.ccache
 # 渐进式编译
