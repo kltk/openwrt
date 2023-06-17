@@ -4,3 +4,4 @@ packages:
   - nano
   - tree
   - usbutils
+  - lsblk

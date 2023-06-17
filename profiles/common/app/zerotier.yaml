@@ -3,3 +3,4 @@ feeds:
     path: ../../custom
 packages:
   - luci-app-zerotier
+  - luci-compat
