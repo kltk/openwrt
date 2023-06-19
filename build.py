@@ -129,7 +129,7 @@ def loadAssets(assets):
       os.chdir("..")
 
     if asset.get("url"):
-      grouprun(f"curl -o {asset["path"]} {asset["url"]}")
+      grouprun(f"curl -o {asset['path']} {asset['url']}")
 
     if asset.get("link"):
       link = os.path.abspath(asset.get("link"))
