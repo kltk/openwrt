@@ -12,9 +12,9 @@ profileDir = ""
 
 
 def grouprun(cmd):
-  print(f"::group::", cmd)
+  os.system(f"echo ::group:: {cmd}")
   ret=os.system(cmd)
-  print("::endgroup::")
+  os.system("echo ::endgroup::")
   if (ret!=0):
     raise
 
