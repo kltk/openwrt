@@ -13,9 +13,10 @@ profileDir = ""
 
 def grouprun(cmd):
   print(f"::group::", cmd)
-  os.system(cmd)
+  ret=os.system(cmd)
   print("::endgroup::")
-  return ret
+  if (ret!=0):
+    raise
 
 
 def loadYaml(name):
