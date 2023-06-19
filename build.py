@@ -11,12 +11,13 @@ __abs_dir__ = os.path.dirname(__abs_file__)
 profileDir = ""
 
 
-def grouprun(cmd):
-  os.system(f"echo ::group:: {cmd}")
-  ret=os.system(cmd)
-  os.system("echo ::endgroup::")
-  if (ret!=0):
-    raise
+def grouprun(*args, **kwargs):
+  print(f"::group::", *args)
+  ret = subprocess.run(*args, **kwargs, capture_output=True, text=True)
+  print(ret.stdout)
+  print(ret.stderr)
+  print("::endgroup::")
+  return ret
 
 
 def loadYaml(name):
@@ -33,14 +34,14 @@ def loadYaml(name):
 
 
 def download():
-  grouprun('make download -j8')
+  grouprun(['make', 'download', '-j8'])
 
 
 def compile():
   try:
-    grouprun(f'make -j{len(os.sched_getaffinity(0))}')
+    grouprun(['make', f'-j{len(os.sched_getaffinity(0))}'], check=True)
   except:
-    grouprun('make -j1 V=s')
+    grouprun(['make', '-j1', 'V=s'], check=True)
 
 
 def upload():
@@ -89,9 +90,9 @@ def genConfig(data):
     output += f"CONFIG_PACKAGE_{module}=m\n"
   Path(".config").write_text(output)
   print("Configuration writen to .config")
-  grouprun('make defconfig')
-  grouprun('./scripts/diffconfig.sh')
-  grouprun('cat .config')
+  grouprun(['make', 'defconfig'])
+  grouprun(['./scripts/diffconfig.sh'])
+  grouprun(['cat', '.config'])
 
 
 def setupFeeds(config):
@@ -109,9 +110,9 @@ def setupFeeds(config):
     else:
       feeds.append(f'{method} {f["name"]} {f["uri"]};{branch}')
   Path('feeds.conf').write_text('\n'.join(feeds))
-  grouprun('./scripts/feeds update -a')
-  grouprun('./scripts/feeds install -a')
-  grouprun('./scripts/feeds list')
+  grouprun(['./scripts/feeds', "update", "-a"])
+  grouprun(['./scripts/feeds', 'install', '-a'])
+  grouprun(['./scripts/feeds', 'list'])
 
 
 def loadAssets(assets):
@@ -121,23 +122,23 @@ def loadAssets(assets):
       continue
     print(f"load asset to {asset['path']}")
     if asset.get("git"):
-      grouprun(f'git clone {asset["git"]} {asset["path"]}')
+      grouprun(["git", "clone", asset["git"], asset["path"]])
       revision = asset.get("revision")
       os.chdir("openwrt")
       if revision:
-        grouprun(f"git checkout -b {revision} origin/{revision}")
-      grouprun("git branch -v --all")
+        grouprun(["git", "checkout", '-b', revision, f"origin/{revision}"])
+      grouprun(["git", "branch", "-v", "--all"])
       os.chdir("..")
 
     if asset.get("url"):
-      grouprun(f"curl -o {asset['path']} {asset['url']}")
+      grouprun(["curl", "-o", asset["path"], asset["url"]])
 
     if asset.get("link"):
       link = os.path.abspath(asset.get("link"))
       path = os.path.abspath(asset.get("path"))
       if not os.path.exists(link):
-        grouprun(f'mkdir -p {link}')
-      grouprun(f'ln -s {link} {path}')
+        grouprun(['mkdir', '-p', link])
+      grouprun(["ln", "-s", link, path])
 
 
 def main(profileName):
