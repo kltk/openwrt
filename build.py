@@ -90,6 +90,7 @@ def genConfig(data):
     output += f"CONFIG_PACKAGE_{module}=m\n"
   Path(".config").write_text(output)
   print("Configuration writen to .config")
+  grouprun(['cat', '.config'])
   grouprun(['make', 'defconfig'])
   grouprun(['./scripts/diffconfig.sh'])
   grouprun(['cat', '.config'])
