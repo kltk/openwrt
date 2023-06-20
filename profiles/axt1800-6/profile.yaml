@@ -15,7 +15,7 @@ assets:
 # 从简单的配置开始编译，逐渐添加内容
 steps:
   - include:
-      - device/gl-axt1800
+      - device/gl-axt1800-6
       - devel
       - kexec
       - app/luci

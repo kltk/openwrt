@@ -1,0 +1,3 @@
+target: qualcommax
+subtarget: ipq60xx
+profile: glinet_gl-axt1800
