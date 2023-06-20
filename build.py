@@ -124,11 +124,14 @@ def loadAssets(assets):
     if asset.get("git"):
       grouprun(["git", "clone", asset["git"], asset["path"]])
       revision = asset.get("revision")
-      os.chdir("openwrt")
+      olddir=os.getcwd()
+      os.chdir(asset['path'])
+      print(f'dir: {os.getcwd()}')
       if revision:
         grouprun(["git", "checkout", '-b', revision, f"origin/{revision}"])
       grouprun(["git", "branch", "-v", "--all"])
-      os.chdir("..")
+      os.chdir(olddir)
+      print(f'dir: {os.getcwd()}')
 
     if asset.get("url"):
       grouprun(["curl", "-o", asset["path"], asset["url"]])
@@ -155,6 +158,7 @@ def main(profileName):
   data = loadYaml("profile")
   loadAssets(data["assets"])
   os.chdir('openwrt')
+  grouprun(["git", "status"])
   for index, step in enumerate(data["steps"]):
     print(f"build {profileName}#{index}")
     profile = loadProfile({**defaultProfile, **step})
