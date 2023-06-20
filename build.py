@@ -5,64 +5,6 @@ import os
 import yaml
 import glob
 import sys
-import logging
-import shlex
-import threading
-
-class CommandExecutionException(Exception):
-    def __init__(self, command: str, exit_code: int) -> None:
-        super().__init__(f"command executed fail with exit-code={exit_code}: {command}")
-
-_logger = logging.getLogger(__name__)
-
-class TextReadLineThread(threading.Thread):
-    def __init__(self, readline, callback, *args, **kargs) -> None:
-        super().__init__(*args, **kargs)
-        self.readline = readline
-        self.callback = callback
-
-    def run(self):
-        for line in iter(self.readline, ""):
-            if len(line) == 0:
-                break
-            self.callback(line)
-
-def cmd_exec(command: str, ensure_success: bool=True) -> int:
-    _logger.info("executing command: {}".format(command))
-
-    cmd = shlex.split(command)
-
-    process = subprocess.Popen(
-        cmd,
-        shell=True,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        )
-
-    _logger.debug("started command")
-
-    def log_warp(func):
-        def _wrapper(line: str):
-            return func("\t" + line.strip())
-        return _wrapper
-
-    read_stdout = TextReadLineThread(process.stdout.readline, log_warp(_logger.info))
-    read_stderr = TextReadLineThread(process.stderr.readline, log_warp(_logger.warning))
-    read_stdout.start()
-    read_stderr.start()
-
-    read_stdout.join()
-    _logger.debug("stdout reading finish")
-    read_stderr.join()
-    _logger.debug("stderr reading finish")
-    ret = process.wait()
-    _logger.debug("process finish")
-
-    _logger.info("executed command with exit-code={}".format(ret))
-    if ensure_success and ret != 0:
-        raise CommandExecutionException(command=command, exit_code=ret)
-    return ret
 
 __abs_file__ = os.path.abspath(__file__)
 __abs_dir__ = os.path.dirname(__abs_file__)
@@ -92,14 +34,14 @@ def loadYaml(name):
 
 
 def download():
-  cmd_exec(f'make download -j8')
+  grouprun(['make', 'download', '-j8'])
 
 
 def compile():
   try:
-    cmd_exec(f'make -j{len(os.sched_getaffinity(0))}')
+    grouprun(['make', f'-j{len(os.sched_getaffinity(0))}'])
   except:
-    cmd_exec(f'make -j1 V=s')
+    grouprun(['make', '-j1', 'V=s'])
 
 
 def upload():
@@ -148,9 +90,9 @@ def genConfig(data):
     output += f"CONFIG_PACKAGE_{module}=m\n"
   Path(".config").write_text(output)
   print("Configuration writen to .config")
-  cmd_exec(f'make defconfig')
-  cmd_exec(f'./scripts/diffconfig.sh')
-  cmd_exec(f'cat .config')
+  grouprun(['make', 'defconfig'])
+  grouprun(['./scripts/diffconfig.sh'])
+  grouprun(['cat', '.config'])
 
 
 def setupFeeds(config):
@@ -168,9 +110,9 @@ def setupFeeds(config):
     else:
       feeds.append(f'{method} {f["name"]} {f["uri"]};{branch}')
   Path('feeds.conf').write_text('\n'.join(feeds))
-  cmd_exec(f'./scripts/feeds update -a')
-  cmd_exec(f'./scripts/feeds install -a')
-  cmd_exec(f'./scripts/feeds list')
+  grouprun(['./scripts/feeds', "update", "-a"])
+  grouprun(['./scripts/feeds', 'install', '-a'])
+  grouprun(['./scripts/feeds', 'list'])
 
 
 def loadAssets(assets):
@@ -180,23 +122,23 @@ def loadAssets(assets):
       continue
     print(f"load asset to {asset['path']}")
     if asset.get("git"):
-      cmd_exec(f'git clone {asset["git"]} {asset["path"]}')
+      grouprun(["git", "clone", asset["git"], asset["path"]])
       revision = asset.get("revision")
       os.chdir("openwrt")
       if revision:
-        cmd_exec(f'git checkout -b {revision} origin/{revision}')
-      cmd_exec(f'git branch -v --all')
+        grouprun(["git", "checkout", '-b', revision, f"origin/{revision}"])
+      grouprun(["git", "branch", "-v", "--all"])
       os.chdir("..")
 
     if asset.get("url"):
-      cmd_exec(f'curl -o {asset["path"]} {asset["url"]}')
+      grouprun(["curl", "-o", asset["path"], asset["url"]])
 
     if asset.get("link"):
       link = os.path.abspath(asset.get("link"))
       path = os.path.abspath(asset.get("path"))
       if not os.path.exists(link):
-        cmd_exec(f'mkdir -p {link}')
-      cmd_exec(f'ln -s {link} {path}')
+        grouprun(['mkdir', '-p', link])
+      grouprun(["ln", "-s", link, path])
 
 
 def main(profileName):
