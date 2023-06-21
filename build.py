@@ -155,8 +155,8 @@ defaultProfile = {
     "description": [],
     "include": [],
     "assets": [],
-    "patch": {},
     "feeds": [],
+    "patch": {},
     "packages": [],
     "modules": [],
     "diffconfig": "",
@@ -169,7 +169,7 @@ def merge(a,b):
       if(ret.get(k)):
         print(f'Duplicate tag found {k}')
       ret[k] = b[k]
-  for k in {'include', 'assets', 'patch', 'feeds', 'packages', 'modules', 'diffconfig'}:
+  for k in {'include', 'assets', 'feeds', 'patch', 'packages', 'modules', 'diffconfig'}:
     if (b.get(k)):
       ret[k] += b[k]
   return ret
@@ -190,12 +190,12 @@ def main(profileName):
   steps = profile['steps']
   profile.pop('steps')
   for index, step in enumerate(steps):
-    profile = merge(profile, step)
+    profile = loadProfile2(merge(profile, step))
     loadAssets(profile['assets'])
     os.chdir('openwrt')
     setupFeeds(profile)
-    genConfig(profile)
     patch(profile)
+    genConfig(profile)
     download()
     compile()
     upload()
