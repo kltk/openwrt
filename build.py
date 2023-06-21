@@ -54,7 +54,10 @@ def patch(profile):
     olddir=os.getcwd()
     os.chdir(dir)
     for patch in patches:
-      grouprun(['git', 'am', '--quiet', f'{profileDir}/{patch}'])
+      try:
+        grouprun(['git', 'am', '--quiet', f'{profileDir}/{patch}'])
+      except:
+        grouprun(['git', 'apply', f'{profileDir}/{patch}'])        
     os.chdir(olddir)
 
 
