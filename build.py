@@ -53,12 +53,8 @@ def patch(profile):
   for (dir, patches) in profile.get('patch', {}).items():
     olddir=os.getcwd()
     os.chdir(dir)
-    grouprun(['ls', '-al'])
-    grouprun(['ls', '-al', '..'])
-    grouprun(['ls', '-al', '../..'])
-    grouprun(['ls', '-al', '../../..'])
     for patch in patches:
-      grouprun(['git', 'am', '--quiet', patch])
+      grouprun(['git', 'am', '--quiet', f'{profileDir}/{patch}'])
     os.chdir(olddir)
 
 
