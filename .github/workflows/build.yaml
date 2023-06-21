@@ -77,6 +77,8 @@ jobs:
       - name: Compile
         id: compile
         run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@github.com"
           python3 build.py ${{ matrix.profile }}
           echo "status=success" >> $GITHUB_OUTPUT
 
