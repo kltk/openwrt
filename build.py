@@ -54,7 +54,7 @@ def patch(profile):
     olddir=os.getcwd()
     os.chdir(dir)
     for patch in patches:
-      grouprun(['git', 'am', patch])
+      grouprun(['git', 'am', '--quiet', patch])
     os.chdir(olddir)
 
 
@@ -151,14 +151,25 @@ def loadAssets(assets):
       grouprun(["ln", "-s", link, path])
 
 
+defaultProfile = {
+    "description": [],
+    "include": [],
+    "assets": [],
+    "patch": {},
+    "feeds": [],
+    "packages": [],
+    "modules": [],
+    "diffconfig": "",
+}
+
 def merge(a,b):
-  ret = {**a}
+  ret = {**defaultProfile, **a}
   for k in {'target', 'subtarget', 'profile'}:
     if (b.get(k)):
       if(ret.get(k)):
         print(f'Duplicate tag found {k}')
       ret[k] = b[k]
-  for k in {'include', 'feeds', 'packages', 'modules', 'diffconfig', 'patch'}:
+  for k in {'include', 'assets', 'patch', 'feeds', 'packages', 'modules', 'diffconfig'}:
     if (b.get(k)):
       ret[k] += b[k]
   return ret
@@ -192,14 +203,6 @@ def main(profileName):
 
 
 def main2(profileName):
-  defaultProfile = {
-      "description": [],
-      "feeds": [],
-      "packages": [],
-      "modules": [],
-      "diffconfig": "",
-  }
-
   global profileDir
   profileDir = os.path.join(__abs_dir__, "profiles", profileName)
   data = loadYaml("profile")
