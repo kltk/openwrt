@@ -175,7 +175,7 @@ def merge(a,b):
   return ret
 
 def loadProfile2(profile):
-  ret = {include:[], **profile}
+  ret = {'include':[], **profile}
   includes = ret.get('include', [])
   ret.pop('include')
   for inc in includes:
