@@ -1,3 +1,6 @@
 target: qualcommax
 subtarget: ipq60xx
 profile: glinet_gl-axt1800
+packages:
+  # for shellclash
+  - kmod-nft-tproxy
