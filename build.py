@@ -152,14 +152,14 @@ def loadAssets(assets):
 
 
 defaultProfile = {
-    "description": [],
-    "include": [],
-    "assets": [],
-    "feeds": [],
-    "patch": {},
-    "packages": [],
-    "modules": [],
-    "diffconfig": "",
+    'description': [],
+    'include': [],
+    'assets': [],
+    'feeds': [],
+    'patch': {},
+    'packages': [],
+    'modules': [],
+    'diffconfig': '',
 }
 
 def merge(a,b):

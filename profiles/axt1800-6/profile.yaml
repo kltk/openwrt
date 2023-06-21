@@ -25,3 +25,10 @@ steps:
       - rootfs
       - utils
       - mmc
+packages:
+  # for shellclash
+  - kmod-nft-tproxy
+patch:
+  openwrt:
+    - '../patches/default-enable-wifi.patch'
+    - '../patches/kexec-for-aarch64.patch'
