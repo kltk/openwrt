@@ -48,8 +48,14 @@ def upload():
   print()
 
 
-def patch():
-  print()
+# 目录/补丁
+def patch(profile):
+  for (dir, patches) in profile.get('patch', {}).items():
+    olddir=os.getcwd()
+    os.chdir(dir)
+    for patch in patches:
+      grouprun(['git', 'am', patch])
+    os.chdir(olddir)
 
 
 def loadProfile(profile):
@@ -145,7 +151,47 @@ def loadAssets(assets):
       grouprun(["ln", "-s", link, path])
 
 
+def merge(a,b):
+  ret = {**a}
+  for k in {'target', 'subtarget', 'profile'}:
+    if (b.get(k)):
+      if(ret.get(k)):
+        print(f'Duplicate tag found {k}')
+      ret[k] = b[k]
+  for k in {'include', 'feeds', 'packages', 'modules', 'diffconfig', 'patch'}:
+    if (b.get(k)):
+      ret[k] += b[k]
+  return ret
+
+def loadProfile2(profile):
+  ret = {**profile}
+  includes = ret.get('include', [])
+  ret.pop('include')
+  for inc in includes:
+    data = loadYaml(inc)
+    ret = merge(ret, loadProfile2(data))
+  return ret
+
 def main(profileName):
+  global profileDir
+  profileDir = os.path.join(__abs_dir__, 'profiles', profileName)
+  profile = loadYaml('profile')
+  steps = profile['steps']
+  profile.pop('steps')
+  for index, step in enumerate(steps):
+    profile = merge(profile, step)
+    loadAssets(profile['assets'])
+    os.chdir('openwrt')
+    setupFeeds(profile)
+    genConfig(profile)
+    patch(profile)
+    download()
+    compile()
+    upload()
+    os.chdir('..')
+
+
+def main2(profileName):
   defaultProfile = {
       "description": [],
       "feeds": [],
@@ -165,7 +211,7 @@ def main(profileName):
     profile = loadProfile({**defaultProfile, **step})
     setupFeeds(profile)
     genConfig(profile)
-    patch()
+    patch(profile)
     download()
     compile()
     upload()
