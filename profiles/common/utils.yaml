@@ -1,4 +1,5 @@
 packages:
+  - curl
   - htop
   - lm-sensors
   - nano
