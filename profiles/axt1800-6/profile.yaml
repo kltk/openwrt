@@ -28,5 +28,6 @@ packages:
   - kmod-nft-tproxy
 patch:
   '.':
-    - 'patches/default-enable-wifi.patch'
-    - 'patches/kexec-for-aarch64.patch'
+    - patches/*.patch
+    # - 'patches/default-enable-wifi.patch'
+    # - 'patches/kexec-for-aarch64.patch'

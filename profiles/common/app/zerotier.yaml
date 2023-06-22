@@ -1,5 +1,6 @@
 assets:
-  - git: https://github.com/alloneinfo/luci-app-zerotier_nft
+  # - git: https://github.com/alloneinfo/luci-app-zerotier_nft
+  - git: https://github.com/zhengmz/luci-app-zerotier
     path: custom/luci-app-zerotier
 feeds:
   - name: custom
