@@ -1,8 +1,10 @@
 packages:
+  - bash
   - curl
   - htop
   - lm-sensors
   - lsblk
   - nano
+  - python3-yaml
   - tree
   - usbutils
