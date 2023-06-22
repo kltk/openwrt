@@ -1,3 +1,6 @@
+assets:
+  - git: https://github.com/alloneinfo/luci-app-zerotier_nft
+    path: custom/luci-app-zerotier
 feeds:
   - name: custom
     path: ../../custom
