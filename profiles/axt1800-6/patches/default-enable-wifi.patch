@@ -1,12 +1,13 @@
 diff --git a/package/kernel/mac80211/files/lib/wifi/mac80211.sh b/package/kernel/mac80211/files/lib/wifi/mac80211.sh
-index e24a2a634e..0a172fc4e7 100644
---- a/package/kernel/mac80211/files/lib/wifi/mac80211.sh
-+++ b/package/kernel/mac80211/files/lib/wifi/mac80211.sh
-@@ -203,7 +203,6 @@ detect_mac80211() {
-                        set wireless.${name}.channel=${channel}
-                        set wireless.${name}.band=${mode_band}
-                        set wireless.${name}.htmode=$htmode
--                       set wireless.${name}.disabled=1
-
-                        set wireless.default_${name}=wifi-iface
-                        set wireless.default_${name}.device=${name}
+--- package/kernel/mac80211/files/lib/wifi/mac80211.sh
++++ package/kernel/mac80211/files/lib/wifi/mac80211.sh
+@@ -202,9 +202,8 @@
+ 			${dev_id}
+ 			set wireless.${name}.channel=${channel}
+ 			set wireless.${name}.band=${mode_band}
+ 			set wireless.${name}.htmode=$htmode
+-			set wireless.${name}.disabled=1
+ 
+ 			set wireless.default_${name}=wifi-iface
+ 			set wireless.default_${name}.device=${name}
+ 			set wireless.default_${name}.network=lan
