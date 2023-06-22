@@ -56,7 +56,7 @@ def patch(profile):
     grouprun(['ls', '-al'])
     for patch in patches:
       # grouprun(['git', 'am', '--quiet', f'{profileDir}/{patch}'])
-      grouprun(['git', 'apply', '--ignore-space-change', '--ignore-whitespace', f'{profileDir}/{patch}'])        
+      grouprun(['git', 'apply', '-p0', '--ignore-space-change', '--ignore-whitespace', f'{profileDir}/{patch}'])        
     grouprun(['git', 'diff'])
     os.chdir(olddir)
 
