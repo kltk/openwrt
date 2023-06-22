@@ -2,7 +2,7 @@ packages:
   - curl
   - htop
   - lm-sensors
+  - lsblk
   - nano
   - tree
   - usbutils
-  - lsblk

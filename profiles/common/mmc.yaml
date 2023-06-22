@@ -1,4 +1,4 @@
-packages:
-  - kmod-mmc
-  - kmod-sdhci
-  - mmc-utils
+modules:
+  # - kmod-mmc
+  # - kmod-sdhci
+  # - mmc-utils
