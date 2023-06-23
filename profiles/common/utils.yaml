@@ -1,10 +1,11 @@
 packages:
-  - bash
-  - curl
   - htop
   - lm-sensors
   - lsblk
   - nano
-  - python3-yaml
   - tree
   - usbutils
+modules:
+  - bash
+  - curl
+  - python3-yaml

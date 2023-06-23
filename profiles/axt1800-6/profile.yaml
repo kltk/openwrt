@@ -16,9 +16,9 @@ steps:
       - device/gl-axt1800-6
       - devel
       - kexec
-      - app/cpufreq
+      # - app/cpufreq
       - app/luci
-      - app/openclash
+      # - app/openclash
       - app/samba
       - app/zerotier
       - custom
