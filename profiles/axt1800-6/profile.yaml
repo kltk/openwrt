@@ -18,6 +18,7 @@ steps:
       - kexec
       - app/cpufreq
       - app/luci
+      - app/openclash
       - app/samba
       - app/zerotier
       - custom
