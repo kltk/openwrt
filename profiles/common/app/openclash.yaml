@@ -1,7 +1,7 @@
 assets:
   - git: https://github.com/vernesong/OpenClash
     path: custom/luci-app-openclash
-    depth: 1
+    depth: '1'
 # feeds:
 #   - name: custom
 #     path: ../../custom
