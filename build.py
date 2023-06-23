@@ -135,8 +135,8 @@ def loadAssets(assets):
     if asset.get("git"):
       revision = asset.get("revision")
       depth = asset.get('depth')
-      grouprun(["git", "clone", *depth, asset["git"], asset["path"]])
       depth = ['--depth', depth] if depth else []
+      grouprun(["git", "clone", *depth, asset["git"], asset["path"]])
       olddir=os.getcwd()
       os.chdir(asset['path'])
       print(f'dir: {os.getcwd()}')
