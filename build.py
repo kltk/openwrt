@@ -75,7 +75,7 @@ def genConfig(data):
     output += f'{subtarget}=y\n'
     output += f'{profile}=y\n'
   if (data.get('diffconfig')):
-    output += f'{data['diffconfig']}\n'
+    output += f'{data["diffconfig"]}\n'
   for package in data.get('packages', []):
     output += f'CONFIG_PACKAGE_{package}=y\n'
   for module in data.get('modules', []):
