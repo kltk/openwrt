@@ -8,24 +8,24 @@ import sys
 
 __abs_file__ = os.path.abspath(__file__)
 __abs_dir__ = os.path.dirname(__abs_file__)
-profileDir = ""
+profileDir = ''
 
 
 def grouprun(*args, **kwargs):
-  print(f"::group::", *args)
+  print('::group::', *args)
   ret = subprocess.run(*args, **kwargs, capture_output=True, text=True)
   print(ret.stdout)
   print(ret.stderr)
-  print("::endgroup::")
+  print('::endgroup::')
   return ret
 
 
 def loadYaml(name):
   paths = [
-      os.path.join(__abs_dir__, "profiles/common", f"{name}.yml"),
-      os.path.join(__abs_dir__, "profiles/common", f"{name}.yaml"),
-      os.path.join(profileDir, f"{name}.yml"),
-      os.path.join(profileDir, f"{name}.yaml"),
+      os.path.join(__abs_dir__, 'profiles/common', f'{name}.yml'),
+      os.path.join(__abs_dir__, 'profiles/common', f'{name}.yaml'),
+      os.path.join(profileDir, f'{name}.yml'),
+      os.path.join(profileDir, f'{name}.yaml'),
   ]
   for p in paths:
     if os.path.exists(p):
@@ -62,44 +62,26 @@ def patch(profile):
     os.chdir(olddir)
 
 
-def loadProfile(profile):
-  for inc in profile.get("include", []):
-    data = loadYaml(inc)
-    loadProfile(data)
-    for k in {"target", "subtarget", "profile"}:
-      if (data.get(k)):
-        if (profile.get(k)):
-          print(f"Duplicate tag found {k}, {inc}, {profile[k]} -> {data[k]}")
-        profile[k] = data.get(k)
-    for k in {"feeds", "packages", "modules", "diffconfig"}:
-      if (data.get(k)):
-        profile[k] += data[k]
-  print("profle", profile)
-  if (profile.get("include")):
-    profile.pop("include")
-  return profile
-
-
 def genConfig(data):
-  output = ""
-  target = data.get("target")
-  subtarget = data.get("subtarget")
-  profile = data.get("profile")
+  output = ''
+  target = data.get('target')
+  subtarget = data.get('subtarget')
+  profile = data.get('profile')
   if (target and subtarget and profile):
-    target = f"CONFIG_TARGET_{target}"
-    subtarget = f"{target}_{subtarget}"
-    profile = f"{subtarget}_DEVICE_{profile}"
-    output += f"{target}=y\n"
-    output += f"{subtarget}=y\n"
-    output += f"{profile}=y\n"
-  if (data.get("diffconfig")):
-    output += f"{data['diffconfig']}\n"
-  for package in data.get("packages", []):
-    output += f"CONFIG_PACKAGE_{package}=y\n"
-  for module in data.get("modules", []):
-    output += f"CONFIG_PACKAGE_{module}=m\n"
-  Path(".config").write_text(output)
-  print("Configuration writen to .config")
+    target = f'CONFIG_TARGET_{target}'
+    subtarget = f'{target}_{subtarget}'
+    profile = f'{subtarget}_DEVICE_{profile}'
+    output += f'{target}=y\n'
+    output += f'{subtarget}=y\n'
+    output += f'{profile}=y\n'
+  if (data.get('diffconfig')):
+    output += f'{data['diffconfig']}\n'
+  for package in data.get('packages', []):
+    output += f'CONFIG_PACKAGE_{package}=y\n'
+  for module in data.get('modules', []):
+    output += f'CONFIG_PACKAGE_{module}=m\n'
+  Path('.config').write_text(output)
+  print('Configuration writen to .config')
   grouprun(['cat', '.config'])
   grouprun(['make', 'defconfig'])
   grouprun(['./scripts/diffconfig.sh'])
@@ -107,54 +89,55 @@ def genConfig(data):
 
 
 def setupFeeds(config):
-  feeds = [Path("feeds.conf.default").read_text()]
+  feeds = [Path('feeds.conf.default').read_text()]
   for f in config['feeds']:
-    method = f.get("method", "src-git")
-    branch = f.get("branch", "master")
-    if "path" in f:
-      method = f.get("method", "src-link")
+    method = f.get('method', 'src-git')
+    branch = f.get('branch', 'master')
+    if 'path' in f:
+      method = f.get('method', 'src-link')
       feeds.append(f'{method} {f["name"]} {f["path"]}')
-    elif "revision" in f:
+    elif 'revision' in f:
       feeds.append(f'{method} {f["name"]} {f["uri"]}^{f["revision"]}')
-    elif "tag" in f:
+    elif 'tag' in f:
       feeds.append(f'{method} {f["name"]} {f["uri"]};{f["tag"]}')
     else:
       feeds.append(f'{method} {f["name"]} {f["uri"]};{branch}')
   Path('feeds.conf').write_text('\n'.join(feeds))
-  grouprun(['./scripts/feeds', "update", "-a"])
+  grouprun(['./scripts/feeds', 'update', '-a'])
   grouprun(['./scripts/feeds', 'install', '-a'])
   grouprun(['./scripts/feeds', 'list'])
 
 
 def loadAssets(assets):
   for asset in assets:
-    if os.path.exists(asset["path"]):
-      print(f"asset {asset['path']} exist")
+    if os.path.exists(asset['path']):
+      print(f'asset {asset["path"]} exist')
       continue
-    print(f"load asset to {asset['path']}")
-    if asset.get("git"):
-      revision = asset.get("revision")
+
+    print(f'load asset to {asset["path"]}')
+    if asset.get('git'):
+      revision = asset.get('revision')
       depth = asset.get('depth')
       depth = ['--depth', depth] if depth else []
-      grouprun(["git", "clone", *depth, asset["git"], asset["path"]])
+      grouprun(['git', 'clone', *depth, asset['git'], asset['path']])
       olddir=os.getcwd()
       os.chdir(asset['path'])
       print(f'dir: {os.getcwd()}')
       if revision:
-        grouprun(["git", "checkout", '-b', revision, f"origin/{revision}"])
-      grouprun(["git", "branch", "-v", "--all"])
+        grouprun(['git', 'checkout', '-b', revision, f'origin/{revision}'])
+      grouprun(['git', 'branch', '-v', '--all'])
       os.chdir(olddir)
       print(f'dir: {os.getcwd()}')
 
-    if asset.get("url"):
-      grouprun(["curl", "-o", asset["path"], asset["url"]])
+    if asset.get('url'):
+      grouprun(['curl', '-o', asset['path'], asset['url']])
 
-    if asset.get("link"):
-      link = os.path.abspath(asset.get("link"))
-      path = os.path.abspath(asset.get("path"))
+    if asset.get('link'):
+      link = os.path.abspath(asset.get('link'))
+      path = os.path.abspath(asset.get('path'))
       if not os.path.exists(link):
         grouprun(['mkdir', '-p', link])
-      grouprun(["ln", "-s", link, path])
+      grouprun(['ln', '-s', link, path])
 
 
 defaultProfile = {
@@ -168,6 +151,7 @@ defaultProfile = {
     'diffconfig': '',
 }
 
+
 def merge(a,b):
   ret = {**defaultProfile, **a}
   for k in {'target', 'subtarget', 'profile'}:
@@ -180,14 +164,16 @@ def merge(a,b):
       ret[k] += b[k]
   return ret
 
-def loadProfile2(profile):
+
+def loadProfile(profile):
   ret = {'include':[], **profile}
   includes = ret.get('include', [])
   ret.pop('include')
   for inc in includes:
     data = loadYaml(inc)
-    ret = merge(ret, loadProfile2(data))
+    ret = merge(ret, loadProfile(data))
   return ret
+
 
 def main(profileName):
   global profileDir
@@ -196,7 +182,7 @@ def main(profileName):
   steps = profile['steps']
   profile.pop('steps')
   for index, step in enumerate(steps):
-    profile = loadProfile2(merge(profile, step))
+    profile = loadProfile(merge(profile, step))
     loadAssets(profile['assets'])
     os.chdir('openwrt')
     setupFeeds(profile)
@@ -206,24 +192,6 @@ def main(profileName):
     compile()
     upload()
     os.chdir('..')
-
-
-def main2(profileName):
-  global profileDir
-  profileDir = os.path.join(__abs_dir__, "profiles", profileName)
-  data = loadYaml("profile")
-  loadAssets(data["assets"])
-  os.chdir('openwrt')
-  grouprun(["git", "status"])
-  for index, step in enumerate(data["steps"]):
-    print(f"build {profileName}#{index}")
-    profile = loadProfile({**defaultProfile, **step})
-    setupFeeds(profile)
-    genConfig(profile)
-    patch(profile)
-    download()
-    compile()
-    upload()
 
 
 main(sys.argv[1])
