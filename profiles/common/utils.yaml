@@ -9,3 +9,4 @@ modules:
   - bash
   - curl
   - python3-yaml
+  - git
