@@ -16,6 +16,7 @@ steps:
       - device/gl-axt1800-6
       - devel
       - kexec
+      - kernel
       # - app/cpufreq
       - app/luci
       # - app/openclash
