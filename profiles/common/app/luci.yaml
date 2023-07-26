@@ -9,6 +9,8 @@ packages:
   - luci-app-upnp
 modules:
   - nginx-full
+  - nginx-mod-dav-ext
+  - nginx-mod-headers-more
 diffconfig: |
   CONFIG_LUCI_LANG_zh_Hans=y
 
