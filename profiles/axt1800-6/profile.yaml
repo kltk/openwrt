@@ -23,7 +23,7 @@ steps:
       - app/samba
       - app/zerotier
       - custom
-      # - rootfs
+      - rootfs
       - utils
       - mmc
 packages:
