@@ -16,6 +16,7 @@ def grouprun(*args, **kwargs):
   ret = subprocess.run(*args, **kwargs, capture_output=True, text=True)
   print(ret.stdout)
   print(ret.stderr)
+  ret.check_returncode()
   print('::endgroup::')
   return ret
 
