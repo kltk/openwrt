@@ -1,5 +1,6 @@
 packages:
   - kmod-fs-ntfs3
+  - kmod-ikconfig
 diffconfig: |
   CONFIG_IKCONFIG=y
   CONFIG_IKCONFIG_PROC=y
