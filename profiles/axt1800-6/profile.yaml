@@ -14,18 +14,18 @@ assets:
 steps:
   - include:
       - device/gl-axt1800-6
-      - devel
-      - kexec
-      - kernel
-      # - app/cpufreq
-      - app/luci
-      # - app/openclash
-      - app/samba
-      - app/zerotier
-      - custom
-      - rootfs
-      - utils
-      - mmc
+      # - devel
+      # - kexec
+      # - kernel
+      # # - app/cpufreq
+      # - app/luci
+      # # - app/openclash
+      # - app/samba
+      # - app/zerotier
+      # - custom
+      # - rootfs
+      # - utils
+      # - mmc
 packages:
   # for shellclash
   - kmod-nft-tproxy
