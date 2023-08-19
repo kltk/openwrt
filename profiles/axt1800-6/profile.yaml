@@ -14,23 +14,23 @@ assets:
 steps:
   - include:
       - device/gl-axt1800-6
-      # - devel
-      # - kexec
-      # - kernel
-      # # - app/cpufreq
-      # - app/luci
-      # # - app/openclash
-      # - app/samba
-      # - app/zerotier
-      # - custom
-      # - rootfs
-      # - utils
-      # - mmc
-packages:
-  # for shellclash
-  - kmod-nft-tproxy
-patch:
-  '.':
-    - patches/*.patch
-    # - 'patches/default-enable-wifi.patch'
-    # - 'patches/kexec-for-aarch64.patch'
+#       - devel
+#       - kexec
+#       - kernel
+#       # - app/cpufreq
+#       - app/luci
+#       # - app/openclash
+#       - app/samba
+#       - app/zerotier
+#       - custom
+#       - rootfs
+#       - utils
+#       - mmc
+# packages:
+#   # for shellclash
+#   - kmod-nft-tproxy
+# patch:
+#   '.':
+#     - patches/*.patch
+#     # - 'patches/default-enable-wifi.patch'
+#     # - 'patches/kexec-for-aarch64.patch'
