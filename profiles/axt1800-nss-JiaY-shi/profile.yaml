@@ -2,7 +2,7 @@ assets:
   # 从 git clone revision 版本到 path
   - git: https://github.com/JiaY-shi/openwrt
     path: openwrt
-    revision: ipq60xx-devel
+    revision: ipq60xx-devel_nss
   # 从 url 下载文件到 path 路径
   # - url: ''
   #   path: ''
@@ -31,6 +31,6 @@ packages:
   - kmod-nft-tproxy
 patch:
   '.':
-    - patches/*.patch
+    - ../common/JiaY-shi/patches/*.patch
     # - 'patches/default-enable-wifi.patch'
     # - 'patches/kexec-for-aarch64.patch'

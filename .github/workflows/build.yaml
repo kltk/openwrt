@@ -27,7 +27,8 @@ on:
         default: '["axt1800"]'
         options:
           - '["axt1800"]'
-          - '["axt1800-6"]'
+          - '["axt1800-JiaY-shi"]'
+          - '["axt1800-nss-JiaY-shi"]'
 
 env:
   TZ: Asia/Shanghai
@@ -64,11 +65,6 @@ jobs:
           haskell: true
           large-packages: true
           swap-storage: true
-
-      - name: Disk space
-        run: |
-            echo "Free space:"
-            df -h
 
       - name: Checkout
         uses: actions/checkout@v3
