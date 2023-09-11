@@ -13,19 +13,19 @@ assets:
 # 从简单的配置开始编译，逐渐添加内容
 steps:
   - include:
-      - device/gl-axt1800-6
-      - devel
-      - kexec
-      - kernel
-      # - app/cpufreq
-      - app/luci
-      # - app/openclash
-      - app/samba
-      - app/zerotier
-      - custom
-      - rootfs
-      - utils
-      - mmc
+    - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - devel
+    - kexec
+    - kernel
+    # - app/cpufreq
+    - app/luci
+    # - app/openclash
+    - app/samba
+    - app/zerotier
+    - custom
+    - rootfs
+    - utils
+    - mmc
 packages:
   # for shellclash
   - kmod-nft-tproxy
