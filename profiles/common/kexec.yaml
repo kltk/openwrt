@@ -8,6 +8,7 @@ diffconfig: |
   CONFIG_KEXEC_ZLIB=y
   CONFIG_KEXEC_LZMA=y
 patch:
-  - ../common/JiaY-shi/patches/enable-kernel-crash-dump.patch
-  - ../common/JiaY-shi/patches/kexec-for-aarch64.patch
-  - ../common/JiaY-shi/patches/kexec.patch
+  '.':
+    - ../common/JiaY-shi/patches/enable-kernel-crash-dump.patch
+    - ../common/JiaY-shi/patches/kexec-for-aarch64.patch
+    - ../common/JiaY-shi/patches/kexec.patch

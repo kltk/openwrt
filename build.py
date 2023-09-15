@@ -183,12 +183,12 @@ def main(profileName):
   steps = profile['steps']
   profile.pop('steps')
   for index, step in enumerate(steps):
-    profile2 = loadProfile(merge(profile, step))
-    loadAssets(profile2['assets'])
+    profile = loadProfile(merge(profile, step))
+    loadAssets(profile['assets'])
     os.chdir('openwrt')
-    setupFeeds(profile2)
-    patch(profile2)
-    genConfig(profile2)
+    setupFeeds(profile)
+    patch(profile)
+    genConfig(profile)
     download()
     compile()
     upload()

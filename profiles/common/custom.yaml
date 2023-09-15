@@ -6,4 +6,5 @@ modules:
   - luci-app-aria2
   - luci-app-openclash
 patches:
-  - ../common/JiaY-shi/patches/default-enable-wifi.patch
+  '.':
+    - ../common/JiaY-shi/patches/default-enable-wifi.patch
