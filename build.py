@@ -160,9 +160,14 @@ def merge(a,b):
       if(ret.get(k)):
         print(f'Duplicate tag found {k}')
       ret[k] = b[k]
-  for k in {'include', 'assets', 'feeds', 'patch', 'packages', 'modules', 'diffconfig'}:
+  for k in {'include', 'assets', 'feeds', 'packages', 'modules', 'diffconfig'}:
     if (b.get(k)):
       ret[k] += b[k]
+  for k in b.keys():
+    if (ret.keys(k)):
+      ret['patch'][k] += b['patch'][k]
+    else:
+      ret['patch'][k] = b['patch'][k]
   return ret
 
 
