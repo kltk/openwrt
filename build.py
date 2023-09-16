@@ -163,11 +163,12 @@ def merge(a,b):
   for k in {'include', 'assets', 'feeds', 'packages', 'modules', 'diffconfig'}:
     if (b.get(k)):
       ret[k] += b[k]
-  for k in b.keys():
-    if (ret.keys(k)):
-      ret['patch'][k] += b['patch'][k]
-    else:
-      ret['patch'][k] = b['patch'][k]
+  if(b.get('patch')):
+    for k in b['patch'].keys():
+      if (ret.keys(k)):
+        ret['patch'][k] += b['patch'][k]
+      else:
+        ret['patch'][k] = b['patch'][k]
   return ret
 
 
