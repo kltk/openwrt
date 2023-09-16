@@ -165,7 +165,7 @@ def merge(a,b):
       ret[k] += b[k]
   if(b.get('patch')):
     for k in b['patch'].keys():
-      if (ret.keys(k)):
+      if (ret['patch'].get(k)):
         ret['patch'][k] += b['patch'][k]
       else:
         ret['patch'][k] = b['patch'][k]
