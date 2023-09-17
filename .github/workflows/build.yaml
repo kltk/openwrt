@@ -112,9 +112,26 @@ jobs:
           # rm -f bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
           cp .config bin/config
 
+      - name: Upload sdk directory
+        uses: actions/upload-artifact@main
+        if: steps.compile.outputs.status == 'success'
+        with:
+          name: sdk${{ env.DATE }}
+          path: openwrt/bin/targets/**/openwrt-sdk-*
+
+      - name: Upload imagebuilder directory
+        uses: actions/upload-artifact@main
+        if: steps.compile.outputs.status == 'success'
+        with:
+          name: imagebuilder${{ env.DATE }}
+          path: openwrt/bin/targets/**/openwrt-imagebuilder-*
+
       - name: Upload bin directory
         uses: actions/upload-artifact@main
         if: steps.compile.outputs.status == 'success'
         with:
           name: OpenWrt_bin${{ env.DATE }}
-          path: openwrt/bin
+          path: |
+            openwrt/bin
+            !openwrt/bin/targets/**/openwrt-imagebuilder-*
+            !openwrt/bin/targets/**/openwrt-sdk-*
