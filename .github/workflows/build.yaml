@@ -126,6 +126,13 @@ jobs:
           name: imagebuilder${{ env.DATE }}
           path: openwrt/bin/targets/**/openwrt-imagebuilder-*
 
+      - name: Upload ext4 directory
+        uses: actions/upload-artifact@main
+        if: steps.compile.outputs.status == 'success'
+        with:
+          name: ext4${{ env.DATE }}
+          path: !openwrt/bin/targets/**/openwrt-*-ext4-nand-*
+
       - name: Upload bin directory
         uses: actions/upload-artifact@main
         if: steps.compile.outputs.status == 'success'
@@ -135,3 +142,4 @@ jobs:
             openwrt/bin
             !openwrt/bin/targets/**/openwrt-imagebuilder-*
             !openwrt/bin/targets/**/openwrt-sdk-*
+            !openwrt/bin/targets/**/openwrt-*-ext4-nand-*
