@@ -131,7 +131,7 @@ jobs:
         if: steps.compile.outputs.status == 'success'
         with:
           name: ext4${{ env.DATE }}
-          path: !openwrt/bin/targets/**/openwrt-*-ext4-nand-*
+          path: openwrt/bin/targets/**/openwrt-*-ext4-nand-*
 
       - name: Upload bin directory
         uses: actions/upload-artifact@main
