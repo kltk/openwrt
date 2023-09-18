@@ -24,9 +24,8 @@ on:
         type: choice
         description: 选择配置
         required: false
-        default: '["axt1800"]'
+        default: '["axt1800-JiaY-shi"]'
         options:
-          - '["axt1800"]'
           - '["axt1800-JiaY-shi"]'
           - '["axt1800-nss-JiaY-shi"]'
 
@@ -57,7 +56,7 @@ jobs:
           # this might remove tools that are actually needed,
           # if set to "true" but frees about 6 GB
           tool-cache: true
-          
+
           # all of these default to true, but feel free to set to
           # "false" if necessary for your workflow
           android: true

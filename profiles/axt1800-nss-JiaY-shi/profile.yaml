@@ -14,8 +14,10 @@ assets:
 steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - patch
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - patch
     - devel
     - kexec
     - kernel
