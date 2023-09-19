@@ -12,9 +12,9 @@ assets:
 # 渐进式编译
 # 从简单的配置开始编译，逐渐添加内容
 steps:
-  - include:
-    - device/qualcommax-ipq60xx-glinet_gl-axt1800
-    - patch
+  # - include:
+  #   - device/qualcommax-ipq60xx-glinet_gl-axt1800
+  #   - patch
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
     - patch
