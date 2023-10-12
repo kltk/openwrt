@@ -14,24 +14,24 @@ assets:
 steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
-    - JiaY-shi/nss
+    # - JiaY-shi/nss
     - patch
-  - include:
-    - device/qualcommax-ipq60xx-glinet_gl-axt1800
-    - JiaY-shi/nss
-    - patch
-    - devel
-    - kexec
-    - kernel
-    # - app/cpufreq
-    - app/luci
-    # - app/openclash
-    - app/samba
-    - app/zerotier
-    - custom
-    - rootfs
-    - utils
-    - mmc
+  # - include:
+  #   - device/qualcommax-ipq60xx-glinet_gl-axt1800
+  #   - JiaY-shi/nss
+  #   - patch
+  #   - devel
+  #   - kexec
+  #   - kernel
+  #   # - app/cpufreq
+  #   - app/luci
+  #   # - app/openclash
+  #   - app/samba
+  #   - app/zerotier
+  #   - custom
+  #   - rootfs
+  #   - utils
+  #   - mmc
 # packages:
 #   # for shellclash
 #   - kmod-nft-tproxy
