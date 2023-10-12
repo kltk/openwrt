@@ -40,3 +40,5 @@ steps:
 #     - ../common/JiaY-shi/patches/*.patch
 #     # - 'patches/default-enable-wifi.patch'
 #     # - 'patches/kexec-for-aarch64.patch'
+diffconfig:
+  - CONFIG_NF_CONNTRACK_DSCPREMARK_EXT=y
