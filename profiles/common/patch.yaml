@@ -1,4 +1,4 @@
-patches:
+patch:
   '.':
     # - ../common/JiaY-shi/patches/default-enable-wifi.patch
     # - ../common/JiaY-shi/patches/enable-kernel-crash-dump.patch
