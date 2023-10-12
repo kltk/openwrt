@@ -14,11 +14,11 @@ assets:
 steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
-  - include:
-    - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - JiaY-shi/nss
     - patch
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - JiaY-shi/nss
     - patch
     - devel
     - kexec
@@ -40,5 +40,3 @@ steps:
 #     - ../common/JiaY-shi/patches/*.patch
 #     # - 'patches/default-enable-wifi.patch'
 #     # - 'patches/kexec-for-aarch64.patch'
-diffconfig:
-  - CONFIG_NF_CONNTRACK_DSCPREMARK_EXT=y
