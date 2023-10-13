@@ -13,17 +13,15 @@ assets:
 # 从简单的配置开始编译，逐渐添加内容
 steps:
   - include:
-    # - device/qualcommax-ipq60xx-glinet_gl-axt1800
-    # # - JiaY-shi/nss
-    # - patch
+    - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - patch
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
-    # - JiaY-shi/nss
     - patch
     - devel
     - kexec
     - kernel
-    # - app/cpufreq
+    - app/cpufreq
     - app/luci
     # - app/openclash
     - app/samba
