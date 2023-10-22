@@ -43,5 +43,5 @@ diffconfig: |
   # CONFIG_NGINX_HTTP_BROWSER is not set
   # CONFIG_NGINX_HTTP_REAL_IP is not set
   # CONFIG_NGINX_HTTP_SECURE_LINK is not set
-  # CONFIG_NGINX_HTTP_SUB is not set
+  CONFIG_NGINX_HTTP_SUB is not set
   # CONFIG_NGINX_STUB_STATUS is not set
