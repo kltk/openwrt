@@ -28,6 +28,7 @@ on:
         options:
           - '["axt1800-JiaY-shi"]'
           - '["axt1800-nss-JiaY-shi"]'
+          - '["axt1800-nss-JiaY-shi-minimal"]'
 
 env:
   TZ: Asia/Shanghai
