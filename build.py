@@ -37,6 +37,10 @@ def loadYaml(name):
 def download():
   grouprun(['make', 'download', '-j8'])
 
+def useExternalToolchain():
+  path = f'{__abs_dir__}/../toolchain.tar.xz'
+  if os.path.exists(path):
+    grouprun(['./scripts/ext-toolchain.sh', '--toolchain', path, '--overwrite-config', '--config qualcommax/ipq60xx'])
 
 def compile():
   try:
