@@ -40,6 +40,7 @@ def download():
 def useExternalToolchain():
   p = os.path.join(__abs_dir__, 'toolchain.tar.xz')
   if os.path.exists(p):
+    grouprun(['tar', 'xf', p])
     grouprun(['./scripts/ext-toolchain.sh', '--toolchain', p, '--overwrite-config', '--config qualcommax/ipq60xx'])
 
 def compile():
