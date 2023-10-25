@@ -46,7 +46,7 @@ def useExternalToolchain():
   for p in paths:
     if os.path.exists(p):
       print(p)
-      grouprun(['./scripts/ext-toolchain.sh', '--toolchain', path, '--overwrite-config', '--config qualcommax/ipq60xx'])
+      grouprun(['./scripts/ext-toolchain.sh', '--toolchain', p, '--overwrite-config', '--config qualcommax/ipq60xx'])
     else:
       print('not found')
       print(p)
