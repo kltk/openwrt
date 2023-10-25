@@ -59,6 +59,7 @@ def patch(profile):
     olddir=os.getcwd()
     os.chdir(dir)
     grouprun(['ls', '-al'])
+    grouprun(['ls', '-al', '..'])
     for patch in patches:
       for p in glob.glob(f'{profileDir}/{patch}'):
         # grouprun(['git', 'am', '--quiet', f'{profileDir}/{patch}'])
