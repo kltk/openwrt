@@ -41,6 +41,11 @@ def useExternalToolchain():
   path = os.path.join(__abs_dir__, '../toolchain.tar.xz')
   if os.path.exists(path):
     grouprun(['./scripts/ext-toolchain.sh', '--toolchain', path, '--overwrite-config', '--config qualcommax/ipq60xx'])
+  else:
+    grouprun(['pwd'])
+    grouprun(['ls','-al',path])
+    print(path)
+    raise Exception
 
 def compile():
   try:
