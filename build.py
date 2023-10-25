@@ -43,7 +43,7 @@ def useExternalToolchain():
     grouprun(['tar', 'xfv', p])
     grouprun(['ls', '-al', f'{__abs_dir__}'])
     grouprun(['ls', '-al', f'{__abs_dir__}/openwrt/'])
-    grouprun(['./scripts/ext-toolchain.sh', '--toolchain', f'{__abs_dir__}/openwrt/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64/toolchain-aarch64_cortex-a53_gcc-12.3.0_musl', '--overwrite-config', '--config'])
+    grouprun(['./scripts/ext-toolchain.sh', '--toolchain', f'{__abs_dir__}/openwrt/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64/toolchain-aarch64_cortex-a53_gcc-12.3.0_musl', '--overwrite-config', '--config', 'qualcommax/ipq60xx'])
 
 def compile():
   try:
