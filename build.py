@@ -41,7 +41,7 @@ def useExternalToolchain():
   paths = [
     os.path.join(__abs_dir__, 'toolchain.tar.xz'),
     os.path.join(__abs_dir__, '../toolchain.tar.xz'),
-    os.path.join(__abs_dir__, '../../toolchain.tar.xz'),
+    os.path.join(__abs_dir__, '../../toolchain.tar.xz')
   ]
   for p in paths:
     if os.path.exists(p):
