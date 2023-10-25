@@ -200,6 +200,7 @@ def main(profileName):
     patch(profile)
     genConfig(profile)
     download()
+    useExternalToolchain()
     compile()
     upload()
     os.chdir('..')
