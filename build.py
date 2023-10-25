@@ -41,7 +41,9 @@ def useExternalToolchain():
   p = os.path.join(__abs_dir__, 'toolchain.tar.xz')
   if os.path.exists(p):
     grouprun(['tar', 'xfv', p])
-    grouprun(['./scripts/ext-toolchain.sh', '--toolchain', f'{__abs_dir__}/openwrt/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64', '--overwrite-config', '--config'])
+    grouprun(['ls', '-al', f'{__abs_dir__}'])
+    grouprun(['ls', '-al', f'{__abs_dir__}/openwrt/'])
+    grouprun(['./scripts/ext-toolchain.sh', '--toolchain', f'{__abs_dir__}/openwrt/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64/toolchain-aarch64_cortex-a53_gcc-12.3.0_musl', '--overwrite-config', '--config'])
 
 def compile():
   try:
