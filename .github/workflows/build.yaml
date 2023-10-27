@@ -109,10 +109,13 @@ jobs:
         if: steps.compile.outputs.status == 'success'
         run: |
           cd openwrt
+          ls -al bin/targets/qualcommax/ipq60xx
           # rm -f bin/targets/ipq807x/ipq60xx/openwrt-imagebuilder-ipq807x-ipq60xx.Linux-x86_64.tar.xz
           cp .config bin/config
-          cp -f bin/targets/qualcommax/ipq60xx/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64.tar.xz ../toolchain.tar.xz
-          cp -f bin/targets/qualcommax/ipq60xx/openwrt-sdk-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64.tar.xz ../sdk.tar.xz
+          test -f bin/targets/qualcommax/ipq60xx/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64.tar.xz &&
+            cp -f bin/targets/qualcommax/ipq60xx/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64.tar.xz ../toolchain.tar.xz
+          test -f bin/targets/qualcommax/ipq60xx/openwrt-sdk-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64.tar.xz &&
+            cp -f bin/targets/qualcommax/ipq60xx/openwrt-sdk-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64.tar.xz ../sdk.tar.xz
 
       - name: Upload sdk directory
         uses: actions/upload-artifact@main
