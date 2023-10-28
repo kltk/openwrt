@@ -48,11 +48,8 @@ def useSDK():
   grouprun(['mkdir', '../sdk'])
   if os.path.exists(p):
     grouprun(['tar', 'xf', p, '--strip-components', '1', '-C', '../sdk'])
-    grouprun(['ls', '-al', '../sdk'])
-    grouprun(['ls', '-al'])
     grouprun(['mv', '../sdk/staging_dir', '.'])
     grouprun(['mv', '../sdk/build_dir', '.'])
-    grouprun(['ls', '-al'])
 
 def compile():
   try:
@@ -212,11 +209,11 @@ def main(profileName):
     profile = loadProfile(merge(profile, step))
     loadAssets(profile['assets'])
     os.chdir('openwrt')
-    # useExternalToolchain()
-    useSDK()
+    # useSDK()
     setupFeeds(profile)
     patch(profile)
     genConfig(profile)
+    useExternalToolchain()
     download()
     compile()
     upload()
