@@ -45,7 +45,7 @@ def useExternalToolchain():
 
 def useSDK():
   p = os.path.join(__abs_dir__, 'sdk.tar.xz')
-  grouprrun(['mkdir', '../sdk'])
+  grouprun(['mkdir', '../sdk'])
   if os.path.exists(p):
     grouprun(['tar', 'xf', p, '--strip-components', '1', '-C', '../sdk'])
     grouprun(['ls', '-al', '../sdk'])
