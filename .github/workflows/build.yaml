@@ -24,7 +24,7 @@ on:
         type: choice
         description: 选择配置
         required: false
-        default: '["axt1800-JiaY-shi"]'
+        default: '["axt1800-nss-JiaY-shi"]'
         options:
           - '["axt1800-JiaY-shi"]'
           - '["axt1800-nss-JiaY-shi"]'
