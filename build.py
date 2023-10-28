@@ -49,6 +49,7 @@ def useSDK():
   if os.path.exists(p):
     grouprun(['tar', 'xf', p, '--strip-components', '1', '-C', '../sdk'])
     grouprun(['ls', '-al', '../sdk'])
+    grouprun(['ls', '-al'])
     grouprun(['mv', '../sdk/staging_dir', '.'])
     grouprun(['mv', '../sdk/build_dir', '.'])
     grouprun(['ls', '-al'])
@@ -211,9 +212,9 @@ def main(profileName):
     profile = loadProfile(merge(profile, step))
     loadAssets(profile['assets'])
     os.chdir('openwrt')
-    setupFeeds(profile)
     # useExternalToolchain()
     useSDK()
+    setupFeeds(profile)
     patch(profile)
     genConfig(profile)
     download()
