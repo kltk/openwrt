@@ -7,8 +7,8 @@ assets:
   # - url: ''
   #   path: ''
   # 从 link 创建软链接到 path
-  - link: cache/ccache
-    path: openwrt/.ccache
+  # - link: cache/ccache
+  #   path: openwrt/.ccache
 # 渐进式编译
 # 从简单的配置开始编译，逐渐添加内容
 steps:

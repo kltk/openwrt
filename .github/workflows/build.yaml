@@ -82,6 +82,8 @@ jobs:
             ${{github.event.inputs.clean == 'true' && 'ignore-' || ''}}cache-openwrt-${{ env.CACHEKEY }}
           path: |
             ${{ github.workspace }}/sdk.tar.xz
+            ${{ github.workspace }}/openwrt/staging_dir
+            ${{ github.workspace }}/openwrt/build_dir
 
       - name: SSH connection to Actions
         uses: P3TERX/ssh2actions@v1.0.0
