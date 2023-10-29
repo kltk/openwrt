@@ -97,10 +97,10 @@ jobs:
       - name: org
         run: |
           ls -al ${{github.workspace}}
-          ls -al ${{github.workspace}}/openwrt
-          ! test -d ${{github.workspace}}/staging_dir && test -d ${{github.workspace}}/openwrt/staging_dir && mv ${{github.workspace}}/openwrt/staging_dir ${{github.workspace}}/staging_dir
-          ! test -d ${{github.workspace}}/build_dir && test -d ${{github.workspace}}/openwrt/build_dir && mv ${{github.workspace}}/openwrt/build_dir ${{github.workspace}}/build_dir
-          test -d ${{github.workspace}}/openwrt && rm -rf ${{github.workspace}}/openwrt
+          ls -al ${{github.workspace}}/openwrt || echo not
+          ! test -d ${{github.workspace}}/staging_dir && test -d ${{github.workspace}}/openwrt/staging_dir && mv ${{github.workspace}}/openwrt/staging_dir ${{github.workspace}}/staging_dir || echo not
+          ! test -d ${{github.workspace}}/build_dir && test -d ${{github.workspace}}/openwrt/build_dir && mv ${{github.workspace}}/openwrt/build_dir ${{github.workspace}}/build_dir || echo not
+          test -d ${{github.workspace}}/openwrt && rm -rf ${{github.workspace}}/openwrt || echo not
 
       - name: Compile
         id: compile
