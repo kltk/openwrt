@@ -84,6 +84,8 @@ jobs:
             ${{ github.workspace }}/sdk.tar.xz
             ${{ github.workspace }}/openwrt/staging_dir
             ${{ github.workspace }}/openwrt/build_dir
+            ${{ github.workspace }}/staging_dir
+            ${{ github.workspace }}/build_dir
 
       - name: SSH connection to Actions
         uses: P3TERX/ssh2actions@v1.0.0
@@ -91,6 +93,12 @@ jobs:
         env:
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+
+      - name: org
+        run: |
+          !test -d ${{github.workspace}}/staging_dir && test -d ${{github.workspace}}/openwrt/staging_dir && mv ${{github.workspace}}/openwrt/staging_dir ${{github.workspace}}/staging_dir
+          !test -d ${{github.workspace}}/build_dir && test -d ${{github.workspace}}/openwrt/build_dir && mv ${{github.workspace}}/openwrt/build_dir ${{github.workspace}}/build_dir
+          test -d ${{github.workspace}}/openwrt && rm -rf ${{github.workspace}}/openwrt
 
       - name: Compile
         id: compile
