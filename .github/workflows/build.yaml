@@ -82,8 +82,6 @@ jobs:
             ${{github.event.inputs.clean == 'true' && 'ignore-' || ''}}cache-openwrt-${{ env.CACHEKEY }}
           path: |
             ${{ github.workspace }}/sdk.tar.xz
-            ${{ github.workspace }}/openwrt/staging_dir
-            ${{ github.workspace }}/openwrt/build_dir
             ${{ github.workspace }}/staging_dir
             ${{ github.workspace }}/build_dir
 
