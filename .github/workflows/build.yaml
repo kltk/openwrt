@@ -110,7 +110,8 @@ jobs:
         run: |
           cd openwrt
           cp .config bin/config
-          cp -f bin/targets/qualcommax/ipq60xx/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64.tar.xz ../cache/toolchain.tar.xz
+          mkdir -p ../cache || echo not
+          cp -f bin/targets/qualcommax/ipq60xx/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64.tar.xz ../cache/toolchain.tar.xz || echo not
 
       - name: Upload sdk directory
         uses: actions/upload-artifact@main
