@@ -38,18 +38,19 @@ def download():
   grouprun(['make', 'download', '-j8'])
 
 def useExternalToolchain():
-  p = os.path.join(__abs_dir__, 'toolchain.tar.xz')
-  if os.path.exists(p):
-    grouprun(['tar', 'xf', p])
+  archivePath = os.path.join(__abs_dir__, 'cache/toolchain.tar.xz')
+  if os.path.exists(archivePath):
+    grouprun(['tar', 'xf', archivePath])
     grouprun(['./scripts/ext-toolchain.sh', '--toolchain', f'{__abs_dir__}/openwrt/openwrt-toolchain-qualcommax-ipq60xx_gcc-12.3.0_musl.Linux-x86_64/toolchain-aarch64_cortex-a53_gcc-12.3.0_musl', '--overwrite-config', '--config', 'qualcommax/ipq60xx'])
 
 def useSDK():
-  p = os.path.join(__abs_dir__, 'sdk.tar.xz')
-  grouprun(['mkdir', '../sdk'])
-  if os.path.exists(p):
-    grouprun(['tar', 'xf', p, '--strip-components', '1', '-C', '../sdk'])
-    grouprun(['mv', '../sdk/staging_dir', '.'])
-    grouprun(['mv', '../sdk/build_dir', '.'])
+  archivePath = os.path.join(__abs_dir__, 'cache/sdk.tar.xz')
+  extractPath = os.path.join(__abs_dir__, 'sdk')
+  grouprun(['mkdir', extractPath])
+  if os.path.exists(archivePath):
+    grouprun(['tar', 'xf', archivePath, '--strip-components', '1', '-C', extractPath])
+    grouprun(['mv', f'{extractPath}/staging_dir', '.'])
+    grouprun(['mv', '{extractPath}/build_dir', '.'])
 
 def compile():
   try:
