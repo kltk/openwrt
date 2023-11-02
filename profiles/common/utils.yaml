@@ -10,3 +10,4 @@ modules:
   - curl
   - python3-yaml
   - git
+  - coreutils
