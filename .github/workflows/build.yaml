@@ -68,8 +68,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          token: ${{secrets.GH_TOKEN}}
+        # with:
+        #   token: ${{secrets.GH_TOKEN}}
 
       - name: Set env
         run: echo "DATE=$(date +'%Y%m%d%H%M%S')"  >> $GITHUB_ENV
