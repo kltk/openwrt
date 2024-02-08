@@ -4,4 +4,4 @@ packages:
   - kmod-nft-tproxy
 modules:
   - luci-app-aria2
-  - luci-app-openclash
+  # - luci-app-openclash
