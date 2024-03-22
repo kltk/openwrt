@@ -1,5 +1,7 @@
 include $(TOPDIR)/rules.mk
 
+PKG_NAME:=custom
+
 define Package/$(PKG_NAME)/config
   TITLE:=Custom
   KCONFIG:=\
