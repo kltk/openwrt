@@ -2,6 +2,7 @@ packages:
   # - luci-app-zerotier
   # for shellclash
   - kmod-nft-tproxy
+  - custom
 modules:
   - luci-app-aria2
   # - luci-app-openclash

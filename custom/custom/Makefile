@@ -1,6 +1,6 @@
 include $(TOPDIR)/rules.mk
 
-PKG_NAME:=helloworld
+PKG_NAME:=custom
 PKG_RELEASE:=1
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
@@ -9,7 +9,7 @@ include $(INCLUDE_DIR)/package.mk
 define Package/$(PKG_NAME)
 	SECTION:=utils
 	CATEGORY:=Utilities
-	TITLE:=Helloworld -- prints a snarky message
+	TITLE:=Custom -- prints a snarky message
   KCONFIG:=\
     CONFIG_KEXEC=y \
     CONFIG_KEXEC_FILE=y \
