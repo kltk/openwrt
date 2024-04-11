@@ -7,7 +7,6 @@ packages:
   # - luci-ssl-openssl
   # - luci-base
   - luci-app-upnp
-  - luci-app-statistics
 modules:
   - nginx-full
   - nginx-mod-dav-ext
