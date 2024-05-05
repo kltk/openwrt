@@ -1,4 +1,6 @@
 # packages:
+#   - COLLECTD_DEBUG_OUTPUT_ENABLE
+#   - COLLECTD_ENCRYPTED_NETWORK
 modules:
   - luci-app-statistics
   - collectd
@@ -77,7 +79,5 @@ modules:
   - collectd-mod-wireless
   - collectd-mod-write-graphite
   - collectd-mod-write-http
-  - COLLECTD_DEBUG_OUTPUT_ENABLE
-  - COLLECTD_ENCRYPTED_NETWORK
 # diffconfig: |
 # 
