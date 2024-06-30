@@ -143,7 +143,7 @@ def loadAssets(assets):
       os.chdir(asset['path'])
       print(f'dir: {os.getcwd()}')
       if revision:
-        grouprun(['git', 'checkout', '-b', revision, f'origin/{revision}'])
+        grouprun(['git', 'checkout', '-B', revision, f'origin/{revision}'])
       grouprun(['git', 'branch', '-v', '--all'])
       os.chdir(olddir)
       print(f'dir: {os.getcwd()}')
