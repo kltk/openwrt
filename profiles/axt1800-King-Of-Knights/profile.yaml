@@ -29,9 +29,9 @@ steps:
     # - app/cpufreq
     - app/luci
     # - app/openclash
-    - app/samba
-    - app/zerotier
-    - custom
+    # - app/samba
+    # - app/zerotier
+    # - custom
     # - rootfs
     - utils
     - mmc
