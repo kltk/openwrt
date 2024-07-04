@@ -27,7 +27,7 @@ steps:
     - kernel
     # - app/collectd
     # - app/cpufreq
-    - app/luci
+    # - app/luci
     # - app/openclash
     # - app/samba
     # - app/zerotier
