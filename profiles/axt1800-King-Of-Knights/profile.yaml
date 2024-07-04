@@ -25,7 +25,7 @@ steps:
     - devel
     - kexec
     - kernel
-    - app/collectd
+    # - app/collectd
     # - app/cpufreq
     - app/luci
     # - app/openclash
