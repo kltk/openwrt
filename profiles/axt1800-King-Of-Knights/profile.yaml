@@ -37,6 +37,7 @@ steps:
     - mmc
 packages:
   - luci-ssl-nginx
+  - luci-app-upnp
 #   # for shellclash
 #   - kmod-nft-tproxy
 # patch:
