@@ -40,6 +40,10 @@ packages:
   - luci-app-upnp
 #   # for shellclash
 #   - kmod-nft-tproxy
+modules:
+  - nginx-full
+  - nginx-mod-dav-ext
+  - nginx-mod-headers-more
 # patch:
 #   '.':
 #     - ../common/JiaY-shi/patches/*.patch
