@@ -27,7 +27,7 @@ steps:
     - kernel
     # - app/collectd
     # - app/cpufreq
-    # - app/luci
+    - app/luci
     # - app/openclash
     # - app/samba
     # - app/zerotier
@@ -36,48 +36,8 @@ steps:
     - utils
     - mmc
 packages:
-  - luci-ssl-nginx
-  - luci-app-upnp
 #   # for shellclash
 #   - kmod-nft-tproxy
-modules:
-  - nginx-full
-  - nginx-mod-dav-ext
-  - nginx-mod-headers-more
-diffconfig: |
-  CONFIG_LUCI_LANG_zh_Hans=y
-
-  # nginx
-  CONFIG_NGINX_DAV=y
-  CONFIG_NGINX_HTTP_ACCESS=y
-  CONFIG_NGINX_HTTP_AUTH_BASIC=y
-  CONFIG_NGINX_HTTP_AUTOINDEX=y
-  CONFIG_NGINX_HTTP_CACHE=y
-  CONFIG_NGINX_HTTP_GZIP=y
-  CONFIG_NGINX_HTTP_MAP=y
-  CONFIG_NGINX_HTTP_REWRITE=y
-  CONFIG_NGINX_HTTP_PROXY=y
-  CONFIG_NGINX_HTTP_UWSGI=y
-  CONFIG_NGINX_HTTP_V2=y
-  CONFIG_NGINX_PCRE=y
-  # CONFIG_NGINX_FLV is not set
-  # CONFIG_NGINX_HTTP_CHARSET is not set
-  # CONFIG_NGINX_HTTP_SSI is not set
-  # CONFIG_NGINX_HTTP_USERID is not set
-  # CONFIG_NGINX_HTTP_GEO is not set
-  # CONFIG_NGINX_HTTP_SPLIT_CLIENTS is not set
-  # CONFIG_NGINX_HTTP_REFERER is not set
-  # CONFIG_NGINX_HTTP_FASTCGI is not set
-  # CONFIG_NGINX_HTTP_SCGI is not set
-  # CONFIG_NGINX_HTTP_MEMCACHED is not set
-  # CONFIG_NGINX_HTTP_LIMIT_CONN is not set
-  # CONFIG_NGINX_HTTP_LIMIT_REQ is not set
-  # CONFIG_NGINX_HTTP_EMPTY_GIF is not set
-  # CONFIG_NGINX_HTTP_BROWSER is not set
-  # CONFIG_NGINX_HTTP_REAL_IP is not set
-  # CONFIG_NGINX_HTTP_SECURE_LINK is not set
-  CONFIG_NGINX_HTTP_SUB=y
-  # CONFIG_NGINX_STUB_STATUS is not set
 # patch:
 #   '.':
 #     - ../common/JiaY-shi/patches/*.patch
