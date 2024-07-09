@@ -35,7 +35,7 @@ steps:
     # - rootfs
     - utils
     - mmc
-packages:
+# packages:
 #   # for shellclash
 #   - kmod-nft-tproxy
 # patch:
