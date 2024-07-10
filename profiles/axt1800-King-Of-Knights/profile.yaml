@@ -21,7 +21,7 @@ steps:
   #   - patch
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
-    # - patch
+    - patch
     - devel
     - kexec
     - kernel
@@ -31,7 +31,7 @@ steps:
     # - app/openclash
     - app/samba
     - app/zerotier
-    # - custom
+    - custom
     # - rootfs
     - utils
     - mmc
