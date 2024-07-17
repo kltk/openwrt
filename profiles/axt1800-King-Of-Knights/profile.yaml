@@ -26,7 +26,7 @@ steps:
     - kexec
     - kernel
     - app/collectd
-    - app/cpufreq
+    # - app/cpufreq
     - app/luci
     # - app/openclash
     - app/samba
