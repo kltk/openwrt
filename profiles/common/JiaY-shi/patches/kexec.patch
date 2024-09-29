@@ -1,6 +1,6 @@
-diff --git a/target/linux/qualcommax/config-6.1 b/target/linux/qualcommax/config-6.1
---- target/linux/qualcommax/config-6.1
-+++ target/linux/qualcommax/config-6.1
+diff --git a/target/linux/qualcommax/config-6.6 b/target/linux/qualcommax/config-6.6
+--- target/linux/qualcommax/config-6.6
++++ target/linux/qualcommax/config-6.6
 @@ -1,4 +1,7 @@
 +CONFIG_KEXEC=y
 +CONFIG_KEXEC_FILE=y

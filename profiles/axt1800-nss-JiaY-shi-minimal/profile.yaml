@@ -15,5 +15,5 @@ steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
     - JiaY-shi/nss
-    # - patch
-    # - devel
+    - patch
+    - devel
