@@ -1,2 +1,0 @@
-diffconfig: |
-  CONFIG_NF_CONNTRACK_DSCPREMARK_EXT=y
