@@ -1,0 +1,45 @@
+assets:
+  # 从 git clone revision 版本到 path
+  - git: https://github.com/King-Of-Knights/openwrt-6.x
+    path: openwrt
+    revision: main
+  # 从 url 下载文件到 path 路径
+  # - url: ''
+  #   path: ''
+  # 从 link 创建软链接到 path
+  # - link: cache/ccache
+  #   path: openwrt/.ccache
+  - link: staging_dir
+    path: openwrt/staging_dir
+  - link: build_dir
+    path: openwrt/build_dir
+# 渐进式编译
+# 从简单的配置开始编译，逐渐添加内容
+steps:
+  - include:
+    - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    # - patch
+  # - include:
+  #   - device/qualcommax-ipq60xx-glinet_gl-axt1800
+  #   - patch
+  #   - devel
+  #   - kexec
+  #   - kernel
+  #   - app/collectd
+  #   # - app/cpufreq
+  #   - app/luci
+  #   # - app/openclash
+  #   - app/samba
+  #   - app/zerotier
+  #   - custom
+  #   # - rootfs
+  #   - utils
+  #   - mmc
+# packages:
+#   # for shellclash
+#   - kmod-nft-tproxy
+# patch:
+#   '.':
+#     - ../common/JiaY-shi/patches/*.patch
+#     # - 'patches/default-enable-wifi.patch'
+#     # - 'patches/kexec-for-aarch64.patch'

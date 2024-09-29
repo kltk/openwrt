@@ -30,6 +30,7 @@ on:
           - '["axt1800-nss-JiaY-shi"]'
           - '["axt1800-nss-JiaY-shi-minimal"]'
           - '["axt1800-King-Of-Knights"]'
+          - '["axt1800-King-Of-Knights-minimal"]'
 
 env:
   TZ: Asia/Shanghai
