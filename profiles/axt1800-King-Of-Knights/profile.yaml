@@ -35,6 +35,9 @@ steps:
     # - rootfs
     - utils
     - mmc
+diffconfig: |
+  CONFIG_ATH11K_MEM_PROFILE_512M=y
+  # CONFIG_ATH11K_MEM_PROFILE_1G is not set
 # packages:
 #   # for shellclash
 #   - kmod-nft-tproxy
