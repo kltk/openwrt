@@ -20,7 +20,7 @@ steps:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
     - devel
     - kexec
-    - kernel
+    # - kernel
     - app/collected
     - app/luci
     - app/samba
