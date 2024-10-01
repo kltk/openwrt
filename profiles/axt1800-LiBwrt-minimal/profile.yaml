@@ -9,12 +9,10 @@ assets:
   # 从 link 创建软链接到 path
   # - link: cache/ccache
   #   path: openwrt/.ccache
-  - link: cache/staging_dir/host
-    path: openwrt/staging_dir/host
-  - link: cache/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.3.0_musl
-    path: openwrt/staging_dir/toolchain-aarch64_cortex-a53_gcc-13.3.0_musl
-  # - link: cache/build_dir
-  #   path: openwrt/build_dir
+  - link: cache/staging_dir
+    path: openwrt/staging_dir
+  - link: cache/build_dir
+    path: openwrt/build_dir
 # 渐进式编译
 # 从简单的配置开始编译，逐渐添加内容
 steps:

@@ -86,7 +86,8 @@ jobs:
           restore-keys: |
             ${{github.event.inputs.clean == 'true' && 'ignore-' || ''}}cache-openwrt-${{ env.CACHEKEY }}
           path: |
-            ${{ github.workspace }}/cache
+            ${{ github.workspace }}/cache/staging_dir/host*
+            ${{ github.workspace }}/cache/staging_dir/tool*
 
       - name: SSH connection to Actions
         uses: P3TERX/ssh2actions@v1.0.0
