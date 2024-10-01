@@ -1,6 +1,5 @@
 packages:
   - kmod-fs-ntfs3
-  # Kernel configuration via /proc/config.gz
   - kmod-ikconfig
 modules:
   - ntfs-3g-utils
