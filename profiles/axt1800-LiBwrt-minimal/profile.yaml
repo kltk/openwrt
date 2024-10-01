@@ -18,6 +18,16 @@ assets:
 steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - devel
+    - kexec
+    - kernel
+    - app/collected
+    - app/luci
+    - app/samba
+    - app/zerotier
+    - custom
+    - utils
+    - mmc
 diffconfig: |
   # 修复 ath11k 内存设置
   # CONFIG_ATH11K_MEM_PROFILE_256M is not set
