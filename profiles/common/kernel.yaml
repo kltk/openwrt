@@ -3,3 +3,6 @@ packages:
   - kmod-ikconfig
 modules:
   - ntfs-3g-utils
+diffconfig: |
+  CONFIG_IKCONFIG=y
+  CONFIG_IKCONFIG_PROC=y
