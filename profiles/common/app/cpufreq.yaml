@@ -1,6 +1,6 @@
-assets:
-  - git: https://github.com/openwrt-xiaomi/luci-app-cpufreq
-    path: custom/luci-app-cpufreq
+# assets:
+#   - git: https://github.com/openwrt-xiaomi/luci-app-cpufreq
+#     path: custom/luci-app-cpufreq
 # feeds:
 #   - name: custom
 #     path: ../../custom

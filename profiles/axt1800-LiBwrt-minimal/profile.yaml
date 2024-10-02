@@ -23,6 +23,7 @@ steps:
     - kexec
     - kernel
     - app/collectd
+    - app/cpufreq
     - app/luci
     - app/minidlna
     - app/samba
