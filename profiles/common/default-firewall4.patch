@@ -1,0 +1,14 @@
+diff --git a/include/target.mk b/include/target.mk
+--- include/target.mk
++++ include/target.mk
+@@ -37,9 +37,9 @@
+ 	mdadm
+ # For router targets
+ DEFAULT_PACKAGES.router:=\
+ 	dnsmasq-full \
+-	firewall \
++	firewall4 \
+ 	nftables \
+ 	kmod-nft-offload \
+ 	odhcp6c \
+ 	odhcpd-ipv6only \
