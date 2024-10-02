@@ -1,7 +1,7 @@
 diffconfig: |
   CONFIG_DEVEL=y
-  # CONFIG_CCACHE=y
-  # CONFIG_CCACHE_DIR=".ccache"
+  CONFIG_CCACHE=y
+  CONFIG_CCACHE_DIR=".ccache"
   # 编译配置文件到固件里
   CONFIG_INCLUDE_CONFIG=y
   # CONFIG_JSON_OVERVIEW_IMAGE_INFO=y
