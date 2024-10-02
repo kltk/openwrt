@@ -3,10 +3,11 @@ packages:
   # - luci-lib-docker
   # - luci-nginx
   # - luci-ssl
-  - luci-ssl-nginx
   # - luci-ssl-openssl
+  - luci-ssl-nginx
   # - luci-base
   - luci-app-upnp
+  - nginx-mod-luci-ssl
 modules:
   - nginx-full
   - nginx-mod-dav-ext
