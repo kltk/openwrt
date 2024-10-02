@@ -47,4 +47,5 @@ diffconfig: |
 
   # CONFIG_PACKAGE_dnsmasq_full_ipset=y
 patch:
-  - ../common/default-firewall4.patch
+  '.':
+    - ../common/default-firewall4.patch
