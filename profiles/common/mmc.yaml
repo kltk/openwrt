@@ -1,4 +1,3 @@
 modules:
-  - kmod-mmc
   - kmod-sdhci
   - mmc-utils
