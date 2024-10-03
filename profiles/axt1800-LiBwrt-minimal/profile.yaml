@@ -31,6 +31,7 @@ steps:
     - custom
     - utils
     - mmc
+    - rootfs
 diffconfig: |
   # 配置 512 内存，上游代码是 1G 内存
   CONFIG_ATH11K_MEM_PROFILE_512M=y
@@ -49,4 +50,4 @@ diffconfig: |
   # CONFIG_PACKAGE_dnsmasq_full_ipset=y
 patch:
   '.':
-    - ../common/default-firewall4.patch
+    - ../common/patches/*.patch
