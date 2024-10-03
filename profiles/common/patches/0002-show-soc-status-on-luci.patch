@@ -16,11 +16,11 @@ fix bugs
  4 files changed, 86 insertions(+), 4 deletions(-)
  create mode 100755 modules/luci-base/root/sbin/soc-status
 
-diff --git a/modules/luci-base/root/sbin/soc-status b/modules/luci-base/root/sbin/soc-status
+diff --git a/feeds/luci/modules/luci-base/root/sbin/soc-status b/feeds/luci/modules/luci-base/root/sbin/soc-status
 new file mode 100755
 index 0000000..1c173f7
 --- /dev/null
-+++ b/modules/luci-base/root/sbin/soc-status
++++ b/feeds/luci/modules/luci-base/root/sbin/soc-status
 @@ -0,0 +1,36 @@
 +#!/bin/sh
 +# shellcheck disable=SC2155
@@ -58,10 +58,10 @@ index 0000000..1c173f7
 +    exit 1
 +    ;;
 +esac
-diff --git a/modules/luci-base/root/usr/share/rpcd/ucode/luci b/modules/luci-base/root/usr/share/rpcd/ucode/luci
+diff --git a/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci b/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 index 3c4fea4..7935b43 100644
---- a/modules/luci-base/root/usr/share/rpcd/ucode/luci
-+++ b/modules/luci-base/root/usr/share/rpcd/ucode/luci
+--- a/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
++++ b/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
 @@ -581,6 +581,36 @@ const methods = {
  
  			return { result: ports };
@@ -99,10 +99,10 @@ index 3c4fea4..7935b43 100644
  	}
  };
  
-diff --git a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js b/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+diff --git a/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js b/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 index 45f7b4a..b83955c 100644
---- a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-+++ b/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+--- a/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
++++ b/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 @@ -8,6 +8,16 @@ var callLuciVersion = rpc.declare({
  	method: 'getVersion'
  });
@@ -152,10 +152,10 @@ index 45f7b4a..b83955c 100644
  		];
  
  		var table = E('table', { 'class': 'table' });
-diff --git a/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json b/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
+diff --git a/feeds/luci/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json b/feeds/luci/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
 index 45dd7d7..127daa5 100644
---- a/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
-+++ b/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
+--- a/feeds/luci/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
++++ b/feeds/luci/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
 @@ -3,7 +3,7 @@
  		"description": "Grant access to realtime statistics",
  		"read": {
