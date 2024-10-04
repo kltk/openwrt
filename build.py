@@ -5,6 +5,7 @@ import os
 import yaml
 import glob
 import sys
+import re
 
 __abs_file__ = os.path.abspath(__file__)
 __abs_dir__ = os.path.dirname(__abs_file__)
