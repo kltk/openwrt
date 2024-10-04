@@ -12,6 +12,7 @@ modules:
   - nginx-full
   - nginx-mod-dav-ext
   - nginx-mod-headers-more
+  - luci-mod-dashboard
 diffconfig: |
   CONFIG_LUCI_LANG_zh_Hans=y
 
