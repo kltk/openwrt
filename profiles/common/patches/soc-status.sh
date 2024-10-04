@@ -73,6 +73,8 @@ new file mode 100755
 +    exit 1
 +    ;;
 +esac
+EOF
+git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-base/root/usr/share/rpcd/ucode/luci b/modules/luci-base/root/usr/share/rpcd/ucode/luci
 --- modules/luci-base/root/usr/share/rpcd/ucode/luci
 +++ modules/luci-base/root/usr/share/rpcd/ucode/luci
@@ -136,6 +138,8 @@ diff --git a/modules/luci-base/root/usr/share/rpcd/ucode/luci b/modules/luci-bas
  		call: function() {
  			return { cpubench: readfile('/etc/bench.log') || '' };
  		}
+EOF
+git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js b/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 --- modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 +++ modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
@@ -205,6 +209,8 @@ diff --git a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/in
  
  		if (tempinfo.tempinfo) {
  			fields.splice(6, 0, _('Temperature'));
+EOF
+git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json b/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
 --- modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
 +++ modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
