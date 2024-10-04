@@ -6,76 +6,72 @@ ls -al feeds
 ls -al feeds/luci
 cd feeds/luci
 echo patch modules/luci-base/root/sbin/soc-status
-git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
-diff --git a/modules/luci-base/root/sbin/soc-status b/modules/luci-base/root/sbin/soc-status
-new file mode 100755
---- /dev/null
-+++ b/modules/luci-base/root/sbin/soc-status
-@@ -0,0 +1,64 @@
-+#!/bin/sh
-+# shellcheck disable=SC2155
-+
-+get_cpu_freq() {
-+  local value="$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq 2>/dev/null)"
-+  [ -n "$value" ] || value="0"
-+  echo "$value"
-+}
-+
-+get_cpu_governor() {
-+  local value="$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor 2>/dev/null)"
-+  [ -n "$value" ] || value="unknown"
-+  echo "$value"
-+}
-+
-+get_cpu_temp() {
-+  local value="$(cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null | sort -n | tail -1)"
-+  [ -n "$value" ] || value="-1"
-+  echo "$value"
-+}
-+
-+get_wifi_temp() {
-+  local value="$(cat /sys/class/ieee80211/phy*/hwmon*/temp*_input 2>/dev/null | sort -n | tail -1)"
-+  [ -n "$value" ] || value="-1"
-+  echo "$value"
-+}
-+
-+get_cpu_usage() {
-+  local value="$(top -b -n1 | awk '/^CPU/ { print 100-$8 }')"
-+  [ -n "$value" ] || value="-1"
-+  echo "$value"
-+}
-+
-+get_nss_usage() {
-+  local value="$(grep '%' /sys/kernel/debug/qca-nss-drv/stats/cpu_load_ubi 2>/dev/null | awk '{print $2}' | sed 's/%//')"
-+  [ -n "$value" ] || value="-1"
-+  echo "$value"
-+}
-+
-+case "$1" in
-+  cpu_freq)
-+    get_cpu_freq
-+    ;;
-+  cpu_governor)
-+    get_cpu_governor
-+    ;;
-+  cpu_temp)
-+    get_cpu_temp | awk '{ printf("%.1f\n", $1/1000) }'
-+    ;;
-+  wifi_temp)
-+    get_wifi_temp | awk '{ printf("%.1f\n", $1/1000) }'
-+    ;;
-+  cpu_usage)
-+    get_cpu_usage
-+    ;;
-+  nss_usage)
-+    get_nss_usage
-+    ;;
-+  *)
-+    echo "Usage: $0 {cpu_freq|cpu_governor|cpu_temp|wifi_temp|cpu_usage|nss_usage}"
-+    exit 1
-+    ;;
-+esac
+cat > modules/luci-base/root/sbin/soc-status <<'EOF'
+#!/bin/sh
+# shellcheck disable=SC2155
+
+get_cpu_freq() {
+  local value="$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_cur_freq 2>/dev/null)"
+  [ -n "$value" ] || value="0"
+  echo "$value"
+}
+
+get_cpu_governor() {
+  local value="$(cat /sys/devices/system/cpu/cpufreq/policy0/scaling_governor 2>/dev/null)"
+  [ -n "$value" ] || value="unknown"
+  echo "$value"
+}
+
+get_cpu_temp() {
+  local value="$(cat /sys/class/thermal/thermal_zone*/temp 2>/dev/null | sort -n | tail -1)"
+  [ -n "$value" ] || value="-1"
+  echo "$value"
+}
+
+get_wifi_temp() {
+  local value="$(cat /sys/class/ieee80211/phy*/hwmon*/temp*_input 2>/dev/null | sort -n | tail -1)"
+  [ -n "$value" ] || value="-1"
+  echo "$value"
+}
+
+get_cpu_usage() {
+  local value="$(top -b -n1 | awk '/^CPU/ { print 100-$8 }')"
+  [ -n "$value" ] || value="-1"
+  echo "$value"
+}
+
+get_nss_usage() {
+  local value="$(grep '%' /sys/kernel/debug/qca-nss-drv/stats/cpu_load_ubi 2>/dev/null | awk '{print $2}' | sed 's/%//')"
+  [ -n "$value" ] || value="-1"
+  echo "$value"
+}
+
+case "$1" in
+  cpu_freq)
+    get_cpu_freq
+    ;;
+  cpu_governor)
+    get_cpu_governor
+    ;;
+  cpu_temp)
+    get_cpu_temp | awk '{ printf("%.1f\n", $1/1000) }'
+    ;;
+  wifi_temp)
+    get_wifi_temp | awk '{ printf("%.1f\n", $1/1000) }'
+    ;;
+  cpu_usage)
+    get_cpu_usage
+    ;;
+  nss_usage)
+    get_nss_usage
+    ;;
+  *)
+    echo "Usage: $0 {cpu_freq|cpu_governor|cpu_temp|wifi_temp|cpu_usage|nss_usage}"
+    exit 1
+    ;;
+esac
 EOF
+chmod +x modules/luci-base/root/sbin/soc-status
 echo patch modules/luci-base/root/usr/share/rpcd/ucode/luci
 git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-base/root/usr/share/rpcd/ucode/luci b/modules/luci-base/root/usr/share/rpcd/ucode/luci
