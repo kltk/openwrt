@@ -1,4 +1,5 @@
 #!/bin/bash
+pwd
 cd luci/feeds
 git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-base/root/sbin/soc-status b/modules/luci-base/root/sbin/soc-status
