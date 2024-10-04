@@ -6,6 +6,7 @@ ls -al feeds
 ls -al feeds/luci
 cd feeds/luci
 echo patch modules/luci-base/root/sbin/soc-status
+mkdir -p $(dirname modules/luci-base/root/sbin/soc-status)
 cat > modules/luci-base/root/sbin/soc-status <<'EOF'
 #!/bin/sh
 # shellcheck disable=SC2155
@@ -227,3 +228,4 @@ diff --git a/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.j
  		}
  	},
 EOF
+git diff
