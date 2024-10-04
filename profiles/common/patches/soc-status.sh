@@ -1,4 +1,5 @@
 #!/bin/bash
+set -x
 pwd
 ls -al
 ls -al feeds
