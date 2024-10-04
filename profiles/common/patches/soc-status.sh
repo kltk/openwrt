@@ -1,23 +1,11 @@
-From 6607061537b4007182f51d31ba4af3427082d45c Mon Sep 17 00:00:00 2001
-From: pexcn <pexcn97@gmail.com>
-Date: Sun, 3 Mar 2024 15:31:06 +0800
-Subject: [PATCH] show soc status on luci
-
-Signed-off-by: pexcn <pexcn97@gmail.com>
----
- modules/luci-base/root/sbin/soc-status        | 63 +++++++++++++++++++
- .../luci-base/root/usr/share/rpcd/ucode/luci  | 51 +++++++++++++++
- .../view/status/include/10_system.js          | 30 ++++++++-
- .../usr/share/rpcd/acl.d/luci-mod-status.json |  2 +-
- 4 files changed, 142 insertions(+), 4 deletions(-)
- create mode 100755 modules/luci-base/root/sbin/soc-status
-
-diff --git a/feeds/luci/modules/luci-base/root/sbin/soc-status b/feeds/luci/modules/luci-base/root/sbin/soc-status
+#!/bin/bash
+cd luci/feeds
+git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
+diff --git a/modules/luci-base/root/sbin/soc-status b/modules/luci-base/root/sbin/soc-status
 new file mode 100755
-index 0000000000..467b3247bf
 --- /dev/null
-+++ b/feeds/luci/modules/luci-base/root/sbin/soc-status
-@@ -0,0 +1,63 @@
++++ b/modules/luci-base/root/sbin/soc-status
+@@ -0,0 +1,64 @@
 +#!/bin/sh
 +# shellcheck disable=SC2155
 +
@@ -81,16 +69,14 @@ index 0000000000..467b3247bf
 +    exit 1
 +    ;;
 +esac
-diff --git a/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci b/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
-index 3c4fea4691..abccca886e 100644
---- a/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
-+++ b/feeds/luci/modules/luci-base/root/usr/share/rpcd/ucode/luci
-@@ -581,6 +581,57 @@ const methods = {
- 
+diff --git a/modules/luci-base/root/usr/share/rpcd/ucode/luci b/modules/luci-base/root/usr/share/rpcd/ucode/luci
+--- modules/luci-base/root/usr/share/rpcd/ucode/luci
++++ modules/luci-base/root/usr/share/rpcd/ucode/luci
+@@ -581,8 +581,59 @@
  			return { result: ports };
  		}
-+	},
-+
+ 	},
+ 
 +	getCoreInfo: {
 +		call: function() {
 +			let fd;
@@ -140,14 +126,17 @@ index 3c4fea4691..abccca886e 100644
 +
 +			return result;
 +		}
- 	}
- };
- 
-diff --git a/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js b/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-index 45f7b4acae..032f74bdd4 100644
---- a/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-+++ b/feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
-@@ -8,6 +8,21 @@ var callLuciVersion = rpc.declare({
++	},
++
+ 	getCPUBench: {
+ 		call: function() {
+ 			return { cpubench: readfile('/etc/bench.log') || '' };
+ 		}
+diff --git a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js b/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+--- modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
++++ modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+@@ -7,8 +7,23 @@
+ 	object: 'luci',
  	method: 'getVersion'
  });
  
@@ -169,10 +158,12 @@ index 45f7b4acae..032f74bdd4 100644
  var callSystemBoard = rpc.declare({
  	object: 'system',
  	method: 'board'
-@@ -25,14 +40,20 @@ return baseclass.extend({
- 		return Promise.all([
- 			L.resolveDefault(callSystemBoard(), {}),
- 			L.resolveDefault(callSystemInfo(), {}),
+ });
+@@ -48,9 +63,12 @@
+ 			L.resolveDefault(callCPUBench(), {}),
+ 			L.resolveDefault(callCPUInfo(), {}),
+ 			L.resolveDefault(callCPUUsage(), {}),
+ 			L.resolveDefault(callTempInfo(), {}),
 -			L.resolveDefault(callLuciVersion(), { revision: _('unknown version'), branch: 'LuCI' })
 +			L.resolveDefault(callLuciVersion(), { revision: _('unknown version'), branch: 'LuCI' }),
 +			L.resolveDefault(callCoreInfo(), {}),
@@ -182,41 +173,46 @@ index 45f7b4acae..032f74bdd4 100644
  	},
  
  	render: function(data) {
- 		var boardinfo   = data[0],
- 		    systeminfo  = data[1],
--		    luciversion = data[2];
-+		    luciversion = data[2],
-+		    coreinfo    = data[3],
-+		    coretemp    = data[4],
-+		    coreusage   = data[5];
+@@ -59,9 +77,12 @@
+ 		    cpubench    = data[2],
+ 		    cpuinfo     = data[3],
+ 		    cpuusage    = data[4],
+ 		    tempinfo    = data[5],
+-		    luciversion = data[6];
++		    luciversion = data[6],
++		    coreinfo    = data[7],
++		    coretemp    = data[8],
++		    coreusage   = data[9];
  
  		luciversion = luciversion.branch + ' ' + luciversion.revision;
  
-@@ -64,7 +85,10 @@ return baseclass.extend({
+ 		var datestr = null;
+@@ -92,9 +113,12 @@
  				systeminfo.load[0] / 65535.0,
  				systeminfo.load[1] / 65535.0,
  				systeminfo.load[2] / 65535.0
--			) : null
-+			) : null,
+ 			) : null,
+-			_('CPU usage (%)'),    cpuusage.cpuusage
++			_('CPU usage (%)'),    cpuusage.cpuusage,
 +			_('核心频率'),          coreinfo.cpufreq / 1000 + ' MHz ' + '(' + coreinfo.governor + ')',
 +			_('核心温度'),          'CPU ' + coretemp.cpu + ' °C' + ' / ' + 'WiFi ' + coretemp.wifi + ' °C',
 +			_('使用率'),            'CPU ' + coreusage.cpu + '%' + ' / ' + 'NSS ' + coreusage.nss + '%'
  		];
  
- 		var table = E('table', { 'class': 'table' });
-diff --git a/feeds/luci/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json b/feeds/luci/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
-index 45dd7d7d9e..8f60a1eda8 100644
---- a/feeds/luci/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
-+++ b/feeds/luci/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
-@@ -3,7 +3,7 @@
+ 		if (tempinfo.tempinfo) {
+ 			fields.splice(6, 0, _('Temperature'));
+diff --git a/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json b/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
+--- modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
++++ modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
+@@ -2,9 +2,9 @@
+ 	"luci-mod-status-realtime": {
  		"description": "Grant access to realtime statistics",
  		"read": {
  			"ubus": {
--				"luci": [ "getConntrackList", "getRealtimeStats" ],
-+				"luci": [ "getConntrackList", "getRealtimeStats", "getCoreInfo", "getCoreTemp", "getCoreUsage" ],
+-				"luci": [ "getConntrackList", "getRealtimeStats", "getCPUBench", "getCPUUsage", "getOnlineUsers" ],
++				"luci": [ "getConntrackList", "getRealtimeStats", "getCPUBench", "getCPUUsage", "getOnlineUsers", "getCoreInfo", "getCoreTemp", "getCoreUsage" ],
  				"network.rrdns": [ "lookup" ]
  			}
  		}
--- 
-2.39.2
-
+ 	},
+EOF
