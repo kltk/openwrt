@@ -76,11 +76,11 @@ def patch(profile):
           if re.search(r'\.patch$', p):
             # grouprun(['git', 'am', '--quiet', f'{profileDir}/{patch}'])
             grouprun(['git', 'apply', '-p0', '--ignore-space-change', '--ignore-whitespace', p])
-          elif re.search(r'\.sh', p):
+          elif re.search(r'\.sh$', p):
             grouprun(['chmod', '+x', p])
-            grouprun(p)
-        except:
-          print('error')
+            grouprun([p])
+        except Exception as e:
+            print(f"An error occurred: {e}")
     grouprun(['git', 'diff'])
     os.chdir(olddir)
 
