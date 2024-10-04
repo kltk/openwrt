@@ -1,9 +1,9 @@
 #!/bin/bash
 pwd
 ls -al
-ls -al luci
-ls -al luci/feeds
-cd luci/feeds
+ls -al feeds
+ls -al feeds/luci
+cd feeds/luci
 git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-base/root/sbin/soc-status b/modules/luci-base/root/sbin/soc-status
 new file mode 100755
