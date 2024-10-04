@@ -4,6 +4,7 @@ ls -al
 ls -al feeds
 ls -al feeds/luci
 cd feeds/luci
+echo patch modules/luci-base/root/sbin/soc-status
 git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-base/root/sbin/soc-status b/modules/luci-base/root/sbin/soc-status
 new file mode 100755
@@ -74,6 +75,7 @@ new file mode 100755
 +    ;;
 +esac
 EOF
+echo patch modules/luci-base/root/usr/share/rpcd/ucode/luci
 git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-base/root/usr/share/rpcd/ucode/luci b/modules/luci-base/root/usr/share/rpcd/ucode/luci
 --- modules/luci-base/root/usr/share/rpcd/ucode/luci
@@ -139,6 +141,7 @@ diff --git a/modules/luci-base/root/usr/share/rpcd/ucode/luci b/modules/luci-bas
  			return { cpubench: readfile('/etc/bench.log') || '' };
  		}
 EOF
+echo patch modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js b/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
 --- modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
@@ -210,6 +213,7 @@ diff --git a/modules/luci-mod-status/htdocs/luci-static/resources/view/status/in
  		if (tempinfo.tempinfo) {
  			fields.splice(6, 0, _('Temperature'));
 EOF
+echo patch modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
 git apply -p0 --ignore-space-change --ignore-whitespace <<'EOF'
 diff --git a/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json b/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
 --- modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.json
