@@ -1,9 +1,4 @@
 #!/bin/bash
-set -x
-pwd
-ls -al
-ls -al feeds
-ls -al feeds/luci
 cd feeds/luci
 echo patch modules/luci-base/root/sbin/soc-status
 mkdir -p $(dirname modules/luci-base/root/sbin/soc-status)
@@ -228,4 +223,5 @@ diff --git a/modules/luci-mod-status/root/usr/share/rpcd/acl.d/luci-mod-status.j
  		}
  	},
 EOF
+git add .
 git diff
