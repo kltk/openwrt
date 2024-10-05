@@ -1,15 +1,17 @@
-#packages:
-#  - kmod-qca-nss-crypto
-#   - kmod-qca-nss-drv-wifi-meshmgr
-# modules:
-#   - nss-utils
-#   - sqm-scripts-nss
+packages:
+ - kmod-qca-nss-crypto
+  - kmod-qca-nss-drv-wifi-meshmgr
+modules:
+  - nss-utils
+  - sqm-scripts-nss
 diffconfig: |
   # 配置 512 内存，上游代码是 1G 内存
   CONFIG_ATH11K_MEM_PROFILE_512M=y
   # CONFIG_ATH11K_MEM_PROFILE_1G is not set
   CONFIG_IPQ_MEM_PROFILE_512=y
   # CONFIG_IPQ_MEM_PROFILE_1024 is not set
+  CONFIG_NSS_MEM_PROFILE_MEDIUM=y
+  # CONFIG_NSS_MEM_PROFILE_HIGH is not set
   # CONFIG_KERNEL_IPQ_MEM_PROFILE=512
 
 # CONFIG_ATH11K_NSS_MESH_SUPPORT                       is not set

@@ -3,6 +3,6 @@ packages:
   # for shellclash
   - kmod-nft-tproxy
   - custom
-modules:
-  - luci-app-aria2
-  # - luci-app-openclash
+# modules:
+#   - luci-app-aria2
+#   # - luci-app-openclash
