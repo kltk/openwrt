@@ -1,5 +1,5 @@
-packages:
-  - kmod-qca-nss-crypto
+#packages:
+#  - kmod-qca-nss-crypto
 #   - kmod-qca-nss-drv-wifi-meshmgr
 # modules:
 #   - nss-utils
