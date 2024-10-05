@@ -18,6 +18,7 @@ assets:
 steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - axt1800-nss
     - patch
     - devel
     - kexec
@@ -33,13 +34,6 @@ steps:
     - mmc
     - rootfs
 diffconfig: |
-  # 配置 512 内存，上游代码是 1G 内存
-  CONFIG_ATH11K_MEM_PROFILE_512M=y
-  # CONFIG_ATH11K_MEM_PROFILE_1G is not set
-  CONFIG_IPQ_MEM_PROFILE_512=y
-  # CONFIG_IPQ_MEM_PROFILE_1024 is not set
-  # CONFIG_KERNEL_IPQ_MEM_PROFILE=512
-
   # 使用 mold 链接器替代 ld
   CONFIG_MOLD=y
   CONFIG_USE_MOLD=y
