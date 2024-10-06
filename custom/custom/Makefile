@@ -1,12 +1,8 @@
-include $(TOPDIR)/rules.mk
-
 PKG_NAME:=custom
 PKG_RELEASE:=1
 PKG_BUILD_DIR:=$(BUILD_DIR)/$(PKG_NAME)
 
-include $(INCLUDE_DIR)/package.mk
-
-define Package/$(PKG_NAME)
+define KernelPackage/$(PKG_NAME)
 	SECTION:=utils
 	CATEGORY:=Utilities
 	TITLE:=Custom -- prints a snarky message
@@ -16,7 +12,7 @@ define Package/$(PKG_NAME)
 		CONFIG_NF_CONNTRACK_DSCPREMARK_EXT=y
 endef
 
-define Package/$(PKG_NAME)/description
+define KernelPackage/$(PKG_NAME)/description
 	It's my first package demo.
 endef
 
