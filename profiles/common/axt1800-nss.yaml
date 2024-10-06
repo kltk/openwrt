@@ -2,7 +2,6 @@ packages:
   - kmod-qca-nss-crypto
   - kmod-qca-nss-drv-wifi-meshmgr
 modules:
-  - nss-utils
   - sqm-scripts-nss
 diffconfig: |
   # 配置 512 内存，上游代码是 1G 内存
@@ -14,60 +13,33 @@ diffconfig: |
   # CONFIG_NSS_MEM_PROFILE_HIGH is not set
   # CONFIG_KERNEL_IPQ_MEM_PROFILE=512
 
-# CONFIG_ATH11K_NSS_MESH_SUPPORT                       is not set
+  CONFIG_ATH11K_NSS_MESH_SUPPORT=y
+  CONFIG_NSS_DRV_TLS_ENABLE=y
+  CONFIG_NSS_DRV_WIFI_MESH_ENABLE=y
+
 # CONFIG_ATH11K_NSS_SUPPORT=y
 # CONFIG_NSS_DRV_BRIDGE_ENABLE=y
-# CONFIG_NSS_DRV_C2C_ENABLE                            is not set
-# CONFIG_NSS_DRV_CAPWAP_ENABLE                         is not set
-# CONFIG_NSS_DRV_CLMAP_ENABLE                          is not set
-# CONFIG_NSS_DRV_CRYPTO_ENABLE                         is not set
-# CONFIG_NSS_DRV_DTLS_ENABLE                           is not set
 # CONFIG_NSS_DRV_GRE_ENABLE=y
-# CONFIG_NSS_DRV_GRE_REDIR_ENABLE                      is not set
-# CONFIG_NSS_DRV_GRE_TUNNEL_ENABLE                     is not set
 # CONFIG_NSS_DRV_IGS_ENABLE=y
-# CONFIG_NSS_DRV_IPSEC_ENABLE                          is not set
-# CONFIG_NSS_DRV_IPV4_REASM_ENABLE                     is not set
 # CONFIG_NSS_DRV_IPV6_ENABLE=y
-# CONFIG_NSS_DRV_IPV6_REASM_ENABLE                     is not set
 # CONFIG_NSS_DRV_L2TP_ENABLE=y
 # CONFIG_NSS_DRV_LAG_ENABLE=y
-# CONFIG_NSS_DRV_LSO_RX_ENABLE                         is not set
 # CONFIG_NSS_DRV_MAPT_ENABLE=y
 # CONFIG_NSS_DRV_MATCH_ENABLE=y
 # CONFIG_NSS_DRV_MIRROR_ENABLE=y
-# CONFIG_NSS_DRV_OAM_ENABLE                            is not set
-# CONFIG_NSS_DRV_PORTID_ENABLE                         is not set
 # CONFIG_NSS_DRV_PPPOE_ENABLE=y
 # CONFIG_NSS_DRV_PPTP_ENABLE=y
 # CONFIG_NSS_DRV_PVXLAN_ENABLE=y
-# CONFIG_NSS_DRV_QRFS_ENABLE                           is not set
-# CONFIG_NSS_DRV_QVPN_ENABLE                           is not set
-# CONFIG_NSS_DRV_RMNET_ENABLE                          is not set
 # CONFIG_NSS_DRV_SHAPER_ENABLE=y
-# CONFIG_NSS_DRV_SJACK_ENABLE                          is not set
-# CONFIG_NSS_DRV_TLS_ENABLE                            is not set
-# CONFIG_NSS_DRV_TRUSTSEC_ENABLE                       is not set
-# CONFIG_NSS_DRV_TSTAMP_ENABLE                         is not set
 # CONFIG_NSS_DRV_TUN6RD_ENABLE=y
 # CONFIG_NSS_DRV_TUNIPIP6_ENABLE=y
-# CONFIG_NSS_DRV_UDP_ST_ENABLE                         is not set
 # CONFIG_NSS_DRV_VIRT_IF_ENABLE=y
 # CONFIG_NSS_DRV_VLAN_ENABLE=y
 # CONFIG_NSS_DRV_VXLAN_ENABLE=y
 # CONFIG_NSS_DRV_WIFI_EXT_VDEV_ENABLE=y
-# CONFIG_NSS_DRV_WIFI_LEGACY_ENABLE                    is not set
-# CONFIG_NSS_DRV_WIFI_MESH_ENABLE                      is not set
 # CONFIG_NSS_DRV_WIFIOFFLOAD_ENABLE=y
 # CONFIG_NSS_FIRMWARE_VERSION_11_4=y
-# CONFIG_NSS_FIRMWARE_VERSION_12_1                     is not set
-# CONFIG_NSS_FIRMWARE_VERSION_12_2                     is not set
-# CONFIG_NSS_FIRMWARE_VERSION_12_5                     is not set
 # CONFIG_NSS_MEM_PROFILE_HIGH=y
-# CONFIG_NSS_MEM_PROFILE_LOW                           is not set
-# CONFIG_NSS_MEM_PROFILE_MEDIUM                        is not set
-# CONFIG_PACKAGE_kmod-nss-ifb                          is not set
-# CONFIG_PACKAGE_kmod-qca-nss-crypto                   is not set
 # CONFIG_PACKAGE_kmod-qca-nss-dp=y
 # CONFIG_PACKAGE_kmod-qca-nss-drv-bridge-mgr=y
 # CONFIG_PACKAGE_kmod-qca-nss-drv-eogremgr=y
@@ -85,14 +57,41 @@ diffconfig: |
 # CONFIG_PACKAGE_kmod-qca-nss-drv-tunipip6=y
 # CONFIG_PACKAGE_kmod-qca-nss-drv-vlan-mgr=y
 # CONFIG_PACKAGE_kmod-qca-nss-drv-vxlanmgr=y
-# CONFIG_PACKAGE_kmod-qca-nss-drv-wifi-meshmgr         is not set
 # CONFIG_PACKAGE_kmod-qca-nss-drv=y
 # CONFIG_PACKAGE_kmod-qca-nss-ecm=y
 # CONFIG_PACKAGE_kmod-qca-nss-macsec=y
-# CONFIG_PACKAGE_MAC80211_NSS_REDIRECT                 is not set
 # CONFIG_PACKAGE_MAC80211_NSS_SUPPORT=y
-# CONFIG_PACKAGE_nss-eip-firmware                      is not set
 # CONFIG_PACKAGE_nss-firmware-default=y
 # CONFIG_PACKAGE_nss-firmware-ipq6018=y
-# CONFIG_PACKAGE_nss-utils                             is not set
+# CONFIG_NSS_DRV_C2C_ENABLE                            is not set
+# CONFIG_NSS_DRV_CAPWAP_ENABLE                         is not set
+# CONFIG_NSS_DRV_CLMAP_ENABLE                          is not set
+# CONFIG_NSS_DRV_CRYPTO_ENABLE                         is not set
+# CONFIG_NSS_DRV_DTLS_ENABLE                           is not set
+# CONFIG_NSS_DRV_GRE_REDIR_ENABLE                      is not set
+# CONFIG_NSS_DRV_GRE_TUNNEL_ENABLE                     is not set
+# CONFIG_NSS_DRV_IPSEC_ENABLE                          is not set
+# CONFIG_NSS_DRV_IPV4_REASM_ENABLE                     is not set
+# CONFIG_NSS_DRV_IPV6_REASM_ENABLE                     is not set
+# CONFIG_NSS_DRV_LSO_RX_ENABLE                         is not set
+# CONFIG_NSS_DRV_OAM_ENABLE                            is not set
+# CONFIG_NSS_DRV_PORTID_ENABLE                         is not set
+# CONFIG_NSS_DRV_QRFS_ENABLE                           is not set
+# CONFIG_NSS_DRV_QVPN_ENABLE                           is not set
+# CONFIG_NSS_DRV_RMNET_ENABLE                          is not set
+# CONFIG_NSS_DRV_SJACK_ENABLE                          is not set
+# CONFIG_NSS_DRV_TRUSTSEC_ENABLE                       is not set
+# CONFIG_NSS_DRV_TSTAMP_ENABLE                         is not set
+# CONFIG_NSS_DRV_UDP_ST_ENABLE                         is not set
+# CONFIG_NSS_DRV_WIFI_LEGACY_ENABLE                    is not set
+# CONFIG_NSS_FIRMWARE_VERSION_12_1                     is not set
+# CONFIG_NSS_FIRMWARE_VERSION_12_2                     is not set
+# CONFIG_NSS_FIRMWARE_VERSION_12_5                     is not set
+# CONFIG_NSS_MEM_PROFILE_LOW                           is not set
+# CONFIG_NSS_MEM_PROFILE_MEDIUM                        is not set
+# CONFIG_PACKAGE_kmod-nss-ifb                          is not set
+# CONFIG_PACKAGE_kmod-qca-nss-crypto                   is not set
+# CONFIG_PACKAGE_kmod-qca-nss-drv-wifi-meshmgr         is not set
+# CONFIG_PACKAGE_MAC80211_NSS_REDIRECT                 is not set
+# CONFIG_PACKAGE_nss-eip-firmware                      is not set
 # CONFIG_PACKAGE_sqm-scripts-nss                       is not set
