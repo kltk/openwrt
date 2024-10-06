@@ -20,4 +20,4 @@ define Package/$(PKG_NAME)/description
 	It's my first package demo.
 endef
 
-$(eval $(call BuildPackage,$(PKG_NAME)))
+$(eval $(call KernelPackage,$(PKG_NAME)))
