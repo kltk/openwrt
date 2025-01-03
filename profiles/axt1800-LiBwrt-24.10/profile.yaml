@@ -1,0 +1,48 @@
+assets:
+  # 从 git clone revision 版本到 path
+  - git: https://github.com/LibWrt/openwrt-6.x
+    path: openwrt
+    revision: 24.10
+  # 从 url 下载文件到 path 路径
+  # - url: ''
+  #   path: ''
+  # 从 link 创建软链接到 path
+  - link: cache/ccache
+    path: openwrt/.ccache
+  # - link: cache/staging_dir
+  #   path: openwrt/staging_dir
+  # - link: cache/build_dir
+  #   path: openwrt/build_dir
+# 渐进式编译
+# 从简单的配置开始编译，逐渐添加内容
+steps:
+  - include:
+    - device/qualcommax-ipq60xx-glinet_gl-axt1800
+    - axt1800-nss
+    - patch
+    - devel
+    - kexec
+    - kernel
+    - app/collectd
+    - app/cpufreq
+    - app/luci
+    - app/minidlna
+    - app/samba
+    - app/zerotier
+    - custom
+    - utils
+    - mmc
+    - rootfs
+diffconfig: |
+  # 使用 mold 链接器替代 ld
+  CONFIG_MOLD=y
+  CONFIG_USE_MOLD=y
+
+  # # 使用 firewall4 替代 firewall
+  # CONFIG_PACKAGE_firewall4=y
+
+  # CONFIG_PACKAGE_dnsmasq_full_ipset=y
+patch:
+  '.':
+    - ../common/patches/*.patch
+    - ../common/patches/*.sh

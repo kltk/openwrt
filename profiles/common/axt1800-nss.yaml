@@ -14,6 +14,7 @@ diffconfig: |
   # CONFIG_KERNEL_IPQ_MEM_PROFILE=512
 
   CONFIG_ATH11K_NSS_MESH_SUPPORT=y
+  CONFIG_NSS_DRV_DTLS_ENABLE=y
   CONFIG_NSS_DRV_TLS_ENABLE=y
   CONFIG_NSS_DRV_WIFI_MESH_ENABLE=y
 
@@ -67,7 +68,6 @@ diffconfig: |
 # CONFIG_NSS_DRV_CAPWAP_ENABLE                         is not set
 # CONFIG_NSS_DRV_CLMAP_ENABLE                          is not set
 # CONFIG_NSS_DRV_CRYPTO_ENABLE                         is not set
-# CONFIG_NSS_DRV_DTLS_ENABLE                           is not set
 # CONFIG_NSS_DRV_GRE_REDIR_ENABLE                      is not set
 # CONFIG_NSS_DRV_GRE_TUNNEL_ENABLE                     is not set
 # CONFIG_NSS_DRV_IPSEC_ENABLE                          is not set
