@@ -46,3 +46,4 @@ patch:
   '.':
     - ../common/patches/*.patch
     - ../common/patches/*.sh
+    - ./patches/*.patch

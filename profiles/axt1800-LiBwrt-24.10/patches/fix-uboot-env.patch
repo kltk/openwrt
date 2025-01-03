@@ -1,0 +1,23 @@
+diff --git a/package/boot/uboot-envtools/files/qualcommax_ipq60xx b/package/boot/uboot-envtools/files/qualcommax_ipq60xx
+--- package/boot/uboot-envtools/files/qualcommax_ipq60xx
++++ package/boot/uboot-envtools/files/qualcommax_ipq60xx
+@@ -20,14 +20,18 @@
+ qihoo,v6|\
+ redmi,ax5|\
+ xiaomi,ax1800|\
+ glinet,gl-ax1800|\
+-glinet,gl-axt1800|\
+ netgear,wax214)
+ 	idx="$(find_mtd_index 0:appsblenv)"
+ 	[ -n "$idx" ] && \
+ 		ubootenv_add_uci_config "/dev/mtd$idx" "0x0" "0x40000" "0x20000" "2"
+ 	;;
++glinet,gl-axt1800)
++	idx="$(find_mtd_index 0:appsblenv)"
++	[ -n "$idx" ] && \
++		ubootenv_add_uci_config "/dev/mtd$idx" "0x0" "0x40000" "0x40000" "2"
++	;;
+ jdcloud,re-cs-07|\
+ redmi,ax5-jdcloud|\
+ jdcloud,ax1800-pro|\
+ jdcloud,ax6600)

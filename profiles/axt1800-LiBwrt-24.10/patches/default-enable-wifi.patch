@@ -1,0 +1,13 @@
+diff --git a/package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc b/package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
+--- package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
++++ package/network/config/wifi-scripts/files/lib/wifi/mac80211.uc
+@@ -97,9 +97,8 @@
+ set ${s}.channel='${channel}'
+ set ${s}.htmode='${htmode}'
+ set ${s}.country='${country || ''}'
+ set ${s}.num_global_macaddr='${num_global_macaddr || ''}'
+-set ${s}.disabled='0'
+ 
+ set ${si}=wifi-iface
+ set ${si}.device='${name}'
+ set ${si}.network='lan'
