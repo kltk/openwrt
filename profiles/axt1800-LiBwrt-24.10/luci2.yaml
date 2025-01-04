@@ -1,4 +1,4 @@
-module:
+packages:
   - nginx-mod-luci
   - nginx-ssl
   - luci-nginx
