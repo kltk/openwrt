@@ -1,0 +1,7 @@
+module:
+  - nginx-mod-luci
+  - nginx-ssl
+  - luci-nginx
+  - luci-ssl
+  - nginx-ssl-util-nopcre
+  - nginx-mod-ubus
