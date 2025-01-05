@@ -1,7 +1,7 @@
 packages:
-  - nginx-mod-luci
-  - nginx-ssl
-  - luci-nginx
+  # - luci-nginx
   - luci-ssl
-  - nginx-ssl-util-nopcre
+  - nginx-ssl
+  # - nginx-ssl-util-nopcre
+  - nginx-mod-luci
   - nginx-mod-ubus
