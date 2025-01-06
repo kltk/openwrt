@@ -4,4 +4,4 @@ packages:
   # - nginx-ssl
   # - nginx-ssl-util-nopcre
   - nginx-mod-luci
-  - nginx-mod-ubus
+  # - nginx-mod-ubus
