@@ -33,7 +33,7 @@ steps:
     - utils
     - mmc
     - rootfs
-    # - luci2
+    - luci2
 diffconfig: |
   # 使用 mold 链接器替代 ld
   CONFIG_MOLD=y
