@@ -1,6 +1,6 @@
 packages:
+  - nginx-ssl
   - nginx-mod-luci
-  - nginx-mod-ssl
   - luci-nginx
   - luci-ssl
 diffconfig: |
