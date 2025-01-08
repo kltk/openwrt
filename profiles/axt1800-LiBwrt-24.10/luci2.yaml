@@ -1,7 +1,7 @@
 packages:
-  # - luci-nginx
-  # - luci-ssl
-  # - nginx-ssl
-  # - nginx-ssl-util-nopcre
   - nginx-mod-luci
-  # - nginx-mod-ubus
+  - nginx-mod-ssl
+  - luci-nginx
+  - luci-ssl
+diffconfig: |
+  CONFIG_LUCI_LANG_zh_Hans=y
