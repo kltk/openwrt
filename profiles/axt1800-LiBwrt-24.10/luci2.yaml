@@ -3,5 +3,22 @@ packages:
   - nginx-mod-luci
   - luci-nginx
   - luci-ssl
+modules:
+  - nginx-mod-dav-ext
+  - nginx-mod-headers-more
 diffconfig: |
   CONFIG_LUCI_LANG_zh_Hans=y
+
+  # nginx
+  CONFIG_NGINX_DAV=y
+  CONFIG_NGINX_PCRE=y
+  CONFIG_NGINX_HTTP_AUTH_BASIC=y
+  CONFIG_NGINX_HTTP_AUTOINDEX=y
+  CONFIG_NGINX_HTTP_CACHE=y
+  CONFIG_NGINX_HTTP_GZIP=y
+  CONFIG_NGINX_HTTP_MAP=y
+  CONFIG_NGINX_HTTP_REWRITE=y
+  CONFIG_NGINX_HTTP_PROXY=y
+  CONFIG_NGINX_HTTP_UWSGI=y
+  CONFIG_NGINX_HTTP_V2=y
+  CONFIG_NGINX_HTTP_SUB=y
