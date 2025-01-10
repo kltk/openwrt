@@ -3,6 +3,7 @@ packages:
   - nginx-mod-luci
   - luci-nginx
   - luci-ssl
+  - luci-app-upnp
 modules:
   - nginx-mod-dav-ext
   - nginx-mod-headers-more
@@ -10,15 +11,79 @@ diffconfig: |
   CONFIG_LUCI_LANG_zh_Hans=y
 
   # nginx
+  # 启用 WebDAV 模块，支持分布式版本控制和文件管理。
   CONFIG_NGINX_DAV=y
-  CONFIG_NGINX_PCRE=y
-  CONFIG_NGINX_HTTP_AUTH_BASIC=y
-  CONFIG_NGINX_HTTP_AUTOINDEX=y
-  CONFIG_NGINX_HTTP_CACHE=y
+  # 不启用 FLV 模块，该模块用于支持 Flash 视频流。
+  # CONFIG_NGINX_FLV is not set
+  # 不启用 stub_status 模块，该模块提供基本的 Nginx 状态信息。
+  # CONFIG_NGINX_STUB_STATUS is not set
+  # 启用字符集模块，支持设置 HTTP 响应的字符集。
+  CONFIG_NGINX_HTTP_CHARSET=y
+  # 启用 gzip 模块，支持对 HTTP 响应进行 gzip 压缩。
   CONFIG_NGINX_HTTP_GZIP=y
+  # 启用 gzip 静态模块，支持发送预压缩的静态文件。
+  # CONFIG_NGINX_HTTP_GZIP_STATIC is not set
+  # 启用 SSI (Server Side Includes) 模块，支持在 HTML 中嵌入动态内容。
+  CONFIG_NGINX_HTTP_SSI=n
+  # 启用 userid 模块，支持设置和跟踪用户标识符。
+  CONFIG_NGINX_HTTP_USERID=n
+  # 启用 access 模块，支持基于 IP 地址的访问控制。
+  # CONFIG_NGINX_HTTP_ACCESS is not set
+  # 启用基本认证模块，支持 HTTP 基本认证。
+  CONFIG_NGINX_HTTP_AUTH_BASIC=y
+  # CONFIG_NGINX_HTTP_AUTH_REQUEST is not set
+  不启用 auth_request 模块，该模块支持基于子请求的认证。
+  # 启用 autoindex 模块，支持自动生成目录列表。
+  CONFIG_NGINX_HTTP_AUTOINDEX=y
+  # 启用 geo 模块，支持基于 IP 地址的地理位置变量。
+  CONFIG_NGINX_HTTP_GEO=n
+  # 启用 map 模块，支持创建变量映射。
   CONFIG_NGINX_HTTP_MAP=y
+  # 启用 split_clients 模块，支持 A/B 测试和流量分割。
+  CONFIG_NGINX_HTTP_SPLIT_CLIENTS=n
+  # 启用 referer 模块，支持基于 Referer 头的请求过滤。
+  CONFIG_NGINX_HTTP_REFERER=y
+  # 启用 rewrite 模块，支持 URL 重写和重定向。
   CONFIG_NGINX_HTTP_REWRITE=y
+  # 启用 proxy 模块，支持反向代理功能。
   CONFIG_NGINX_HTTP_PROXY=y
+  # 启用 FastCGI 模块，支持 FastCGI 协议。
+  CONFIG_NGINX_HTTP_FASTCGI=n
+  # 启用 uWSGI 模块，支持 uWSGI 协议。
   CONFIG_NGINX_HTTP_UWSGI=y
-  CONFIG_NGINX_HTTP_V2=y
+  # 启用 SCGI 模块，支持 SCGI 协议。
+  CONFIG_NGINX_HTTP_SCGI=n
+  # 启用 memcached 模块，支持从 memcached 服务器获取响应。
+  CONFIG_NGINX_HTTP_MEMCACHED=n
+  # 启用 limit_conn 模块，支持连接数限制。
+  CONFIG_NGINX_HTTP_LIMIT_CONN=n
+  # 启用 limit_req 模块，支持请求速率限制。
+  CONFIG_NGINX_HTTP_LIMIT_REQ=n
+  # 启用 empty_gif 模块，支持返回一个空的 GIF 图像。
+  CONFIG_NGINX_HTTP_EMPTY_GIF=n
+  # 启用 browser 模块，支持基于 User-Agent 的变量设置。
+  CONFIG_NGINX_HTTP_BROWSER=y
+  # 启用 upstream hash 模块，支持基于哈希的负载均衡。
+  # CONFIG_NGINX_HTTP_UPSTREAM_HASH is not set
+  # 启用 upstream ip_hash 模块，支持基于客户端 IP 的负载均衡。
+  # CONFIG_NGINX_HTTP_UPSTREAM_IP_HASH is not set
+  # 启用 upstream least_conn 模块，支持最少连接数负载均衡。
+  # CONFIG_NGINX_HTTP_UPSTREAM_LEAST_CONN is not set
+  # 启用 upstream keepalive 模块，支持上游服务器的长连接。
+  # CONFIG_NGINX_HTTP_UPSTREAM_KEEPALIVE is not set
+  # 启用 cache 模块，支持 HTTP 缓存。
+  CONFIG_NGINX_HTTP_CACHE=y
+  # 启用 HTTP/2 模块，支持 HTTP/2 协议。
+  # CONFIG_NGINX_HTTP_V2 is not set
+  # 不启用 QUIC 模块，该模块支持 QUIC 协议。
+  # CONFIG_NGINX_HTTP_QUIC is not set
+  # 启用 PCRE 库，支持正则表达式。
+  CONFIG_NGINX_PCRE=y
+  # 不启用 real_ip 模块，该模块用于获取客户端的真实 IP 地址。
+  # CONFIG_NGINX_HTTP_REAL_IP is not set
+  # 不启用 secure_link 模块，该模块用于保护链接的安全性。
+  # CONFIG_NGINX_HTTP_SECURE_LINK is not set
+  # 启用 sub 模块，支持在响应中替换字符串。
   CONFIG_NGINX_HTTP_SUB=y
+  # 不启用 stream_real_ip 模块，该模块用于获取流模块中客户端的真实 IP 地址。
+  # CONFIG_NGINX_STREAM_REAL_IP is not set
