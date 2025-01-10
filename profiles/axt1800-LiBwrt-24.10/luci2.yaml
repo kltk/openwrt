@@ -3,7 +3,7 @@ packages:
   - nginx-mod-luci
   - luci-nginx
   - luci-ssl
-  - luci-app-upnp
+  # - luci-app-upnp
 modules:
   - nginx-mod-dav-ext
   - nginx-mod-headers-more
