@@ -28,7 +28,7 @@ diffconfig: |
   # 启用 userid 模块，支持设置和跟踪用户标识符。
   CONFIG_NGINX_HTTP_USERID=n
   # 启用 access 模块，支持基于 IP 地址的访问控制。
-  # CONFIG_NGINX_HTTP_ACCESS is not set
+  CONFIG_NGINX_HTTP_ACCESS=y
   # 启用基本认证模块，支持 HTTP 基本认证。
   CONFIG_NGINX_HTTP_AUTH_BASIC=y
   # 不启用 auth_request 模块，该模块支持基于子请求的认证。
@@ -74,7 +74,7 @@ diffconfig: |
   # 启用 cache 模块，支持 HTTP 缓存。
   CONFIG_NGINX_HTTP_CACHE=y
   # 启用 HTTP/2 模块，支持 HTTP/2 协议。
-  # CONFIG_NGINX_HTTP_V2 is not set
+  CONFIG_NGINX_HTTP_V2=y
   # 不启用 QUIC 模块，该模块支持 QUIC 协议。
   # CONFIG_NGINX_HTTP_QUIC is not set
   # 启用 PCRE 库，支持正则表达式。
