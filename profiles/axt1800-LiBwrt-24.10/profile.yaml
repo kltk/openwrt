@@ -2,7 +2,7 @@ assets:
   # 从 git clone revision 版本到 path
   - git: https://github.com/LibWrt/openwrt-6.x
     path: openwrt
-    revision: "24.10-6.12"
+    revision: "openwrt-24.10"
   # 从 url 下载文件到 path 路径
   # - url: ''
   #   path: ''
