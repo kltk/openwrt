@@ -31,8 +31,9 @@ on:
           - '["axt1800-nss-JiaY-shi-minimal"]'
           - '["axt1800-King-Of-Knights"]'
           - '["axt1800-King-Of-Knights-minimal"]'
-          - '["axt1800-LiBwrt-minimal"]'
+          - '["axt1800-LiBwrt-main"]'
           - '["axt1800-LiBwrt-24.10"]'
+          - '["axt1800-LiBwrt-6.12"]'
 
 env:
   TZ: Asia/Shanghai
