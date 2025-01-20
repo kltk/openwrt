@@ -33,16 +33,15 @@ steps:
     - utils
     - mmc
     - rootfs
+    - luci2
 diffconfig: |
   # 使用 mold 链接器替代 ld
   CONFIG_MOLD=y
   CONFIG_USE_MOLD=y
-
-  # # 使用 firewall4 替代 firewall
-  # CONFIG_PACKAGE_firewall4=y
 
   # CONFIG_PACKAGE_dnsmasq_full_ipset=y
 patch:
   '.':
     - ../common/patches/*.patch
     - ../common/patches/*.sh
+    - ./patches/*.patch
