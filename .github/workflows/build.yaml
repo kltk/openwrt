@@ -34,6 +34,7 @@ on:
           - '["axt1800-LiBwrt-main"]'
           - '["axt1800-LiBwrt-24.10"]'
           - '["axt1800-LiBwrt-6.12"]'
+          - '["axt1800-LiBwrt-6.12-minimal"]'
 
 env:
   TZ: Asia/Shanghai
