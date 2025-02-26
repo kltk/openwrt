@@ -1,6 +1,6 @@
 packages:
   - kmod-qca-nss-crypto
-  - kmod-qca-nss-drv-wifi-meshmgr
+  # - kmod-qca-nss-drv-wifi-meshmgr
 modules:
   - sqm-scripts-nss
 diffconfig: |
