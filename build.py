@@ -24,10 +24,12 @@ def grouprun(*args, **kwargs):
 
 def loadYaml(name):
   paths = [
-      os.path.join(__abs_dir__, 'profiles/common', f'{name}.yml'),
-      os.path.join(__abs_dir__, 'profiles/common', f'{name}.yaml'),
       os.path.join(profileDir, f'{name}.yml'),
       os.path.join(profileDir, f'{name}.yaml'),
+      os.path.join(__abs_dir__, 'profiles/common', f'{name}.yml'),
+      os.path.join(__abs_dir__, 'profiles/common', f'{name}.yaml'),
+      os.path.join(__abs_dir__, 'profiles', f'{name}.yml'),
+      os.path.join(__abs_dir__, 'profiles', f'{name}.yaml'),
   ]
   for p in paths:
     if os.path.exists(p):

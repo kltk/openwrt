@@ -18,7 +18,7 @@ assets:
 steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
-    - axt1800-nss
+    - axt1800-LiBwrt-6.12/axt1800-nss
     - patch
     - devel
     - kexec
