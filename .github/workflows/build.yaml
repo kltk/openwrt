@@ -24,17 +24,14 @@ on:
         type: choice
         description: 选择配置
         required: false
-        default: '["axt1800-nss-JiaY-shi"]'
+        default: '["axt1800-LiBwrt-6.12"]'
         options:
           - '["axt1800-JiaY-shi"]'
-          - '["axt1800-nss-JiaY-shi"]'
-          - '["axt1800-nss-JiaY-shi-minimal"]'
+          - '["axt1800-JiaY-shi-nss"]'
           - '["axt1800-King-Of-Knights"]'
-          - '["axt1800-King-Of-Knights-minimal"]'
           - '["axt1800-LiBwrt-main"]'
           - '["axt1800-LiBwrt-24.10"]'
           - '["axt1800-LiBwrt-6.12"]'
-          - '["axt1800-LiBwrt-6.12-minimal"]'
 
 env:
   TZ: Asia/Shanghai
@@ -47,7 +44,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        profile: ${{ fromJSON(github.event.inputs.profile || '["axt1800-nss-JiaY-shi"]') }}
+        profile: ${{ fromJSON(github.event.inputs.profile || '["axt1800-LiBwrt-6.12"]') }}
 
     steps:
       - name: Initialization environment

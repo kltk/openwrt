@@ -33,7 +33,7 @@ steps:
     - utils
     - mmc
     - rootfs
-    - luci2
+    - luci
 diffconfig: |
   # 使用 mold 链接器替代 ld
   CONFIG_MOLD=y
@@ -45,6 +45,5 @@ diffconfig: |
   # CONFIG_PACKAGE_dnsmasq_full_ipset=y
 patch:
   '.':
-    - ../common/patches/*.patch
-    - ../common/patches/*.sh
     - ./patches/*.patch
+    - ./patches/*.sh
