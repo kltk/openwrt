@@ -19,7 +19,7 @@ steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
     - axt1800-nss
-    - patch
+    # - patch
     - devel
     - kexec
     - kernel
