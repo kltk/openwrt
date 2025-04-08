@@ -11,3 +11,4 @@ modules:
   # - python3-yaml
   - git
   - coreutils
+  - openssl-util
