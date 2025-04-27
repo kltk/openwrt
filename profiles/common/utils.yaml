@@ -12,3 +12,4 @@ modules:
   - git
   - coreutils
   - openssl-util
+  - iperf3-ssl
