@@ -18,7 +18,7 @@ diffconfig: |
   # 禁用DTLS协议加速（用于UDP流量的加密，如某些VPN场景）。
   # CONFIG_NSS_DRV_DTLS_ENABLE=y
   # 禁用TLS协议加速（影响HTTPS等加密流量处理）。
-  CONFIG_NSS_DRV_TLS_ENABLE=y
+  # CONFIG_NSS_DRV_TLS_ENABLE=y
   # 启用NSS对Wi-Fi Mesh的硬件加速，提升Mesh节点间的数据包处理效率。
   CONFIG_NSS_DRV_WIFI_MESH_ENABLE=y
 
