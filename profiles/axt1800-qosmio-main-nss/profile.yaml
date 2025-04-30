@@ -18,32 +18,32 @@ assets:
 steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
-#     - axt1800-nss
-#     # - patch
-#     - devel
-#     - kexec
-#     - kernel
-#     - app/collectd
-#     - app/cpufreq
-#     # - app/luci
-#     - app/minidlna
-#     - app/samba
-#     - app/zerotier
-#     - custom
-#     - utils
-#     - mmc
-#     - rootfs
-#     - luci
-# diffconfig: |
-#   # 使用 mold 链接器替代 ld
-#   # CONFIG_MOLD=y
-#   # CONFIG_USE_MOLD=y
+    - device/qualcommax-ipq60xx-glinet_gl-axt1800-nss
+    # - patch
+    - devel
+    - kexec
+    - kernel
+    - app/collectd
+    - app/cpufreq
+    # - app/luci
+    - app/minidlna
+    - app/samba
+    - app/zerotier
+    - custom
+    - utils
+    - mmc
+    - rootfs
+    - luci
+diffconfig: |
+  # 使用 mold 链接器替代 ld
+  # CONFIG_MOLD=y
+  # CONFIG_USE_MOLD=y
 
-#   # # 使用 firewall4 替代 firewall
-#   # CONFIG_PACKAGE_firewall4=y
+  # # 使用 firewall4 替代 firewall
+  # CONFIG_PACKAGE_firewall4=y
 
-#   # CONFIG_PACKAGE_dnsmasq_full_ipset=y
-# patch:
-#   '.':
-#     - ./patches/*.patch
-#     - ./patches/*.sh
+  # CONFIG_PACKAGE_dnsmasq_full_ipset=y
+patch:
+  '.':
+    - ./patches/*.patch
+    - ./patches/*.sh
