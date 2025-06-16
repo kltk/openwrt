@@ -1,0 +1,4 @@
+packages:
+  - apk-openssl
+modules:
+  - apk-mbedtls
