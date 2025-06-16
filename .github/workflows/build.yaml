@@ -32,6 +32,7 @@ on:
           - '["axt1800-LiBwrt-main"]'
           - '["axt1800-LiBwrt-24.10"]'
           - '["axt1800-LiBwrt-6.12"]'
+          - '["axt1800-LiBwrt-k6.12-nss"]'
           - '["axt1800-qosmio-main-nss"]'
           - '["axt1800-qosmio-24.10-nss"]'
 
