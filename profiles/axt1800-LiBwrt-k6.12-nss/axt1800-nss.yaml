@@ -3,6 +3,7 @@ packages:
   - kmod-qca-nss-drv-wifi-meshmgr
 modules:
   - sqm-scripts-nss
+  - nss-utils
 diffconfig: |
   # 配置 512 内存，上游代码是 1G 内存
   CONFIG_ATH11K_MEM_PROFILE_512M=y
