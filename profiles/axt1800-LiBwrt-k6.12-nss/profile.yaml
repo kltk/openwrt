@@ -34,6 +34,8 @@ steps:
     - mmc
     - rootfs
     - luci
+    modules:
+      python3
 diffconfig: |
   # 使用 mold 链接器替代 ld
   # CONFIG_MOLD=y
