@@ -5,7 +5,13 @@ modules:
   - sqm-scripts-nss
   - nss-utils
 diffconfig: |
-  # 配置 512 内存，上游代码是 1G 内存
+  # 版本选择
+  CONFIG_NSS_FIRMWARE_VERSION_12_5=y
+  # CONFIG_NSS_FIRMWARE_VERSION_12_2 is not set
+  # CONFIG_NSS_FIRMWARE_VERSION_12_1 is not set
+  # CONFIG_NSS_FIRMWARE_VERSION_11_4 is not set
+
+  # 内存配置
   CONFIG_ATH11K_MEM_PROFILE_512M=y
   # CONFIG_ATH11K_MEM_PROFILE_1G is not set
   CONFIG_IPQ_MEM_PROFILE_512=y
@@ -13,6 +19,8 @@ diffconfig: |
   CONFIG_NSS_MEM_PROFILE_MEDIUM=y
   # CONFIG_NSS_MEM_PROFILE_HIGH is not set
   # CONFIG_KERNEL_IPQ_MEM_PROFILE=512
+
+  # 协议支持
 
   # 启用ATH11K无线芯片的Mesh网络硬件加速，优化Wi-Fi 6（802.11ax）设备的Mesh数据转发性能。
   CONFIG_ATH11K_NSS_MESH_SUPPORT=y
