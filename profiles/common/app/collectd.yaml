@@ -41,7 +41,8 @@ modules:
   - collectd-mod-memory
   - collectd-mod-modbus
   - collectd-mod-mqtt
-  - collectd-mod-mysql
+  # 20251102 libmariadb 编译失败
+  # - collectd-mod-mysql
   - collectd-mod-netlink
   - collectd-mod-network
   - collectd-mod-nginx
