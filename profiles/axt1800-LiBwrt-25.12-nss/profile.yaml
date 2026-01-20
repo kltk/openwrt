@@ -2,7 +2,7 @@ assets:
   # 从 git clone revision 版本到 path
   - git: https://github.com/LibWrt/openwrt-6.x
     path: openwrt
-    revision: "openwrt-24.10"
+    revision: "25.12-nss"
   # 从 url 下载文件到 path 路径
   # - url: ''
   #   path: ''
@@ -19,7 +19,7 @@ steps:
   - include:
     - device/qualcommax-ipq60xx-glinet_gl-axt1800
     - axt1800-nss
-    - patch
+    # - patch
     - devel
     - kexec
     - kernel
@@ -33,11 +33,13 @@ steps:
     - utils
     - mmc
     - rootfs
-    - luci2
+    - luci
+    modules:
+      python3
 diffconfig: |
   # 使用 mold 链接器替代 ld
-  CONFIG_MOLD=y
-  CONFIG_USE_MOLD=y
+  # CONFIG_MOLD=y
+  # CONFIG_USE_MOLD=y
 
   # # 使用 firewall4 替代 firewall
   # CONFIG_PACKAGE_firewall4=y
@@ -45,6 +47,5 @@ diffconfig: |
   # CONFIG_PACKAGE_dnsmasq_full_ipset=y
 patch:
   '.':
-    - ../common/patches/*.patch
-    - ../common/patches/*.sh
     - ./patches/*.patch
+    - ./patches/*.sh
