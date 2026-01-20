@@ -24,15 +24,12 @@ on:
         type: choice
         description: 选择配置
         required: false
-        default: '["axt1800-LiBwrt-6.12"]'
+        default: '["axt1800-LiBwrt-25.12-nss"]'
         options:
           - '["axt1800-JiaY-shi"]'
           - '["axt1800-JiaY-shi-nss"]'
           - '["axt1800-King-Of-Knights"]'
-          - '["axt1800-LiBwrt-main"]'
-          - '["axt1800-LiBwrt-24.10"]'
-          - '["axt1800-LiBwrt-6.12"]'
-          - '["axt1800-LiBwrt-k6.12-nss"]'
+          - '["axt1800-LiBwrt-25.12-nss"]'
           - '["axt1800-qosmio-main-nss"]'
           - '["axt1800-qosmio-24.10-nss"]'
 
