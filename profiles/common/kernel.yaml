@@ -1,6 +1,8 @@
 packages:
   - kmod-fs-ntfs3
   - kmod-ikconfig
+  # - kmod-tcp-bbr
+  # - kmod-sched
 modules:
   - ntfs-3g-utils
 diffconfig: |
