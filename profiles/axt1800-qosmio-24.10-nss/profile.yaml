@@ -17,8 +17,8 @@ assets:
 # 从简单的配置开始编译，逐渐添加内容
 steps:
   - include:
-    - device/qualcommax-ipq60xx-glinet_gl-axt1800
-    - device/qualcommax-ipq60xx-glinet_gl-axt1800-nss
+    - device/gl-axt1800
+    - axt1800-nss
     # - patch
     - devel
     - kexec

@@ -5,4 +5,4 @@ packages:
   - custom
 # modules:
 #   - luci-app-aria2
-#   # - luci-app-openclash
+#   - luci-app-openclash

@@ -1,0 +1,14 @@
+diff --git a/config/Config-kernel.in b/config/Config-kernel.in
+--- config/Config-kernel.in
++++ config/Config-kernel.in
+@@ -649,9 +649,9 @@
+ config KERNEL_PROC_KCORE
+ 	bool
+ 
+ config KERNEL_CRASH_DUMP
+-	depends on i386 || x86_64 || arm || armeb
++	depends on i386 || x86_64 || arm || armeb || aarch64
+ 	select KERNEL_KEXEC
+ 	select KERNEL_PROC_VMCORE
+ 	select KERNEL_PROC_KCORE
+ 	bool "Enable support for kexec crashdump"

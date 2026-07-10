@@ -1,9 +1,9 @@
 packages:
   - kmod-fs-ntfs3
   - kmod-ikconfig
-  # - kmod-tcp-bbr
-  # - kmod-sched
 modules:
+  - kmod-tcp-bbr
+  - kmod-sched
   - ntfs-3g-utils
 diffconfig: |
   CONFIG_IKCONFIG=y

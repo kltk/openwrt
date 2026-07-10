@@ -29,6 +29,7 @@ on:
           - '["axt1800-JiaY-shi"]'
           - '["axt1800-JiaY-shi-nss"]'
           - '["axt1800-King-Of-Knights"]'
+          - '["axt1800-LiBwrt-main-nss"]'
           - '["axt1800-LiBwrt-25.12-nss"]'
           - '["axt1800-qosmio-main-nss"]'
           - '["axt1800-qosmio-24.10-nss"]'
@@ -44,7 +45,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        profile: ${{ fromJSON(github.event.inputs.profile || '["axt1800-LiBwrt-6.12"]') }}
+        profile: ${{ fromJSON(github.event.inputs.profile || '["axt1800-LiBwrt-25.12-nss"]') }}
 
     steps:
       - name: Initialization environment

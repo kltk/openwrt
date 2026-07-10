@@ -1,6 +1,6 @@
 assets:
   # 从 git clone revision 版本到 path
-  - git: https://github.com/qosmio/openwrt-ipq
+  - git: https://github.com/LiBwrt/LibWrt
     path: openwrt
     revision: "main-nss"
   # 从 url 下载文件到 path 路径
@@ -28,12 +28,15 @@ steps:
     # - app/luci
     - app/minidlna
     - app/samba
+    - app/tailscale
     - app/zerotier
     - custom
     - utils
     - mmc
     - rootfs
     - luci
+    modules:
+    - python3
 diffconfig: |
   # 使用 mold 链接器替代 ld
   # CONFIG_MOLD=y
